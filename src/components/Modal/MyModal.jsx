@@ -10,9 +10,9 @@ const MyModal = () => {
 
   return (
     <>
-      <Button className="me-2 mb-2" onClick={() => handleShow()}>
+      <p style={{cursor:"pointer"}} className="me-2 mb-2" onClick={() => handleShow()}>
         Reservar
-      </Button>
+      </p>
 
       <Modal show={show} fullscreen={fullscreen} onHide={handleClose}>
         <div className="d-flex justify-content-between p-3">
