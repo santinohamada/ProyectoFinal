@@ -1,30 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
-.custom-navbar {
-  background-color: #d3c589;
-  border-bottom: 2px solid #8e6c5e;
+.nav-link {
+  text-decoration: none; 
+  color: #333; 
+  padding: 0.5rem 1rem; 
 }
-
-.hotel-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #8e6c5e;
+.nav-link-custom:active{
+  text-decoration: none;
 }
-.navbar-nav .nav-link {
-  color: #5a4b3b;
-  margin: 0 10px;
-  transition: color 0.3s ease;
+.nav-link {
+  color: #007bff; 
+  text-decoration: none !important; 
+  transition: color 0.3s ease; 
 }
-
-.navbar-nav .nav-link:hover {
-  color: #b5895e;
-}
-
-@media (max-width: 768px) {
-  .hotel-title {
-    font-size: 1.6rem;
-  }
-}
-
 /*Footer*/
 
 .custom-footer {
@@ -61,7 +48,9 @@
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
+.rs-picker-popup {
+  z-index: 10050 !important; /* Asegúrate que sea mayor que el modal */
+}
 .social-icon:hover {
   color: #5c392c;
   text-decoration: underline;
