@@ -1,6 +1,7 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import MyModal from "../Modal/MyModal";
 
 const Menu = () => {
   return (
@@ -9,16 +10,16 @@ const Menu = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/" className="nav-link-custom">
+            <NavLink to="/" end className="nav-link">
               Inicio
             </NavLink>
-            <NavLink to="/reservas" className="nav-link-custom">
-              Reservas
-            </NavLink>
-            <NavLink to="/nosotros" className="nav-link-custom">
+            <Nav.Link  className="nav-link">
+              <MyModal/>
+            </Nav.Link>
+            <NavLink to="/nosotros" className="nav-link">
               Nosotros
             </NavLink>
-            <NavLink to="/contactos" className="nav-link-custom">
+            <NavLink to="/contactos" className="nav-link">
               Contactos
             </NavLink>
           </Nav>
@@ -28,13 +29,10 @@ const Menu = () => {
             </Navbar.Brand>
           </Nav>
           <Nav className="ms-auto">
-            <NavLink to="/administrador" className="nav-link-custom">
+            <NavLink to="/administrador" className="nav-link">
               Administrador
             </NavLink>
-            <NavLink to="/registrarse" className="nav-link-custom">
-              Registrarse
-            </NavLink>
-            <NavLink to="/iniciar sesión" className="nav-link-custom">
+            <NavLink to="/iniciarSesion" className="nav-link">
               Iniciar sesión
             </NavLink>
           </Nav>

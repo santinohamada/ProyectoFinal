@@ -1,12 +1,14 @@
-.nav-link-custom {
+.nav-link {
   text-decoration: none; 
   color: #333; 
   padding: 0.5rem 1rem; 
 }
-
-.nav-link-custom:hover {
+.nav-link-custom:active{
+  text-decoration: none;
+}
+.nav-link {
   color: #007bff; 
-  text-decoration: none; 
+  text-decoration: none !important; 
   transition: color 0.3s ease; 
 }
 /*Footer*/
@@ -45,7 +47,9 @@
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
+.rs-picker-popup {
+  z-index: 10050 !important; /* Asegúrate que sea mayor que el modal */
+}
 .social-icon:hover {
   color: #5c392c;
   text-decoration: underline;
