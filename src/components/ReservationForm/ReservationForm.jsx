@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import DateRange from "../DateRange/DateRange.jsx";
 
 const ReservationForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
+
 
   return (
     <div className="row">
@@ -25,21 +25,10 @@ const ReservationForm = () => {
           <option value="4">4 Personas</option>
         </Form.Select>
 
-        <div className="mt-4">Fecha de llegada</div>
-        <DatePicker
-          dateFormat="dd/MM/yyyy"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
+        <div className="mt-4">CheckIn - CheckOut</div>
+        <DateRange/>
 
-        <div className="mt-4">
-          Fecha de Salida <i className="bi bi-calendar"></i>
-        </div>
-        <DatePicker
-          dateFormat="dd/MM/yyyy"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
+        
 
         <button className="my-5 w-100 py-2 btn btn-outline-info">
           Comprobar disponibilidad

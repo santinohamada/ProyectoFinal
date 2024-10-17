@@ -60,7 +60,9 @@
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
+.rs-picker-popup {
+  z-index: 10050 !important; /* Asegúrate que sea mayor que el modal */
+}
 .social-icon:hover {
   color: #5c392c;
   text-decoration: underline;
