@@ -9,16 +9,16 @@ const Menu = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="#home" className="nav-link-custom">
+            <NavLink to="/" className="nav-link-custom">
               Inicio
             </NavLink>
-            <NavLink to="#services" className="nav-link-custom">
+            <NavLink to="/reservas" className="nav-link-custom">
               Reservas
             </NavLink>
-            <NavLink to="#about" className="nav-link-custom">
+            <NavLink to="/nosotros" className="nav-link-custom">
               Nosotros
             </NavLink>
-            <NavLink to="#gallery" className="nav-link-custom">
+            <NavLink to="/contactos" className="nav-link-custom">
               Contactos
             </NavLink>
           </Nav>
@@ -28,13 +28,13 @@ const Menu = () => {
             </Navbar.Brand>
           </Nav>
           <Nav className="ms-auto">
-            <NavLink to="#contact" className="nav-link-custom">
-              Administración
+            <NavLink to="/administrador" className="nav-link-custom">
+              Administrador
             </NavLink>
-            <NavLink to="#book" className="nav-link-custom">
+            <NavLink to="/registrarse" className="nav-link-custom">
               Registrarse
             </NavLink>
-            <NavLink to="#book" className="nav-link-custom">
+            <NavLink to="/iniciar sesión" className="nav-link-custom">
               Iniciar sesión
             </NavLink>
           </Nav>
