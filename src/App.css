@@ -1,0 +1,40 @@
+.custom-navbar {
+  font-family: "Georgia", "Serif";
+  padding: 1rem 0;
+  border-bottom: 2px solid #3e2c1d; 
+}
+
+.hotel-title {
+  font-size: 2.9rem; 
+  color: #3e2c1d; 
+  font-weight: bold;
+  letter-spacing: 0.1rem; 
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease; 
+}
+
+.hotel-title:hover {
+  transform: scale(1.05); 
+}
+
+.nav-item {
+  color: #3e2c1d !important;
+  font-size: 1rem;
+  margin: 0 0.5rem; 
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #b5895e !important; 
+  text-decoration: underline; 
+}
+
+.nav-item.active {
+  font-weight: bold;
+  color: #3e2c1d !important;
+  border-bottom: 2px solid #b5895e; 
+}
+
+.shadow-sm {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
