@@ -1,40 +1,73 @@
 .custom-navbar {
-  font-family: "Georgia", "Serif";
-  padding: 1rem 0;
-  border-bottom: 2px solid #3e2c1d; 
+  background-color: #d3c589;
+  border-bottom: 2px solid #8e6c5e;
 }
 
 .hotel-title {
-  font-size: 2.9rem; 
-  color: #3e2c1d; 
+  font-size: 2rem;
   font-weight: bold;
-  letter-spacing: 0.1rem; 
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); 
-  transition: transform 0.3s ease; 
+  color: #8e6c5e;
 }
-
-.hotel-title:hover {
-  transform: scale(1.05); 
-}
-
-.nav-item {
-  color: #3e2c1d !important;
-  font-size: 1rem;
-  margin: 0 0.5rem; 
+.navbar-nav .nav-link {
+  color: #5a4b3b;
+  margin: 0 10px;
   transition: color 0.3s ease;
 }
 
-.nav-item:hover {
-  color: #b5895e !important; 
-  text-decoration: underline; 
+.navbar-nav .nav-link:hover {
+  color: #b5895e;
 }
 
-.nav-item.active {
+@media (max-width: 768px) {
+  .hotel-title {
+    font-size: 1.6rem;
+  }
+}
+
+/*Footer*/
+
+.custom-footer {
+  background-color: #8e6c5e;
+  border-top: 2px solid #52372d;
+  font-family: "Georgia", "Serif";
+}
+
+.hotel-title-footer {
+  font-size: 1.8rem;
+  color: #5c392c;
   font-weight: bold;
-  color: #3e2c1d !important;
-  border-bottom: 2px solid #b5895e; 
+  margin-bottom: 0.5rem;
 }
 
-.shadow-sm {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+.custom-footer h6 {
+  font-size: 1.2rem;
+  color: #5c392c;
+  margin-bottom: 0.5rem;
+}
+
+.custom-footer p {
+  font-size: 0.9rem;
+  color: #5c392c;
+}
+
+.social-links {
+  gap: 1rem;
+}
+
+.social-icon {
+  color: #5c392c;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #5c392c;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .custom-footer .row {
+    text-align: center;
+  }
 }
