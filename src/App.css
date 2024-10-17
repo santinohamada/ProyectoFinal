@@ -1,13 +1,13 @@
 .nav-link-custom {
-  text-decoration: none; /* Elimina el subrayado */
-  color: #333; /* Cambia el color del texto */
-  padding: 0.5rem 1rem; /* Espaciado alrededor del texto */
+  text-decoration: none; 
+  color: #333; 
+  padding: 0.5rem 1rem; 
 }
 
 .nav-link-custom:hover {
-  color: #007bff; /* Color al pasar el cursor por encima */
-  text-decoration: none; /* Asegura que no aparezca subrayado al pasar el cursor */
-  transition: color 0.3s ease; /* Añade una transición suave al color */
+  color: #007bff; 
+  text-decoration: none; 
+  transition: color 0.3s ease; 
 }
 /*Footer*/
 
