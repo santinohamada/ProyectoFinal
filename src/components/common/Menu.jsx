@@ -1,4 +1,5 @@
-import { Navbar, Nav, Container} from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Menu = () => {
@@ -8,9 +9,18 @@ const Menu = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Inicio</Nav.Link>
-            <Nav.Link href="#services">Reservas</Nav.Link>
-            <Nav.Link href="#about">Nosotros</Nav.Link>
+            <NavLink to="#home" className="nav-link-custom">
+              Inicio
+            </NavLink>
+            <NavLink to="#services" className="nav-link-custom">
+              Reservas
+            </NavLink>
+            <NavLink to="#about" className="nav-link-custom">
+              Nosotros
+            </NavLink>
+            <NavLink to="#gallery" className="nav-link-custom">
+              Contactos
+            </NavLink>
           </Nav>
           <Nav className="mx-auto">
             <Navbar.Brand href="#" className="hotel-title">
@@ -18,10 +28,15 @@ const Menu = () => {
             </Navbar.Brand>
           </Nav>
           <Nav className="ms-auto">
-            <Nav.Link href="#gallery">Contactos</Nav.Link>
-            <Nav.Link href="#contact">Administracion</Nav.Link>
-            <Nav.Link href="#book">Registrarse</Nav.Link>
-            <Nav.Link href="#book">Iniciar sesion</Nav.Link>
+            <NavLink to="#contact" className="nav-link-custom">
+              Administración
+            </NavLink>
+            <NavLink to="#book" className="nav-link-custom">
+              Registrarse
+            </NavLink>
+            <NavLink to="#book" className="nav-link-custom">
+              Iniciar sesión
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
