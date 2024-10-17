@@ -1,0 +1,73 @@
+.custom-navbar {
+  background-color: #d3c589;
+  border-bottom: 2px solid #8e6c5e;
+}
+
+.hotel-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #8e6c5e;
+}
+.navbar-nav .nav-link {
+  color: #5a4b3b;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #b5895e;
+}
+
+@media (max-width: 768px) {
+  .hotel-title {
+    font-size: 1.6rem;
+  }
+}
+
+/*Footer*/
+
+.custom-footer {
+  background-color: #8e6c5e;
+  border-top: 2px solid #52372d;
+  font-family: "Georgia", "Serif";
+}
+
+.hotel-title-footer {
+  font-size: 1.8rem;
+  color: #5c392c;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.custom-footer h6 {
+  font-size: 1.2rem;
+  color: #5c392c;
+  margin-bottom: 0.5rem;
+}
+
+.custom-footer p {
+  font-size: 0.9rem;
+  color: #5c392c;
+}
+
+.social-links {
+  gap: 1rem;
+}
+
+.social-icon {
+  color: #5c392c;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #5c392c;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .custom-footer .row {
+    text-align: center;
+  }
+}
