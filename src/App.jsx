@@ -3,6 +3,7 @@ import Footer from './components/common/Footer'
 import Menu from './components/common/Menu'
 import IniciarSesion from './components/pages/IniciarSesion'
 import Inicio from './components/pages/Inicio'
+import Nosotros from './components/pages/Nosotros'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -22,6 +23,7 @@ function App() {
         
       <Route exact path="/iniciarSesion" element={<IniciarSesion></IniciarSesion>}></Route>
       <Route exact path="/registro" element={<RegistrationForm></RegistrationForm>}></Route>
+      <Route exact path="/nosotros" element={<Nosotros></Nosotros>}></Route>
       <Route exact path="/reservar" element={
          <CartProvider>
           <FiltersProvider>
