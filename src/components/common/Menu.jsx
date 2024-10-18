@@ -32,6 +32,9 @@ const Menu = () => {
             <NavLink to="/administrador" className="nav-link">
               Administrador
             </NavLink>
+            <NavLink to="/registro" className="nav-link">
+              Registrarse
+            </NavLink>
             <NavLink to="/iniciarSesion" className="nav-link">
               Iniciar sesión
             </NavLink>
