@@ -1,4 +1,7 @@
+import { quartersInYear } from "date-fns";
 import { Form } from "react-bootstrap";
+import Swal from "sweetalert2";
+
 
 
 
@@ -10,6 +13,29 @@ const RegistrationForm = () => {
     formState: { errors },
     reset,
   } = useForm();
+
+  const registrationAPI = async(usuario)=>{
+    try {
+        const respuesta = await querie(usuario)
+        if(respuesta.status === 201){
+            reset();
+        Swal.fire({
+          title: "Registro",
+          text: `El usuario ${usuario.email}, fue registrado con exito.`,
+          icon: "success"
+        })
+        }
+        else{
+            Swal.fire({
+                title: "Ocurrio un error",
+                text: `No se pudo registrar el usuario ${usuario.email}, intente esta operación mas tarde `,
+                icon: "error"
+              });
+        }
+    } catch (error) {
+        console.error(error)
+    }
+  }
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formNombre">
