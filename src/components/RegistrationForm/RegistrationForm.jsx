@@ -37,7 +37,7 @@ const RegistrationForm = () => {
     }
   }
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(registrationAPI)}>
       <Form.Group className="mb-3" controlId="formNombre">
         <Form.Label>Nombre</Form.Label>
         <Form.Control
@@ -138,7 +138,7 @@ const RegistrationForm = () => {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        Submit
+        Registrar
       </Button>
     </Form>
   );
