@@ -1,11 +1,24 @@
 import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import nosotros1 from "../../assets/nosotros1.jpg";
+import nosotros2 from "../../assets/nosotros2.jpg";
 
 const Nosotros = () => {
   return (
     <section className="container-fluid row justify-content-center text-center fondoNosotros">
       <article className=" col-12 col-md-6 col-lg-4 p-3">
-        <img src="" alt="" />
+        <img
+          src={nosotros1}
+          alt="Recepcion del hotel"
+          className="img-fluid rounded-circle mb-4 shadow"
+        />
+      </article>
+      <article className=" col-12 col-md-6 col-lg-4 p-3">
+        <img
+          src={nosotros2}
+          alt="Huesped del hotel"
+          className="img-fluid rounded-circle mb-4 shadow"
+        />
       </article>
       <article className="col-12 col-md-6 col-lg-4 p-3">
         <h2 className="mb-4 tituloNosotros">Quienes Somos</h2>
