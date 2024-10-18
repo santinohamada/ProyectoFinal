@@ -38,7 +38,7 @@ const RegistrationForm = () => {
     }
   }
   return (
-    <div className="componentePagina container d-flex flex-row align-items-center justify-content-center ">
+    <div className="componentePagina container d-flex flex-row align-items-center justify-content-center my-5">
 
     <Form onSubmit={handleSubmit(registrationAPI)} className="form-container">
       <Form.Group className="mb-3" controlId="formNombre">
