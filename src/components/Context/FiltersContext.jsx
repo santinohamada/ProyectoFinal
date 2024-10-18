@@ -8,7 +8,7 @@ const FiltersProvider = ({ children }) => {
     personas,
     handleChangePersonas,
   };
-  console.log(personas);
+  
   return (
     <FiltersContext.Provider value={data}>{children} </FiltersContext.Provider>
   );

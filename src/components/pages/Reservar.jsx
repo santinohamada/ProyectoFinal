@@ -16,7 +16,7 @@ const Reservar = () => {
   const { cart, addToCart, removeFromCart, checkElementCart } = useContext(CartContext);
 
   const fechasFormateadas = formatDate();
-  console.log(fechasFormateadas);
+  
 
   const rooms = [
     {

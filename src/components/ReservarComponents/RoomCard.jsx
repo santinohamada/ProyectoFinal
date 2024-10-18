@@ -59,7 +59,7 @@ const RoomCard = ({room}) => {
                       style={{ borderRadius: 1 }}
                       className="h-100 w-100 "
                       onClick={()=>{addToCart(room)
-                      console.log(room)}}
+                      }}
                     >
                       <i className="bi bi-book me-2"></i> Reservar
                     </Button>

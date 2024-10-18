@@ -4,13 +4,15 @@ import "rsuite/dist/rsuite.min.css"; // Asegúrate de importar los estilos globa
 import { DateContext } from "../Context/DateContext";
 
 const DateRange = () => {
-  const { fechas, setFechas } = useContext(DateContext);
-  console.log(fechas);
+  const { beforeToday} = DateRangePicker;
+  const { fechas, setFechas, } = useContext(DateContext);
+ 
   return (
     <DateRangePicker
-      value={fechas} // Asegúrate de que esto sea un array de objetos Date
+      value={fechas} 
+      shouldDisableDate={beforeToday()}
       format="dd/MM/yyyy"
-      onChange={setFechas} // Se espera que setFechas reciba el nuevo rango de fechas
+      onChange={setFechas} 
     />
   );
 };

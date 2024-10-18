@@ -9,7 +9,8 @@ const DateProvider = ({ children }) => {
     const fechasFormateadas = fechas.map((fecha) => {
       const day = fecha.getDate();
       const year = fecha.getFullYear();
-      const month = fecha.getMonth();
+      const month = fecha.getMonth() + 1;
+     
       return { day, year, month };
     });
 
