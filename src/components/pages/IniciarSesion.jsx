@@ -93,7 +93,7 @@ const onSubmit=()=>{
         </div>
       </div>
       <div>
-        <Link to={"/Error404"} className="mt-1 text-dark">
+        <Link to={"/registro"} className="mt-1 text-dark">
           ¿No tenés cuenta? Registrate acá
         </Link>
       </div>
