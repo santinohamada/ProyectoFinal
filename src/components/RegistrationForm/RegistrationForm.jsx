@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-
 import Swal from "sweetalert2";
+import { registrarUsuariosAPI } from "../../helpers/queries";
 
 
 
@@ -17,7 +17,7 @@ const RegistrationForm = () => {
 
   const registrationAPI = async(usuario)=>{
     try {
-        const respuesta = await querie(usuario)
+        const respuesta = await registrarUsuariosAPI(usuario)
         if(respuesta.status === 201){
             reset();
         Swal.fire({
