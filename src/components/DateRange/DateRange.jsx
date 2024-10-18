@@ -1,22 +1,16 @@
-import React from 'react';
-import { DateRangePicker } from 'rsuite';
-import isAfter from 'date-fns/isAfter';
-
-import 'rsuite/dist/rsuite.min.css';  // Asegúrate de importar los estilos globales de RSuite
+import React, { useContext } from "react";
+import { DateRangePicker } from "rsuite";
+import "rsuite/dist/rsuite.min.css"; // Asegúrate de importar los estilos globales de RSuite
+import { DateContext } from "../Context/DateContext";
 
 const DateRange = () => {
-    const { beforeToday} = DateRangePicker;
-  const [fechas, setFechas] = React.useState([
-    new Date(''),
-    new Date(''),
-  ]);
-
+  const { fechas, setFechas } = useContext(DateContext);
+  console.log(fechas);
   return (
     <DateRangePicker
-      value={fechas}
+      value={fechas} // Asegúrate de que esto sea un array de objetos Date
       format="dd/MM/yyyy"
-      onChange={setFechas}
-      shouldDisableDate={beforeToday()}
+      onChange={setFechas} // Se espera que setFechas reciba el nuevo rango de fechas
     />
   );
 };

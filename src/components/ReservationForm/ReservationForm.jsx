@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import "react-datepicker/dist/react-datepicker.css";
 import DateRange from "../DateRange/DateRange.jsx";
+import { Link } from "react-router-dom";
+import { FiltersContext } from "../Context/FiltersContext.jsx";
 
 const ReservationForm = () => {
-
-
+  const { personas, handleChangePersonas } = useContext(FiltersContext);
   return (
     <div className="row">
       <div className="col-6">
@@ -17,8 +18,15 @@ const ReservationForm = () => {
           <option value="4">4 Habitaciones</option>
         </Form.Select>
 
-        <label htmlFor="Personas" className="mt-3">Cantidad de Personas</label>
-        <Form.Select defaultValue={"2"} name="Personas" id="personas">
+        <label htmlFor="Personas" className="mt-3">
+          Cantidad de Personas
+        </label>
+        <Form.Select
+          onChange={handleChangePersonas}
+          value={personas}
+          name="Personas"
+          id="personas"
+        >
           <option value="1">1 Persona</option>
           <option value="2">2 Personas</option>
           <option value="3">3 Personas</option>
@@ -26,13 +34,11 @@ const ReservationForm = () => {
         </Form.Select>
 
         <div className="mt-4">CheckIn - CheckOut</div>
-        <DateRange/>
+        <DateRange />
 
-        
-
-        <button className="my-5 w-100 py-2 btn btn-outline-info">
+        <Link to={"/reservar"} className="my-5 w-100 py-2 btn btn-outline-info">
           Comprobar disponibilidad
-        </button>
+        </Link>
       </div>
 
       <div className="col-6">
