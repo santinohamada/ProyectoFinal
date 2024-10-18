@@ -167,3 +167,18 @@ h2 {
   background-color: #ccc;
   color: #000;
 }
+
+/* estilos pagina nosotros */
+.tituloNosotros{
+  color: #f9d387;
+  font-weight: bolder;
+
+}
+.fondoNosotros{
+  background-color: #573c09;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.textoNosotros{
+  color: #e7d7c9;
+  font-size: 16px;
+}
