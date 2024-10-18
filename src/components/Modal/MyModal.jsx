@@ -1,18 +1,22 @@
-import { useState } from "react";
+import { Children, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import useModal from "./useModal.jsx";
-import ReservationForm from "../ReservationForm/ReservationForm.jsx"
-ReservationForm // Importamos el componente del formulario
+import useModal from "../CustomsHooks/useModal.jsx";
+import ReservationForm from "../ReservationForm/ReservationForm.jsx";
+ReservationForm; // Importamos el componente del formulario
 
-const MyModal = () => {
+const MyModal = ({ children }) => {
   const { show, fullscreen, setShow, handleShow, handleClose } = useModal();
 
   return (
     <>
-      <p style={{cursor:"pointer"}} className="me-2 mb-2" onClick={() => handleShow()}>
-        Reservar
-      </p>
+      <div
+        style={{ cursor: "pointer" }}
+        className="me-2 mb-2"
+        onClick={() => handleShow()}
+      >
+        {children}
+      </div>
 
       <Modal show={show} fullscreen={fullscreen} onHide={handleClose}>
         <div className="d-flex justify-content-between p-3">
@@ -21,7 +25,8 @@ const MyModal = () => {
         </div>
 
         <div className="container" style={{ position: "relative", top: "20%" }}>
-          <ReservationForm /> {/* Usamos el componente que maneja el formulario */}
+          <ReservationForm />{" "}
+          {/* Usamos el componente que maneja el formulario */}
         </div>
       </Modal>
     </>

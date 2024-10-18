@@ -14,7 +14,9 @@ const Menu = () => {
               Inicio
             </NavLink>
             <Nav.Link  className="nav-link">
-              <MyModal/>
+              <MyModal>
+                Reservar
+              </MyModal>
             </Nav.Link>
             <NavLink to="/nosotros" className="nav-link">
               Nosotros
