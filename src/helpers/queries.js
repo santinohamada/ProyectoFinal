@@ -1,4 +1,4 @@
-URLusuarios= import.meta.env.VITE_URLUSUARIOS
+const URLusuarios= import.meta.env.VITE_URLUSUARIOS
 
 export const registrarUsuariosAPI = async (usuarios)=>{
     try {
