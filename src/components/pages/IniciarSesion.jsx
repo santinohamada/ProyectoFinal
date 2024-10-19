@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-
+import { UserContext } from "../Context/UserContext";
 const IniciarSesion = () => {
+  const {user,iniciarSesionApi} = useContext(UserContext)
   const {
     register,
     reset,
@@ -12,7 +13,10 @@ const IniciarSesion = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = () => {};
+  
+  const onSubmit = async(data) => {
+    iniciarSesionApi(data)
+  };
   return (
     <div
       className="componentePagina"
@@ -28,22 +32,22 @@ const IniciarSesion = () => {
       <div className="form-container">
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-input-container">
-            <input
-              className="form-input"
-              type="email"
-              placeholder="Ingrese su correo electronico"
-              {...register("email", {
-                required: "El mail es un campo obligatorio",
-                pattern: {
-                  value:
-                    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
-                  message: "El correo es invalido",
-                },
-              })}
-            />
-            <i className="bi form-icon bi-envelope"></i>
+          <input
+  className="form-input"
+  type="text"
+  placeholder="Ingrese su correo o DNI"
+  {...register("entrada", {
+    required: "El campo es obligatorio",
+    pattern: {
+      value: /^[0-9]{8}$|^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+      message: "Debe ingresar un correo electrónico válido o un DNI de 8 dígitos",
+    },
+  })}
+/>
+<i className="bi form-icon bi-envelope"></i>
+
           </div>
-          <Form.Text className="text-danger">{errors.email?.message}</Form.Text>
+          <Form.Text className="text-danger">{errors.dni?.message}</Form.Text>
 
           <div className="form-input-container">
             <input
@@ -53,9 +57,9 @@ const IniciarSesion = () => {
               {...register("password", {
                 required: "La contraseña es un campo requerido",
                 minLength: {
-                  value: 8,
+                  value: 5,
                   message:
-                    "La contraseña debe contener 8 caracteres como minimo",
+                    "La contraseña debe contener 5 caracteres como minimo",
                 },
               })}
             />

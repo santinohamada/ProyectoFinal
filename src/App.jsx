@@ -8,11 +8,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import Reservar from "./components/pages/Reservar";
+import { UserProvider } from "./components/Context/UserContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <UserProvider>
         <Menu></Menu>
         <Routes>
           <Route exact path="/" element={<Inicio></Inicio>}></Route>
@@ -21,14 +23,15 @@ function App() {
             exact
             path="/iniciarSesion"
             element={<IniciarSesion></IniciarSesion>}
-          ></Route>
+            ></Route>
           <Route
             exact
             path="/registro"
             element={<RegistrationForm></RegistrationForm>}
-          ></Route>
+            ></Route>
           <Route exact path="/reservar" element={<Reservar></Reservar>}></Route>
         </Routes>
+            </UserProvider>
         <Footer></Footer>
       </BrowserRouter>
     </>
