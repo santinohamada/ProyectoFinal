@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Container } from "react-bootstrap";
 import MyModal from "../Modal/MyModal";
-import { FiltersProvider } from "../Context/FiltersContext";
 
 const Inicio = () => {
   return (
@@ -11,13 +10,12 @@ const Inicio = () => {
           Una Nueva Visión De Confort
         </h1>
         <p className="lead">Bienvenidos</p>
-        <FiltersProvider>
-          <MyModal>
-            <Button className="reserva-btn my-1" variant="light">
-              RESERVA TU EXPERIENCIA
-            </Button>
-          </MyModal>
-        </FiltersProvider>
+
+        <MyModal>
+          <Button className="reserva-btn my-1" variant="light">
+            RESERVA TU EXPERIENCIA
+          </Button>
+        </MyModal>
       </Container>
     </div>
   );

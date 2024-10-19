@@ -1,63 +1,58 @@
 import React, { useContext } from "react";
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import useFilters from "../CustomsHooks/useFilters";
-import { DateContext } from "../Context/DateContext";
+
 import DateRange from "../DateRange/DateRange";
-import { CartContext } from "../Context/CartContext";
 import RoomCard from "../ReservarComponents/roomCard";
 import CartCard from "../ReservarComponents/CartCard";
+import SelectPersonas from "../ReservationForm/SelectPersonas";
 import { FiltersContext } from "../Context/FiltersContext";
 
 const Reservar = () => {
-  const { personas, handleChangePersonas, handleOrderByPrice, orderByPrice } =
-    useContext(FiltersContext);
-  const { fechas, formatDate } = useContext(DateContext);
-  const { cart, addToCart, removeFromCart, checkElementCart } = useContext(CartContext);
-
-  const fechasFormateadas = formatDate();
-  
+  const { handleOrderByPrice, orderByPrice } = useContext(FiltersContext);
 
   const rooms = [
     {
       id: 1,
-      type: "Room in the Palazz",
+      type: "Habitación en el Palacio",
       price: 8100,
       nights: 9,
-      capacity: personas,
-      image: "https://images.pexels.com/photos/2417842/pexels-photo-2417842.jpeg",
-      description: "Warm tones characterize this cozy room with its views across the courtyard to the main Villa.",
+      capacity: 2,
+      image:
+        "https://images.pexels.com/photos/2417842/pexels-photo-2417842.jpeg",
+      description:
+        "Tonos cálidos caracterizan esta acogedora habitación con vistas al patio de la villa principal.",
       size: 400,
       bed: 1,
       taxes: 810,
+      breakfast: true,
+      include:
+        "Incluye alojamiento, desayuno diario y acceso a todas las instalaciones.",
     },
     {
       id: 2,
       type: "Room ABUSO",
       price: 1000,
       nights: 9,
-      capacity: personas,
+      capacity: 1,
       image: "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
       description: "Probando",
       size: 400,
       bed: 1,
       taxes: 810,
+      breakfast: false,
+      include:
+        "Incluye alojamiento, desayuno diario y acceso a todas las instalaciones.",
     },
   ];
 
   return (
     <Container className="my-4 componentePagina">
-      {/* Filtros */}
       <Row className="mb-4">
         <Col sm={4}>
           <Form.Group controlId="capacityFilter">
             <Form.Label>Filtrar por capacidad</Form.Label>
-            <Form.Select onChange={handleChangePersonas} value={personas}>
-              <option value="all">Todas las capacidades</option>
-              <option value="1">1 persona o más</option>
-              <option value="2">2 personas o más</option>
-              <option value="4">4 personas o más</option>
-            </Form.Select>
+            <SelectPersonas></SelectPersonas>
           </Form.Group>
         </Col>
         <Col sm={4}>
@@ -77,9 +72,7 @@ const Reservar = () => {
         </Col>
       </Row>
 
-      {/* Sección principal con habitaciones y carrito */}
       <Row className="g-4">
-        {/* Columna de habitaciones (izquierda) */}
         <Col md={8}>
           <Row className="g-4">
             {rooms.map((room) => (
@@ -88,7 +81,6 @@ const Reservar = () => {
           </Row>
         </Col>
 
-        {/* Columna del carrito (derecha) */}
         <CartCard></CartCard>
       </Row>
     </Container>
