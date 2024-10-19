@@ -1,40 +1,25 @@
+import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
-import { registrarUsuariosAPI } from "../../helpers/queries";
+import { UserContext } from "../Context/UserContext";
 
 const RegistrationForm = () => {
+  const { registrarUsuarioAPI } = useContext(UserContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
-
-  const registrationAPI = async (usuario) => {
-    try {
-      const respuesta = await registrarUsuariosAPI(usuario);
-      if (respuesta.status === 201) {
-        reset();
-        Swal.fire({
-          title: "Registro",
-          text: `El usuario ${usuario.email}, fue registrado con exito.`,
-          icon: "success",
-        });
-      } else {
-        Swal.fire({
-          title: "Ocurrio un error",
-          text: `No se pudo registrar el usuario ${usuario.email}, intente esta operación mas tarde `,
-          icon: "error",
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  const onSubmit = async (data) => {
+    data.rol = false;
+    registrarUsuarioAPI(data);
+    reset();
   };
+
   return (
     <div className="componentePagina container d-flex flex-row align-items-center justify-content-center my-5">
-      <Form onSubmit={handleSubmit(registrationAPI)} className="form-container">
+      <Form onSubmit={handleSubmit(onSubmit)} className="form-container">
         <Form.Group className="mb-3" controlId="formNombre">
           <Form.Label>Nombre</Form.Label>
           <div className="form-input-container">
@@ -87,7 +72,8 @@ const RegistrationForm = () => {
               {...register("email", {
                 required: "El email es requerido",
                 pattern: {
-                  value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                  value:
+                    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
                   message: "Direccion de correo invalida",
                 },
               })}
@@ -113,7 +99,7 @@ const RegistrationForm = () => {
                   message: "Como maximo debe ingresar 8 caracteres",
                 },
                 pattern: {
-                  value: /^[0-9]+$/,
+                  value: /^[0-9]{8}$/,
                   message: "Ingresar solo numeros",
                 },
               })}
@@ -128,7 +114,7 @@ const RegistrationForm = () => {
             <Form.Control
               type="password"
               placeholder="Ingrese su contraseña"
-              {...register("dni", {
+              {...register("password", {
                 required: "La contraseña es requerida",
                 minLength: {
                   value: 5,

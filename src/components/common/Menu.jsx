@@ -2,8 +2,11 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyModal from "../Modal/MyModal";
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext.jsx";
 
 const Menu = () => {
+  const {cerrarSesion,iniciarSesionApi,user} = useContext(UserContext)
   return (
     <Navbar bg="light" expand="lg" className="custom-navbar">
       <Container>
@@ -34,10 +37,15 @@ const Menu = () => {
             <NavLink to="/administrador" className="nav-link">
               Administrador
             </NavLink>
-          
-            <NavLink to="/iniciarSesion" className="nav-link">
+          {(!user)? <NavLink to="/iniciarSesion" className="nav-link">
               Iniciar sesión
             </NavLink>
+            :
+            <NavLink onClick={cerrarSesion} className="nav-link">
+              Cerrar sesión
+            </NavLink>
+            } 
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
