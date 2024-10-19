@@ -1,12 +1,10 @@
-import { Children, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import useModal from "../CustomsHooks/useModal.jsx";
 import ReservationForm from "../ReservationForm/ReservationForm.jsx";
 ReservationForm; // Importamos el componente del formulario
 
 const MyModal = ({ children }) => {
-  const { show, fullscreen, setShow, handleShow, handleClose } = useModal();
+  const { show, fullscreen, handleShow, handleClose } = useModal();
 
   return (
     <>
@@ -25,8 +23,7 @@ const MyModal = ({ children }) => {
         </div>
 
         <div className="container" style={{ position: "relative", top: "20%" }}>
-          <ReservationForm />{" "}
-          {/* Usamos el componente que maneja el formulario */}
+          <ReservationForm handleClose={handleClose} />
         </div>
       </Modal>
     </>
