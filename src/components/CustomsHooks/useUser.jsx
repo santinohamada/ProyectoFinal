@@ -2,15 +2,33 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { iniciarSesion, registrarUsuario } from "../../helpers/queries";
+import {
+  iniciarSesion,
+  registrarUsuario,
+  verificarAdministrador,
+} from "../../helpers/queries";
 const useUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const cerrarSesion = () => {
-    sessionStorage.removeItem("userKey");
     setUser(null);
+    setIsAdmin(false);
+    sessionStorage.removeItem("userKey");
     navigate("/");
   };
+  useEffect(() => {
+    const verificarAdmin = async () => {
+      if (!user) return;
+      const admin = await verificarAdministrador(user);
+      if (admin) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    };
+    verificarAdmin();
+  }, [user]);
 
   const registrarUsuarioAPI = async (usuario) => {
     try {
@@ -99,7 +117,7 @@ const useUser = () => {
       console.error(error);
     }
   };
-  return { iniciarSesionApi, cerrarSesion, user, registrarUsuarioAPI };
+  return { iniciarSesionApi, cerrarSesion, user, isAdmin, registrarUsuarioAPI };
 };
 
 export default useUser;
