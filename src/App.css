@@ -124,7 +124,7 @@ h2 {
 
 /*index*/
 .inicio-container {
-  background-image: url("https://images.pexels.com/photos/19045887/pexels-photo-19045887/free-photo-of-hotel-tokio-habitacion.jpeg");
+  background-image: url("https://images.pexels.com/photos/8266701/pexels-photo-8266701.jpeg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -185,12 +185,20 @@ h2 {
 }
 
 .hotel-card img {
-  height: 200px;
+  height: 250px;
   object-fit: cover;
 }
 
 .hotel-card .card-body {
-  padding: 1rem;
+  padding: 20px;
+}
+
+.hotel-description {
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .images-section {
