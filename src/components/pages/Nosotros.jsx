@@ -23,27 +23,18 @@ const Nosotros = () => {
       <article className="col-12 col-md-6 col-lg-4 p-3">
         <h2 className="mb-4 tituloNosotros">Quienes Somos</h2>
         <p className="textoNosotros">
-          Ubicado en el corazón de Dubái, nuestro hotel de cinco estrellas
-          redefine el concepto de lujo y exclusividad. Con una arquitectura
-          majestuosa que combina la elegancia moderna y la tradición árabe,
-          ofrecemos a nuestros huéspedes una experiencia incomparable. Nuestro
-          objetivo es brindar el máximo confort y satisfacer las expectativas de
-          los viajeros más exigentes.
+          En (Nombre del Hotel), creemos que el verdadero lujo reside en la
+          dedicación de nuestro equipo. Ubicados en el corazón de la Patagonia,
+          ofrecemos una experiencia única gracias a nuestro personal altamente
+          capacitado, que se esfuerza por brindar un servicio cálido y
+          personalizado.
         </p>
         <p className="textoNosotros">
-          Desde suites con vistas panorámicas al icónico Burj Khalifa y al golfo
-          Pérsico, hasta servicios personalizados como mayordomos privados,
-          garantizamos una estadía inolvidable. Cada detalle ha sido
-          cuidadosamente pensado para brindar una experiencia única:
-          restaurantes gourmet con chefs galardonados, un spa de clase mundial
-          para la relajación absoluta, y una piscina infinity que ofrece vistas
-          espectaculares de la ciudad.
-        </p>
-        <p className="textoNosotros">
-          Nos enorgullecemos de ofrecer una hospitalidad impecable y un servicio
-          distinguido que refleja la calidez y la hospitalidad de Dubái. Ya sea
-          por negocios o placer, en nuestro hotel encontrará el equilibrio
-          perfecto entre comodidad, lujo y exclusividad.
+          Cada miembro de nuestro equipo comparte una profunda pasión por la
+          hospitalidad y el entorno natural que nos rodea. Desde el momento en
+          que llega, nuestro compromiso es hacer que su estadía sea inolvidable,
+          cuidando cada detalle para que disfrute de la Patagonia con el máximo
+          confort.
         </p>
       </article>
     </section>
