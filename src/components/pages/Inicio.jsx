@@ -44,15 +44,14 @@ const Inicio = () => {
               <Card className="hotel-card">
                 <Card.Img
                   variant="top"
-                  src="https://images.pexels.com/photos/2507010/pexels-photo-2507010.jpeg"
+                  src="https://images.pexels.com/photos/28054888/pexels-photo-28054888/free-photo-of-paisaje-vacaciones-hotel-relajante.jpeg"
                   alt="Habitación con vista al mar"
                 />
                 <Card.Body>
                   <Card.Title>Habitación con Vista al Mar</Card.Title>
                   <Card.Text>
                     Disfruta de la brisa y el sonido del mar desde la comodidad
-                    de tu habitación. Incluye terraza privada, minibar y
-                    jacuzzi.
+                    de tu habitación.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -62,15 +61,14 @@ const Inicio = () => {
               <Card className="hotel-card">
                 <Card.Img
                   variant="top"
-                  src="https://images.pexels.com/photos/342800/pexels-photo-342800.jpeg"
+                  src="https://images.pexels.com/photos/460537/pexels-photo-460537.jpeg"
                   alt="Restaurante Gourmet"
                 />
                 <Card.Body>
                   <Card.Title>Restaurante Gourmet</Card.Title>
                   <Card.Text>
                     Prueba los mejores platos locales e internacionales en
-                    nuestro restaurante exclusivo. Menú diseñado por chefs de
-                    renombre mundial.
+                    nuestro restaurante exclusivo.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -80,15 +78,14 @@ const Inicio = () => {
               <Card className="hotel-card">
                 <Card.Img
                   variant="top"
-                  src="https://images.pexels.com/photos/261181/pexels-photo-261181.jpeg"
+                  src="https://images.pexels.com/photos/5865693/pexels-photo-5865693.jpeg"
                   alt="Piscina Infinita"
                 />
                 <Card.Body>
-                  <Card.Title>Piscina Infinita</Card.Title>
+                  <Card.Title>Piscina</Card.Title>
                   <Card.Text>
-                    Relájate en nuestra piscina infinita mientras disfrutas de
-                    una vista panorámica. Zona de bar y sillones sumergidos para
-                    mayor confort.
+                    Relájate en nuestra piscina mientras disfrutas de una vista
+                    panorámica. Zona de bar para mayor confort.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -98,7 +95,7 @@ const Inicio = () => {
               <Card className="hotel-card">
                 <Card.Img
                   variant="top"
-                  src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg"
+                  src="https://images.pexels.com/photos/433626/pexels-photo-433626.jpeg"
                   alt="Spa de Lujo"
                 />
                 <Card.Body>
@@ -115,15 +112,14 @@ const Inicio = () => {
               <Card className="hotel-card">
                 <Card.Img
                   variant="top"
-                  src="https://images.pexels.com/photos/297755/pexels-photo-297755.jpeg"
+                  src="https://images.pexels.com/photos/20944032/pexels-photo-20944032/free-photo-of-restaurante-naturaleza-vacaciones-amor.jpeg"
                   alt="Centro de Eventos"
                 />
                 <Card.Body>
                   <Card.Title>Centro de Eventos</Card.Title>
                   <Card.Text>
-                    Organiza tus eventos en nuestro moderno centro de
-                    convenciones. Equipado con tecnología de punta y servicio de
-                    catering.
+                    Organiza tus eventos en nuestro centro de convenciones.
+                    Equipado con lo mejor para tu comodidad.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -133,65 +129,14 @@ const Inicio = () => {
               <Card className="hotel-card">
                 <Card.Img
                   variant="top"
-                  src="https://images.pexels.com/photos/2064017/pexels-photo-2064017.jpeg"
-                  alt="Salón VIP"
+                  src="https://images.pexels.com/photos/19689234/pexels-photo-19689234/free-photo-of-mesa-lujo-interior-vela.jpeg"
+                  alt="Sala VIP"
                 />
                 <Card.Body>
-                  <Card.Title>Salón VIP</Card.Title>
+                  <Card.Title>Sala VIP</Card.Title>
                   <Card.Text>
-                    Exclusivo salón VIP con bar privado y áreas de descanso.
+                    Exclusivo sala VIP y áreas de descanso.
                     Ideal para reuniones privadas y momentos de tranquilidad.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col lg={4}>
-              <Card className="hotel-card">
-                <Card.Img
-                  variant="top"
-                  src="https://images.pexels.com/photos/2825936/pexels-photo-2825936.jpeg"
-                  alt="Gimnasio Moderno"
-                />
-                <Card.Body>
-                  <Card.Title>Gimnasio Moderno</Card.Title>
-                  <Card.Text>
-                    Mantente en forma con nuestro gimnasio equipado con máquinas
-                    de última generación y entrenadores personales.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col lg={4}>
-              <Card className="hotel-card">
-                <Card.Img
-                  variant="top"
-                  src="https://images.pexels.com/photos/3048299/pexels-photo-3048299.jpeg"
-                  alt="Bar en la Terraza"
-                />
-                <Card.Body>
-                  <Card.Title>Bar en la Terraza</Card.Title>
-                  <Card.Text>
-                    Disfruta de cócteles y tapas en nuestro bar en la terraza,
-                    con vistas espectaculares al atardecer.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col lg={4}>
-              <Card className="hotel-card">
-                <Card.Img
-                  variant="top"
-                  src="https://images.pexels.com/photos/2101137/pexels-photo-2101137.jpeg"
-                  alt="Jardines Zen"
-                />
-                <Card.Body>
-                  <Card.Title>Jardines Zen</Card.Title>
-                  <Card.Text>
-                    Encuentra la paz interior caminando por nuestros jardines
-                    zen. Perfectos para meditación y relajación.
                   </Card.Text>
                 </Card.Body>
               </Card>

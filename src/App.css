@@ -53,7 +53,7 @@
   transition: color 0.3s ease;
 }
 .rs-picker-popup {
-  z-index: 10050 !important; /* Asegúrate que sea mayor que el modal */
+  z-index: 10050 !important; 
 }
 .social-icon:hover {
   color: #5c392c;
@@ -124,7 +124,7 @@ h2 {
 
 /*index*/
 .inicio-container {
-  background-image: url("https://images.pexels.com/photos/8266701/pexels-photo-8266701.jpeg");
+  background-image: url("https://images.pexels.com/photos/18545421/pexels-photo-18545421/free-photo-of-hotel-lujo-viaje-viajar.jpeg");
   background-size: cover;
   background-position: center;
   height: 100vh;
