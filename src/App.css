@@ -53,7 +53,7 @@
   transition: color 0.3s ease;
 }
 .rs-picker-popup {
-  z-index: 10050 !important; 
+  z-index: 10050 !important;
 }
 .social-icon:hover {
   color: #5c392c;
@@ -202,6 +202,60 @@ h2 {
 }
 
 .images-section {
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
   padding: 50px 15px;
+}
+
+/* Carrusel de comentarios */
+.comments-carousel-section {
+  position: relative;
+}
+
+.carousel-style .carousel-item {
+  position: relative;
+  height: 400px; 
+  color: white;
+}
+
+.carousel-image-overlay {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+}
+
+.carousel-comment {
+  position: absolute;
+  bottom: 20px;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); 
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  max-width: 80%;
+  text-align: center;
+}
+
+.carousel-comment h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.carousel-comment p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.carousel-comment h5 {
+  font-size: 16px;
+  font-style: italic;
 }
