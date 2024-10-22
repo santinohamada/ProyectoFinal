@@ -8,7 +8,7 @@ import nosotros3 from "../../assets/nosotros3.jpg";
 
 const Nosotros = () => {
   return (
-    <section className="container-fluid row justify-content-center text-center fondoNosotros">
+    <section className="componentePagina container-fluid row justify-content-center text-center fondoNosotros">
       <article className="col-12 col-md-6 col-lg-4 p-3">
         <div
           id="carouselExampleRide"

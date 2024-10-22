@@ -5,17 +5,14 @@
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
-.nav-link:hover {
-  cursor: pointer;
-}
-.nav-link-custom:active {
+
+.nav-link:hover, 
+.nav-link:focus, 
+.nav-link:active {
   text-decoration: none;
+  color: #333;
 }
-.nav-link {
-  color: #007bff;
-  text-decoration: none !important;
-  transition: color 0.3s ease;
-}
+
 /*Footer*/
 
 .custom-footer {
@@ -188,7 +185,7 @@ h2 {
   color: #e7d7c9;
   font-size: 16px;
 }
-=======
+
 .hotel-card {
   background: #fff;
   border-radius: 10px;
