@@ -17,13 +17,13 @@ const Nosotros = () => {
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img src={nosotros1} className="d-block w-100" alt="..." />
+              <img src={nosotros1} className="d-block w-100" alt="Recepcion del hotel" />
             </div>
             <div className="carousel-item">
-              <img src={nosotros2} className="d-block w-100" alt="..." />
+              <img src={nosotros2} className="d-block w-100" alt="Huesped del hotel" />
             </div>
             <div className="carousel-item">
-              <img src={nosotros3} className="d-block w-100" alt="..." />
+              <img src={nosotros3} className="d-block w-100" alt="Mozos del hotel" />
             </div>
           </div>
           <button
