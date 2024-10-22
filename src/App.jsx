@@ -1,45 +1,46 @@
-import './App.css'
-import Footer from './components/common/Footer'
-import Menu from './components/common/Menu'
-import IniciarSesion from './components/pages/IniciarSesion'
-import Inicio from './components/pages/Inicio'
 import Nosotros from './components/pages/Nosotros'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import RegistrationForm from './components/RegistrationForm/RegistrationForm'
-import Reservar from './components/pages/Reservar'
-import { CartProvider } from './components/Context/CartContext'
-import { FiltersProvider } from './components/Context/FiltersContext'
+import "./App.css";
+import Footer from "./components/common/Footer";
+import Menu from "./components/common/Menu";
+import IniciarSesion from "./components/pages/IniciarSesion";
+import Inicio from "./components/pages/Inicio";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+import Reservar from "./components/pages/Reservar";
+import { UserProvider } from "./components/Context/UserContext";
+import RutaProtegida from "./routes/RutaProtegida";
+import RutasAdministrador from "./routes/RutasAdministrador";
 
 function App() {
-
   return (
     <>
-    <BrowserRouter>
-    <Menu></Menu>
+      <BrowserRouter>
+  <UserProvider>
+    <Menu />
     <Routes>
-      <Route exact path="/" element={<Inicio></Inicio>}></Route>
-        
-      <Route exact path="/iniciarSesion" element={<IniciarSesion></IniciarSesion>}></Route>
-      <Route exact path="/registro" element={<RegistrationForm></RegistrationForm>}></Route>
-      <Route exact path="/nosotros" element={<Nosotros></Nosotros>}></Route>
-      <Route exact path="/reservar" element={
-         <CartProvider>
-          <FiltersProvider>
-
-           <Reservar></Reservar>
-          </FiltersProvider>
-         </CartProvider>
-      }></Route>
+<Route exact path="/nosotros" element={<Nosotros></Nosotros>}></Route>
+      <Route exact path="/" element={<Inicio />} />
+      <Route exact path="/iniciarSesion" element={<IniciarSesion />} />
+      <Route exact path="/registro" element={<RegistrationForm />} />
+      <Route exact path="/reservar" element={<Reservar />} />
+      <Route
+        exact
+        path="/administrador/*"
+        element={
+          <RutaProtegida>
+            <RutasAdministrador />
+          </RutaProtegida>
+        }
+      />
     </Routes>
-    <Footer></Footer>
-    </BrowserRouter>
-     
-     
-     
+    <Footer />
+  </UserProvider>
+</BrowserRouter>
+
     </>
-  )
+  );
 }
 
-export default App
+export default App;

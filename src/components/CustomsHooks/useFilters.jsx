@@ -3,18 +3,22 @@ import { useState } from "react";
 const useFilters = () => {
   const [personas, setPersonas] = useState(2);
   const [orderByPrice, setOrderByPrice] = useState("A");
-  // Manejador para cambiar el número de personas
+
   const handleChangePersonas = (event) => {
-    setPersonas(event.target.value); // Solo cambiamos el valor directamente
+    const newValue = parseInt(event.target.value, 10);
+
+    setPersonas(newValue);
   };
+
   const handleOrderByPrice = (event) => {
-    event.target.value === "A" ? setOrderByPrice("A") : setOrderByPrice("D");
+    const value = event.target.value === "A" ? "A" : "D";
+
+    setOrderByPrice(value);
   };
-  // Devuelve el estado y la función manejadora
-  console.log(personas, orderByPrice);
+
   return {
-    handleChangePersonas,
     personas,
+    handleChangePersonas,
     handleOrderByPrice,
   };
 };
