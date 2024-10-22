@@ -5,13 +5,13 @@ import { DateContext } from "../Context/DateContext";
 
 const DateRange = () => {
   const { beforeToday} = DateRangePicker;
-  const { fechas, setFechas, } = useContext(DateContext);
+  const { fechas, setFechas } = useContext(DateContext);
  
   return (
     <DateRangePicker
       value={fechas} 
       shouldDisableDate={beforeToday()}
-      format="dd/MM/yyyy"
+      format="dd/MM/yyyy HH:mm"
       onChange={setFechas} 
     />
   );
