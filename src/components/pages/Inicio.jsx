@@ -14,7 +14,7 @@ const Inicio = () => {
           <p className="lead">Bienvenidos</p>
 
           <MyModal>
-            <Button className="reserva-btn my-1" variant="light">
+            <Button className="reserva-btn my-4" variant="light">
               RESERVA TU EXPERIENCIA
             </Button>
           </MyModal>
