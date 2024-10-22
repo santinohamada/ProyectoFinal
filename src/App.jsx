@@ -1,3 +1,4 @@
+import Nosotros from './components/pages/Nosotros'
 import "./App.css";
 import Footer from "./components/common/Footer";
 import Menu from "./components/common/Menu";
@@ -19,6 +20,7 @@ function App() {
   <UserProvider>
     <Menu />
     <Routes>
+<Route exact path="/nosotros" element={<Nosotros></Nosotros>}></Route>
       <Route exact path="/" element={<Inicio />} />
       <Route exact path="/iniciarSesion" element={<IniciarSesion />} />
       <Route exact path="/registro" element={<RegistrationForm />} />

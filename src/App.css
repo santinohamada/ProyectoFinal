@@ -172,6 +172,23 @@ h2 {
   color: #000;
 }
 
+
+/*pagina nosotros */
+.tituloNosotros{
+  color: #f9d387;
+  font-weight: bolder;
+  text-shadow: 2px 2px 5px #322203;
+
+}
+.fondoNosotros{
+  background-color: #8c6e4a;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.textoNosotros{
+  color: #e7d7c9;
+  font-size: 16px;
+}
+=======
 .hotel-card {
   background: #fff;
   border-radius: 10px;
@@ -259,3 +276,4 @@ h2 {
   font-size: 16px;
   font-style: italic;
 }
+
