@@ -3,6 +3,7 @@ const URLIniciarSesion = import.meta.env.VITE_API_INICIARSESION;
 const URLVerificarAdmin = import.meta.env.VITE_API_VERIFICARADMIN;
 const URLReservas = import.meta.env.VITE_API_RESERVAS;
 const URLHabitaciones = import.meta.env.VITE_API_HABITACIONES;
+const URLHabitacionesDisponibles = import.meta.env.VITE_API_HABITACIONESDISPONIBLES;
 
 export const reservarHabitacion = async(reserva) =>{
   try {
@@ -80,5 +81,19 @@ export const obtenerReservas = async()=>{
     console.error(error)
     return false
     
+export const listarHabitacionesDisponibles = async(fechas)=>{
+  try {
+    const habitaciones = await fetch(URLHabitacionesDisponibles,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(fechas)
+    })
+    const datos = await habitaciones.json()
+    
+    return datos
+  } catch (error) {
+    console.error(error)
   }
 }

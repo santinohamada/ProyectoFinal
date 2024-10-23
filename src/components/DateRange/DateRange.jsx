@@ -10,6 +10,7 @@ const DateRange = () => {
   return (
     <DateRangePicker
       value={fechas} 
+      showOneCalendar
       shouldDisableDate={beforeToday()}
       format="dd/MM/yyyy HH:mm"
       onChange={setFechas} 
