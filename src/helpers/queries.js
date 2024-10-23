@@ -71,3 +71,14 @@ export const listarHabitaciones = async()=>{
     console.error(error)
   }
 }
+
+export const obtenerReservas = async()=>{
+  try {
+    const respuesta = await fetch(URLReservas)
+    return respuesta
+  } catch (error) {
+    console.error(error)
+    return false
+    
+  }
+}

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { obtenerReservas, reservarHabitacion } from '../helpers/queries.js';
 
 
-const ListaHabitaciones = ({habitacion}) => {
+const ListaHabitaciones = ({habitacion,reserva}) => {
+  
+  
+    const estaReservada = reserva.includes(habitacion.numberRoom)
+    
+    
+
+
     return (
       <div className=' d-flex flex-column'>
 
@@ -19,6 +27,10 @@ const ListaHabitaciones = ({habitacion}) => {
         
 
         <Button className='mt-auto' variant="primary">Ver</Button>
+        <div className={`badge ${estaReservada ? 'disponible' : 'no-disponible'}`}>
+          {estaReservada===null ? 'Cargando..': estaReservada ? 'Disponible' : 'No Disponible'}
+
+        </div>
        
       </Card.Body>
     </Card>
