@@ -52,7 +52,7 @@ export const iniciarSesion = async (usuario) => {
     const respuesta = await fetch(URLIniciarSesion, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(usuario),
     });
@@ -72,6 +72,15 @@ export const listarHabitaciones = async()=>{
     console.error(error)
   }
 }
+
+export const obtenerReservas = async()=>{
+  try {
+    const respuesta = await fetch(URLReservas)
+    return respuesta
+  } catch (error) {
+    console.error(error)
+    return false
+    
 export const listarHabitacionesDisponibles = async(fechas)=>{
   try {
     const habitaciones = await fetch(URLHabitacionesDisponibles,{
