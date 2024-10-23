@@ -2,15 +2,32 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { iniciarSesion, registrarUsuario } from "../../helpers/queries";
+import {
+  iniciarSesion,
+  registrarUsuario,
+  verificarAdministrador,
+} from "../../helpers/queries";
 const useUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const cerrarSesion = () => {
-    sessionStorage.removeItem("userKey");
     setUser(null);
-    navigate("/");
+    setIsAdmin(false);
+    sessionStorage.removeItem("userKey");
   };
+  useEffect(() => {
+    const verificarAdmin = async () => {
+      if (!user) return;
+      const admin = await verificarAdministrador(user);
+      if (admin) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    };
+    verificarAdmin();
+  }, [user]);
 
   const registrarUsuarioAPI = async (usuario) => {
     try {
@@ -58,7 +75,7 @@ const useUser = () => {
         let timerInterval;
         Swal.fire({
           title: "Sesion iniciada!",
-          html: "Seras redirigido al inicio en <b></b> milisegundos.",
+          html: "Seras redirigido en <b></b> milisegundos.",
           timer: 1000,
           timerProgressBar: true,
           didOpen: () => {
@@ -76,19 +93,22 @@ const useUser = () => {
           const datos = await respuesta.json();
 
           if (datos.dni) {
-            setUser({ dni: datos.usuario.dni }); //completar con token
+            setUser({ dni: datos.usuario.dni, id: datos.usuario._id }); //completar con token
             sessionStorage.setItem(
               "userKey",
-              JSON.stringify({ dni: datos.usuario.dni }) //completar con token
+              JSON.stringify({ dni: datos.usuario.dni, id: datos.usuario._id }) //completar con token
             );
           } else {
-            setUser({ email: datos.usuario.email }); //completar con token
+            setUser({ email: datos.usuario.email, id: datos.usuario._id }); //completar con token
             sessionStorage.setItem(
               "userKey",
-              JSON.stringify({ email: datos.usuario.email }) //completar con token
+              JSON.stringify({
+                email: datos.usuario.email,
+                id: datos.usuario._id,
+              }) //completar con token
             );
           }
-          navigate("/");
+          navigate(-1);
           if (result.dismiss === Swal.DismissReason.timer) {
           }
         });
@@ -103,7 +123,7 @@ const useUser = () => {
       console.error(error);
     }
   };
-  return { iniciarSesionApi, cerrarSesion, user, registrarUsuarioAPI };
+  return { iniciarSesionApi, cerrarSesion, user, isAdmin, registrarUsuarioAPI };
 };
 
 export default useUser;

@@ -1,3 +1,4 @@
+import Nosotros from './components/pages/Nosotros'
 import "./App.css";
 import Footer from "./components/common/Footer";
 import Menu from "./components/common/Menu";
@@ -9,31 +10,35 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import Reservar from "./components/pages/Reservar";
 import { UserProvider } from "./components/Context/UserContext";
+import RutaProtegida from "./routes/RutaProtegida";
+import RutasAdministrador from "./routes/RutasAdministrador";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-      <UserProvider>
-        <Menu></Menu>
-        <Routes>
-          <Route exact path="/" element={<Inicio></Inicio>}></Route>
+  <UserProvider>
+    <Menu />
+    <Routes>
+<Route exact path="/nosotros" element={<Nosotros></Nosotros>}></Route>
+      <Route exact path="/" element={<Inicio />} />
+      <Route exact path="/iniciarSesion" element={<IniciarSesion />} />
+      <Route exact path="/registro" element={<RegistrationForm />} />
+      <Route exact path="/reservar" element={<Reservar />} />
+      <Route
+        exact
+        path="/administrador/*"
+        element={
+          <RutaProtegida>
+            <RutasAdministrador />
+          </RutaProtegida>
+        }
+      />
+    </Routes>
+    <Footer />
+  </UserProvider>
+</BrowserRouter>
 
-          <Route
-            exact
-            path="/iniciarSesion"
-            element={<IniciarSesion></IniciarSesion>}
-            ></Route>
-          <Route
-            exact
-            path="/registro"
-            element={<RegistrationForm></RegistrationForm>}
-            ></Route>
-          <Route exact path="/reservar" element={<Reservar></Reservar>}></Route>
-        </Routes>
-            </UserProvider>
-        <Footer></Footer>
-      </BrowserRouter>
     </>
   );
 }
