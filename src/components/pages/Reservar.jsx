@@ -7,19 +7,23 @@ import RoomCard from "../ReservarComponents/RoomCard.jsx";
 import CartCard from "../ReservarComponents/CartCard.jsx";
 import SelectPersonas from "../ReservationForm/SelectPersonas.jsx";
 import { FiltersContext } from "../Context/FiltersContext.jsx";
-import { listarHabitaciones } from "../../helpers/queries.js";
+import { listarHabitacionesDisponibles } from "../../helpers/queries.js";
+import { DateContext } from "../Context/DateContext.jsx";
 
 const Reservar = () => {
   const [rooms, setRooms] = useState([]);
+  const { ISOFormat,fechas } = useContext(DateContext);
+  const fechasISO = ISOFormat()
   const { handleOrderByPrice, orderByPrice } = useContext(FiltersContext);
 
   useEffect(() => {
     const roomList = async () => {
-      const habitaciones = await listarHabitaciones();
-      setRooms(habitaciones.habitaciones);
+      const habitaciones = await listarHabitacionesDisponibles(fechasISO);
+      console.log(habitaciones)
+      setRooms(habitaciones);
     };
     roomList();
-  }, []);
+  }, [fechas]);
 
   return (
     <Container className="my-4 componentePagina">
