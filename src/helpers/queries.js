@@ -18,7 +18,7 @@ export const iniciarSesion = async (usuario) => {
     const respuesta = await fetch(URLIniciarSesion, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(usuario),
     });

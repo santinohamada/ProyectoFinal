@@ -40,12 +40,16 @@ const useUser = () => {
     }
     return { email: usuario.entrada, password: usuario.password };
   };
+
+
   useEffect(() => {
     const savedUser = sessionStorage.getItem("userKey");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
   }, []);
+
+  
   const iniciarSesionApi = async (usuario) => {
     const datosAEnviar = comprobarEntrada(usuario);
     try {
