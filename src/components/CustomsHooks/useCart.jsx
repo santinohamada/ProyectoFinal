@@ -6,10 +6,10 @@ const useCart = () => {
     setCart([room]);
   };
   const removeFromCart = (room) => {
-    setCart((prevCart) => prevCart.filter((item) => room.id !== item.id));
+    setCart((prevCart) => prevCart.filter((item) => room._id !== item._id));
   };
   const checkElementCart = (room) => {
-    if (cart.find((item) => item.id === room.id) !== undefined) return true;
+    if (cart.find((item) => item._id === room._id) !== undefined) return true;
     return false;
   };
   const clearCart = (room) => {

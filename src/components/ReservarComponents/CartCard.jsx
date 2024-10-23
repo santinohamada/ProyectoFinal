@@ -3,11 +3,17 @@ import { Col, Card, Button } from "react-bootstrap";
 import { CartContext } from "../Context/CartContext";
 import { DateContext } from "../Context/DateContext";
 import { FiltersContext } from "../Context/FiltersContext.jsx";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../Context/UserContext.jsx";
+import { reservarHabitacion } from "../../helpers/queries.js";
 const CartCard = () => {
-  const { formatDate } = useContext(DateContext);
+  const navigation = useNavigate();
+  const { formatDate, ISOFormat } = useContext(DateContext);
   const { personas } = useContext(FiltersContext);
   const fechasFormateadas = formatDate();
   const { cart, removeFromCart } = useContext(CartContext);
+  const { user } = useContext(UserContext);
+  const fechasEnISO = ISOFormat();
   return (
     <Col md={4}>
       <Card className="border-2">
@@ -37,14 +43,27 @@ const CartCard = () => {
               </Card.Text>
               <Button
                 variant="link"
-                onClick={() => removeFromCart(cart[0])}
+                onClick={() => {
+                  removeFromCart(cart[0]);
+                }}
                 className="text-danger"
               >
                 Remover
               </Button>
               <Button
                 variant="link"
-                onClick={() => removeFromCart(cart[0])}
+                onClick={async () => {
+                  if (!user) {
+                    navigation("/iniciarSesion");
+                  } else {
+                    await reservarHabitacion({
+                      userId: user.id,
+                      roomNumber: cart[0].numberRoom,
+                      checkIn: fechasEnISO[0],
+                      checkOut: fechasEnISO[1],
+                    });
+                  }
+                }}
                 className="text-success"
               >
                 Pagar
