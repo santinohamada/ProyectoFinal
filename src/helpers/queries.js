@@ -80,6 +80,8 @@ export const obtenerReservas = async()=>{
   } catch (error) {
     console.error(error)
     return false
+}
+}
     
 export const listarHabitacionesDisponibles = async(fechas)=>{
   try {
