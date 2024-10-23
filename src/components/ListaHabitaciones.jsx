@@ -6,7 +6,7 @@ import { obtenerReservas, reservarHabitacion } from '../helpers/queries.js';
 const ListaHabitaciones = ({habitacion,reserva}) => {
   
   
-    const estaReservada = reserva.includes(habitacion.numberRoom)
+    const estaReservada = reserva.includes(habitacion.roomNumber)
     
     
 
@@ -18,7 +18,7 @@ const ListaHabitaciones = ({habitacion,reserva}) => {
       <Card.Img variant="top" className='card-img-fixed' src={habitacion.image} />
       <Card.Body className='d-flex flex-column h-100'>
 
-        <Card.Title>{habitacion.numberRoom}</Card.Title>
+        <Card.Title>{habitacion.roomNumber}</Card.Title>
         
         <Card.Text>
           {habitacion.description}
