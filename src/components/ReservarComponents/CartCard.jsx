@@ -58,6 +58,7 @@ const CartCard = () => {
                   } else {
                     await reservarHabitacion({
                       userId: user.id,
+                      roomId:cart[0]._id,
                       roomNumber: cart[0].roomNumber,
                       checkIn: fechasEnISO[0],
                       checkOut: fechasEnISO[1],
