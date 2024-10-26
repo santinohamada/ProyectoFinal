@@ -24,7 +24,7 @@ const Inicio = () => {
       {/* Sección separada para las imágenes del hotel */}
       <div className="images-section">
         <Container className="py-5">
-          <h2 className="text-center mb-4">Explora Nuestro Hotel</h2>
+          <h2 className="text-center mb-4">Hotel Patagonia</h2>
 
           {/* Descripción del hotel */}
           <p className="text-center mb-5 hotel-description">
@@ -44,14 +44,14 @@ const Inicio = () => {
               <Card className="hotel-card">
                 <Card.Img
                   variant="top"
-                  src="https://images.pexels.com/photos/28054888/pexels-photo-28054888/free-photo-of-paisaje-vacaciones-hotel-relajante.jpeg"
-                  alt="Habitación con vista al mar"
+                  src="https://images.pexels.com/photos/20666872/pexels-photo-20666872/free-photo-of-hotel-habitacion-viaje-viajar.jpeg"
+                  alt="Habitación con vista a la Naturaleza"
                 />
                 <Card.Body>
-                  <Card.Title>Habitación con Vista al Mar</Card.Title>
+                  <Card.Title>Habitación con Vista a la Naturaleza</Card.Title>
                   <Card.Text>
-                    Disfruta de la brisa y el sonido del mar desde la comodidad
-                    de tu habitación.
+                    Disfruta de la hermosa vista desde la comodidad de tu
+                    habitación.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -112,14 +112,14 @@ const Inicio = () => {
               <Card className="hotel-card">
                 <Card.Img
                   variant="top"
-                  src="https://images.pexels.com/photos/20944032/pexels-photo-20944032/free-photo-of-restaurante-naturaleza-vacaciones-amor.jpeg"
-                  alt="Centro de Eventos"
+                  src="https://images.pexels.com/photos/28054351/pexels-photo-28054351/free-photo-of-nieve-nevar-paisaje-naturaleza.jpeg"
+                  alt="ACtividades en grupo"
                 />
                 <Card.Body>
-                  <Card.Title>Centro de Eventos</Card.Title>
+                  <Card.Title>Travesia en moto de nieve</Card.Title>
                   <Card.Text>
-                    Organiza tus eventos en nuestro centro de convenciones.
-                    Equipado con lo mejor para tu comodidad.
+                    Un paseo guiado por el bosque, parando en miradores donde se
+                    pueden apreciar maravillosos paisajes.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -143,6 +143,43 @@ const Inicio = () => {
             </Col>
           </Row>
         </Container>
+        <div className="services-section">
+          <h2>Servicios Incluidos</h2>
+          <ul className="list-unstyled">
+            <li className="d-flex align-items-center">
+              <i className="bi bi-wifi me-2"></i> Wi-Fi gratis: Conéctate a
+              internet de alta velocidad de forma gratuita en todas las áreas
+              del hotel.
+            </li>
+            <li className="d-flex align-items-center">
+              <i className="bi bi-cup-fill me-2"></i> Desayuno buffet: Disfruta
+              de un delicioso desayuno buffet con una amplia variedad de
+              opciones.
+            </li>
+            <li className="d-flex align-items-center">
+              <i className="bi-car-front me-2"></i> Alquiler de autos: Explora
+              la Patagonia a tu propio ritmo.
+            </li>
+            <li className="d-flex align-items-center">
+              <i className="bi-suitcase me-2"></i> Servicio de lavandería y
+              tintorería.
+            </li>
+            <li className="d-flex align-items-center">
+              <i className="bi-gift me-2"></i> Organización de eventos
+              especiales.
+            </li>
+          </ul>
+        </div>
+
+        <div className="hotel-category">
+          <h2>Nuestro Compromiso con la Calidad</h2>
+          <p>
+            Somos un hotel de 4 estrellas comprometido en ofrecerte una
+            experiencia inolvidable. Disfruta de nuestros servicios de primera
+            calidad y atención personalizada.
+          </p>
+          <div className="stars">⭐⭐⭐⭐</div>
+        </div>
       </div>
       {/* Carrusel de comentarios de usuarios con nuevo diseño */}
       <div className="comments-carousel-section">

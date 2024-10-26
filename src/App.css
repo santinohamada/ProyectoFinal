@@ -124,7 +124,7 @@ h2 {
 
 /*index*/
 .inicio-container {
-  background-image: url("https://images.pexels.com/photos/18545421/pexels-photo-18545421/free-photo-of-hotel-lujo-viaje-viajar.jpeg");
+  background-image: url("https://images.pexels.com/photos/7911226/pexels-photo-7911226.jpeg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -172,19 +172,68 @@ h2 {
   color: #000;
 }
 
+/* Sección de servicios */
+.services-section {
+  background-color: #C49A4B; 
+  padding: 40px;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.services-section ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.services-section li {
+  flex: 0 1 30%;
+  margin: 10px;
+}
+
+.services-section i {
+  font-size: 30px;
+  color: #1b1b1b;
+  margin-right: 10px;
+}
+
+/* Sección de categoría del hotel */
+.hotel-category {
+  background-color: #C49A4B;
+  padding: 40px;
+  text-align: center;
+}
+
+.hotel-category h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.hotel-category p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.stars {
+  font-size: 36px;
+  color: #ffcc00; 
+}
 
 /*pagina nosotros */
-.tituloNosotros{
+.tituloNosotros {
   color: #f9d387;
   font-weight: bolder;
   text-shadow: 2px 2px 5px #322203;
-
 }
-.fondoNosotros{
+.fondoNosotros {
   background-color: #8c6e4a;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
-.textoNosotros{
+.textoNosotros {
   color: #e7d7c9;
   font-size: 16px;
 }
@@ -230,7 +279,7 @@ h2 {
 
 .carousel-style .carousel-item {
   position: relative;
-  height: 400px; 
+  height: 400px;
   color: white;
 }
 
@@ -249,12 +298,7 @@ h2 {
 .carousel-comment {
   position: absolute;
   bottom: 20px;
-  background: rgba(
-    0,
-    0,
-    0,
-    0.5
-  ); 
+  background: rgba(0, 0, 0, 0.5);
   padding: 15px;
   border-radius: 10px;
   color: white;
@@ -276,4 +320,3 @@ h2 {
   font-size: 16px;
   font-style: italic;
 }
-
