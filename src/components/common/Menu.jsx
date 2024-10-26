@@ -2,13 +2,30 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyModal from "../Modal/MyModal";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../Context/UserContext.jsx";
 
 const Menu = () => {
   const { cerrarSesion, user, isAdmin } = useContext(UserContext);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <Navbar bg="light" expand="lg" className="custom-navbar">
+    <Navbar
+      bg="light"
+      expand="lg"
+      className={`custom-navbar ${scrolled ? "scrolled" : ""}`}
+    >
       <Container>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
@@ -27,9 +44,9 @@ const Menu = () => {
             </NavLink>
           </Nav>
           <Nav className="mx-auto">
-            <Navbar.Brand href="#" className="hotel-title">
-              HOTEL
-            </Navbar.Brand>
+            <NavLink to="/" className="navbar-brand hotel-title">
+              HOTEL PATAGONIA
+            </NavLink>
           </Nav>
           {isAdmin ? (
             <NavLink to="/administrador" className="nav-link">

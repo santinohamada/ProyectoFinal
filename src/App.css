@@ -4,64 +4,77 @@
   color: #333;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  font-size: 1.2rem;
 }
 
-.nav-link:hover, 
-.nav-link:focus, 
-.nav-link:active {
-  text-decoration: none;
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(200, 200, 200, 0.8); 
+  transition: background-color 0.3s ease;
+}
+
+.custom-navbar.scrolled {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); 
+}
+
+.navbar-brand.hotel-title {
+  font-size: 1.5rem; 
+  font-weight: bold;
   color: #333;
+  text-decoration: none;
+}
+
+.navbar-brand.hotel-title:hover {
+  color: #555; 
 }
 
 /*Footer*/
-
-.custom-footer {
-  background-color: #8e6c5e;
-  border-top: 2px solid #52372d;
-  font-family: "Georgia", "Serif";
+.bg-dark {
+  background-color: #1f2d3d;
 }
 
-.hotel-title-footer {
-  font-size: 1.8rem;
-  color: #5c392c;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.custom-footer h6 {
+.footer-brand {
   font-size: 1.2rem;
-  color: #5c392c;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #f5f5f5;
 }
 
-.custom-footer p {
-  font-size: 0.9rem;
-  color: #5c392c;
+/* Estilos para los íconos sociales */
+.social-icon i {
+  font-size: 1.5rem;
+  color: #f5f5f5;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-links {
-  gap: 1rem;
+.social-icon i:hover {
+  color: #a27304;
+  transform: scale(1.2);
 }
 
-.social-icon {
-  color: #5c392c;
+/* Estilos para los enlaces de políticas */
+.footer-link {
+  color: #f5f5f5;
   font-size: 0.9rem;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
-.rs-picker-popup {
-  z-index: 10050 !important;
-}
-.social-icon:hover {
-  color: #5c392c;
+
+.footer-link:hover {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .custom-footer .row {
-    text-align: center;
-  }
+/* Centrado y espaciad*/
+.custom-footer {
+  text-align: center;
 }
+
 .componentePagina {
   flex-grow: 1;
   display: flex;
@@ -171,7 +184,7 @@ h2 {
 
 /* Sección de servicios */
 .services-section {
-  background-color: #C49A4B; 
+  background-color: #c49a4b;
   padding: 40px;
   text-align: center;
 }
@@ -200,7 +213,7 @@ h2 {
 
 /* Sección de categoría del hotel */
 .hotel-category {
-  background-color: #C49A4B;
+  background-color: #c49a4b;
   padding: 40px;
   text-align: center;
 }
@@ -217,7 +230,7 @@ h2 {
 
 .stars {
   font-size: 36px;
-  color: #ffcc00; 
+  color: #ffcc00;
 }
 
 /*pagina nosotros */
@@ -318,13 +331,10 @@ h2 {
   font-style: italic;
 }
 .card-administracion {
-
-width: 200px;
-height: 300px;
-
-
+  width: 200px;
+  height: 300px;
 }
-.card-img-fixed{
+.card-img-fixed {
   width: 100%;
   height: 100px;
   object-fit: cover;
@@ -338,9 +348,8 @@ height: 300px;
 
 .disponible {
   color: green;
-
 }
 
 .no-disponible {
-  color: red
+  color: red;
 }
