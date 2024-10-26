@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
+
 const IniciarSesion = () => {
   const {user,iniciarSesionApi} = useContext(UserContext)
   const {
@@ -15,7 +16,7 @@ const IniciarSesion = () => {
   } = useForm();
   
   const onSubmit = async(data) => {
-    iniciarSesionApi(data)
+   iniciarSesionApi(data)
   };
   return (
     <div

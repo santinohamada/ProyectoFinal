@@ -1,50 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import DateRange from "../DateRange/DateRange";
-import RoomCard from "../ReservarComponents/roomCard";
-import CartCard from "../ReservarComponents/CartCard";
-import SelectPersonas from "../ReservationForm/SelectPersonas";
-import { FiltersContext } from "../Context/FiltersContext";
+import DateRange from "../DateRange/DateRange.jsx";
+import RoomCard from "../ReservarComponents/RoomCard.jsx";
+import CartCard from "../ReservarComponents/CartCard.jsx";
+import SelectPersonas from "../ReservationForm/SelectPersonas.jsx";
+import { FiltersContext } from "../Context/FiltersContext.jsx";
+import { listarHabitacionesDisponibles } from "../../helpers/queries.js";
+import { DateContext } from "../Context/DateContext.jsx";
 
 const Reservar = () => {
+  const [rooms, setRooms] = useState([]);
+  const { ISOFormat,fechas } = useContext(DateContext);
+  const fechasISO = ISOFormat()
   const { handleOrderByPrice, orderByPrice } = useContext(FiltersContext);
 
-  const rooms = [
-    {
-      id: 1,
-      type: "Habitación en el Palacio",
-      price: 8100,
-      nights: 9,
-      capacity: 2,
-      image:
-        "https://images.pexels.com/photos/2417842/pexels-photo-2417842.jpeg",
-      description:
-        "Tonos cálidos caracterizan esta acogedora habitación con vistas al patio de la villa principal.",
-      size: 400,
-      bed: 1,
-      taxes: 810,
-      breakfast: true,
-      include:
-        "Incluye alojamiento, desayuno diario y acceso a todas las instalaciones.",
-    },
-    {
-      id: 2,
-      type: "Room ABUSO",
-      price: 1000,
-      nights: 9,
-      capacity: 1,
-      image: "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
-      description: "Probando",
-      size: 400,
-      bed: 1,
-      taxes: 810,
-      breakfast: false,
-      include:
-        "Incluye alojamiento, desayuno diario y acceso a todas las instalaciones.",
-    },
-  ];
+  useEffect(() => {
+    const roomList = async () => {
+      const habitaciones = await listarHabitacionesDisponibles(fechasISO);
+      console.log(habitaciones)
+      setRooms(habitaciones);
+    };
+    roomList();
+  }, [fechas]);
 
   return (
     <Container className="my-4 componentePagina">
@@ -75,9 +54,11 @@ const Reservar = () => {
       <Row className="g-4">
         <Col md={8}>
           <Row className="g-4">
-            {rooms.map((room) => (
-              <RoomCard key={room.id} room={room}></RoomCard>
-            ))}
+            {Array.isArray(rooms) && rooms.length > 0
+              ? rooms.map((room) => (
+                  <RoomCard key={room._id} room={room}></RoomCard>
+                ))
+              : ""}
           </Row>
         </Col>
 

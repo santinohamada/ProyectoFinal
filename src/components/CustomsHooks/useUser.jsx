@@ -15,7 +15,6 @@ const useUser = () => {
     setUser(null);
     setIsAdmin(false);
     sessionStorage.removeItem("userKey");
-    navigate("/");
   };
   useEffect(() => {
     const verificarAdmin = async () => {
@@ -58,12 +57,16 @@ const useUser = () => {
     }
     return { email: usuario.entrada, password: usuario.password };
   };
+
+
   useEffect(() => {
     const savedUser = sessionStorage.getItem("userKey");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
   }, []);
+
+  
   const iniciarSesionApi = async (usuario) => {
     const datosAEnviar = comprobarEntrada(usuario);
     try {
@@ -72,7 +75,7 @@ const useUser = () => {
         let timerInterval;
         Swal.fire({
           title: "Sesion iniciada!",
-          html: "Seras redirigido al inicio en <b></b> milisegundos.",
+          html: "Seras redirigido en <b></b> milisegundos.",
           timer: 1000,
           timerProgressBar: true,
           didOpen: () => {
@@ -90,19 +93,22 @@ const useUser = () => {
           const datos = await respuesta.json();
 
           if (datos.dni) {
-            setUser({ dni: datos.usuario.dni }); //completar con token
+            setUser({ dni: datos.usuario.dni, id: datos.usuario._id }); //completar con token
             sessionStorage.setItem(
               "userKey",
-              JSON.stringify({ dni: datos.usuario.dni }) //completar con token
+              JSON.stringify({ dni: datos.usuario.dni, id: datos.usuario._id }) //completar con token
             );
           } else {
-            setUser({ email: datos.usuario.email }); //completar con token
+            setUser({ email: datos.usuario.email, id: datos.usuario._id }); //completar con token
             sessionStorage.setItem(
               "userKey",
-              JSON.stringify({ email: datos.usuario.email }) //completar con token
+              JSON.stringify({
+                email: datos.usuario.email,
+                id: datos.usuario._id,
+              }) //completar con token
             );
           }
-          navigate("/");
+          navigate(-1);
           if (result.dismiss === Swal.DismissReason.timer) {
           }
         });
