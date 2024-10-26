@@ -4,13 +4,36 @@
   color: #333;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  font-size: 1.2rem;
 }
 
-.nav-link:hover,
-.nav-link:focus,
-.nav-link:active {
-  text-decoration: none;
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(200, 200, 200, 0.8); 
+  transition: background-color 0.3s ease;
+}
+
+.custom-navbar.scrolled {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); 
+}
+
+.navbar-brand.hotel-title {
+  font-size: 1.5rem; 
+  font-weight: bold;
   color: #333;
+  text-decoration: none;
+}
+
+.navbar-brand.hotel-title:hover {
+  color: #555; 
 }
 
 /*Footer*/
