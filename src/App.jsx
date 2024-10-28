@@ -12,6 +12,7 @@ import Reservar from "./components/pages/Reservar";
 import { UserProvider } from "./components/Context/UserContext";
 import RutaProtegida from "./routes/RutaProtegida";
 import RutasAdministrador from "./routes/RutasAdministrador";
+import VerHabitaciones from './components/pages/VerHabitaciones';
 
 function App() {
   return (
