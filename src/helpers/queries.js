@@ -83,18 +83,18 @@ export const obtenerReservas = async()=>{
 }
 }
     
-export const listarHabitacionesDisponibles = async(fechas)=>{
+export const listarHabitacionesDisponibles = async()=>{
   try {
     const habitaciones = await fetch(URLHabitacionesDisponibles,{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
       },
-      body:JSON.stringify(fechas)
+      body:JSON.stringify()
     })
-    const datos = await habitaciones.json()
     
-    return datos
+    
+    return habitaciones
   } catch (error) {
     console.error(error)
   }

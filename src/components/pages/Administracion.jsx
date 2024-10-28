@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { listarHabitaciones,obtenerReservas } from '../../helpers/queries.js';
-import ListaHabitaciones from '../ListaHabitaciones.jsx';
+import { listarHabitaciones,listarHabitacionesDisponibles } from '../../helpers/queries.js';
+import ListaHabitaciones from '../listaHabitaciones.jsx';
 
 
 
@@ -10,7 +10,7 @@ const Administracion = () => {
 
   const reserva = async()=>{
     try {
-      const respuesta = await obtenerReservas()
+      const respuesta = await listarHabitacionesDisponibles()
     
       const datos = await respuesta.json()
     
@@ -39,8 +39,7 @@ useEffect(() => {
         <>
         <section className='componentePagina d-flex flex-row gap-2'>
         {
-        listaHabitaciones.map((habitacion,posicion)=>(<ListaHabitaciones habitacion={habitacion} key={habitacion._id} reserva={reservaAPI.map((reserva=>reserva.roomNumber))}></ListaHabitaciones>))
-        }
+ listaHabitaciones.map((habitacion,posicion)=>(<ListaHabitaciones habitacion={habitacion} key={habitacion._id} reserva={reservaAPI}></ListaHabitaciones>))}
 
         </section>
         </>
