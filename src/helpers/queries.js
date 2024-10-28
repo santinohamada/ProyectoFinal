@@ -99,3 +99,12 @@ export const listarHabitacionesDisponibles = async(fechas)=>{
     console.error(error)
   }
 }
+
+export const obtenerUsuario = async(usuario)=>{
+  try {
+    const respuesta = await fetch(URLUsuarios+'/'+usuario)
+    return respuesta
+  } catch (error) {
+    console.error(error)
+  }
+}
