@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Form, Modal } from 'react-bootstrap';
 import { obtenerReservas, reservarHabitacion } from '../helpers/queries.js';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+
+
+
 
 
 
 
 
 const ListaHabitaciones = ({habitacion,reserva}) => {
+  const {
+    register,
+    reset,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const fecha = new Date()
   const formatearFecha = (fecha) => {
     const anio = fecha.getUTCFullYear();
@@ -33,9 +44,9 @@ const ListaHabitaciones = ({habitacion,reserva}) => {
   const fechaFormateada = formatearFecha(fecha)
   //console.log(reserva)
   
-  const [estaReservada, setEstaReservada] = useState(null)
+  const [estaDisponible, setEstaDisponible] = useState(null)
   const [estadoReserva, setEstadoReserva] = useState([])
-
+  const [showModal, setShowModal] = useState(false)
   const datosReserva = async () => {
     const res = reserva.filter((reserva) =>
       reserva.HabitacionesConReserva.some(
@@ -46,14 +57,21 @@ const ListaHabitaciones = ({habitacion,reserva}) => {
     );
   
     setEstadoReserva(res);
-    setEstaReservada(res.length === 0); 
+    setEstaDisponible(res.length === 0); 
   };
   
   useEffect(() => {
     datosReserva();
   }, [reserva]);
         
-     
+  const handleLinkClick = (e) => {
+    if (estaDisponible) {
+      e.preventDefault(); // Previene el redireccionamiento
+      setShowModal(true); // Muestra el modal si estadoReserva es false
+    }
+  };
+
+  const handleCloseModal = () => setShowModal(false);
      
       return (
         <div className=' d-flex flex-column'>
@@ -70,11 +88,67 @@ const ListaHabitaciones = ({habitacion,reserva}) => {
           
           
   
-          <Link className='mt-auto' variant="primary" to={estadoReserva ? "/verhabitaciones" : "/infohabitaciones"} state={{estadoReserva}}>Ver Info</Link>
-          <div className={`badge ${estaReservada ? 'disponible' : 'no-disponible'}`}>
-  {estaReservada === null ? (
+          <Link
+            className='mt-auto'
+            variant="primary"
+            to={estaDisponible ? "#"  : "/verhabitaciones"}
+            state={{ estadoReserva }}
+            onClick={handleLinkClick}
+          >
+            Ver Info
+          </Link>
+
+     
+          <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Información de la Habitacion</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <Form>
+      <Form.Group className="mb-3" controlId="formBasicNro">
+        <Form.Label>Habitacion Numero</Form.Label>
+        <Form.Control type="text" placeholder={habitacion.roomNumber} />
+        
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicTipo">
+        <Form.Label>Tipo</Form.Label>
+        <Form.Control type="text" placeholder={habitacion.type} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicPrecio">
+        <Form.Label>Precio</Form.Label>
+        <Form.Control type="text" placeholder={habitacion.price} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicCapacidad">
+        <Form.Label>Capacidad PAX</Form.Label>
+        <Form.Control type="text" placeholder={habitacion.capacity} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicImagen">
+        <Form.Label>Imagen</Form.Label>
+        <Form.Control type="text" placeholder={habitacion.image} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicDescripcion">
+        <Form.Label>Descripcion</Form.Label>
+        <Form.Control type="text" placeholder={habitacion.description}/>
+      </Form.Group>
+      
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Cerrar
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+
+          <div className={`badge ${estaDisponible ? 'disponible' : 'no-disponible'}`}>
+  {estaDisponible === null ? (
     'Cargando...'
-  ) : estaReservada ? (
+  ) : estaDisponible ? (
     'Disponible'
   ) : (
     <>
