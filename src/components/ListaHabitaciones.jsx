@@ -27,11 +27,11 @@ const ListaHabitaciones = ({habitacion,reserva}) => {
   const [estaReservada, setEstaReservada] = useState(null)
   const [estadoReserva, setEstadoReserva] = useState([])
 
-  const datosReserva = ()=>{
+  const datosReserva = async()=>{
    
  
     
-    const res = reserva.filter((reserva) =>
+    const res = await reserva.filter((reserva) =>
       reserva.HabitacionesConReserva.some(
         (habitacionReserva) =>
           habitacionReserva.roomId === habitacion._id &&
