@@ -25,6 +25,7 @@ function App() {
       <Route exact path="/iniciarSesion" element={<IniciarSesion />} />
       <Route exact path="/registro" element={<RegistrationForm />} />
       <Route exact path="/reservar" element={<Reservar />} />
+      <Route exact path="/verhabitaciones" element={<VerHabitaciones />} />
       <Route
         exact
         path="/administrador/*"
