@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+
+import {  Card } from 'react-bootstrap';
 import { obtenerReservas, reservarHabitacion } from '../helpers/queries.js';
+
+import { Link } from 'react-router-dom';
 
 
 const ListaHabitaciones = ({habitacion,reserva}) => {
   
   
     const estaReservada = reserva.includes(habitacion.roomNumber)
-    
-    
+    const [estadoReserva, setEstadoReserva] = useState([])
+    const reservado = async () =>{
+        const respuesta = await obtenerReservas()
+        const datos = await respuesta.json()
+        setEstadoReserva(datos)
+        console.log(estadoReserva+"estadoreserva")
 
+    }
+
+    useEffect(()=>{
+        reservado()
+    },[])
 
     return (
       <div className=' d-flex flex-column'>
@@ -26,7 +38,7 @@ const ListaHabitaciones = ({habitacion,reserva}) => {
         
         
 
-        <Button className='mt-auto' variant="primary">Ver</Button>
+        <Link className='mt-auto' variant="primary" to={"/verhabitaciones"} state={{estadoReserva}}>Ver</Link>
         <div className={`badge ${estaReservada ? 'disponible' : 'no-disponible'}`}>
           {estaReservada===null ? 'Cargando..': estaReservada ? 'Disponible' : 'No Disponible'}
 
