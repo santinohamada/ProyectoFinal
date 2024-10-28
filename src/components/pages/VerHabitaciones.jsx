@@ -45,7 +45,7 @@ const fechaLegible = fecha.toLocaleString('es-ES', {
            HABITACION NRO: {estadoReserva[0].roomNumber}
         </div>
         <div>
-           HABITACION ID: {estadoReserva[0].HabitacionesConReserva[0].roomId}
+           HABITACION NRO: {estadoReserva[0].HabitacionesConReserva[0].roomId}
         </div>
         <div>
            FECHA DE SALIDA: {fechaLegible}

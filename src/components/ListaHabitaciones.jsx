@@ -21,39 +21,37 @@ const ListaHabitaciones = ({habitacion,reserva}) => {
 
     return `${anio}-${mes}-${dia}T${horas}:${minutos}:${segundos}Z.${milisegundos}`;
   }
+
+  function fechaBadge(fecha) {
+    const date = new Date(fecha);
+    const dia = String(date.getDate()).padStart(2, '0');
+    const mes = String(date.getMonth() + 1).padStart(2, '0'); // Los meses comienzan desde 0
+    const año = String(date.getFullYear()).slice(-2); // Obtiene los últimos 2 dígitos
+  
+    return `${dia}/${mes}/${año}`;
+  }
   const fechaFormateada = formatearFecha(fecha)
   //console.log(reserva)
   
   const [estaReservada, setEstaReservada] = useState(null)
   const [estadoReserva, setEstadoReserva] = useState([])
 
-  const datosReserva = async()=>{
-   
- 
-    
-    const res = await reserva.filter((reserva) =>
+  const datosReserva = async () => {
+    const res = reserva.filter((reserva) =>
       reserva.HabitacionesConReserva.some(
         (habitacionReserva) =>
           habitacionReserva.roomId === habitacion._id &&
           habitacionReserva.checkOut > fechaFormateada
       )
     );
-    setEstadoReserva(res)
-    
-    if (res.length > 0) {
-      setEstaReservada(false); // Hay reservas activas (checkOut posterior a la fecha actual)
-    } else {
-      setEstaReservada(true);  // No hay reservas activas o no hay coincidencia con el roomId
-    }
-    
-   
-
-  }  
-
-      useEffect(()=>{
-        datosReserva()
-      },[])
-    
+  
+    setEstadoReserva(res);
+    setEstaReservada(res.length === 0); 
+  };
+  
+  useEffect(() => {
+    datosReserva();
+  }, [reserva]);
         
      
      
@@ -72,11 +70,21 @@ const ListaHabitaciones = ({habitacion,reserva}) => {
           
           
   
-          <Link className='mt-auto' variant="primary" to={"/verhabitaciones"} state={{estadoReserva}}>Ver</Link>
+          <Link className='mt-auto' variant="primary" to={estadoReserva ? "/verhabitaciones" : "/infohabitaciones"} state={{estadoReserva}}>Ver Info</Link>
           <div className={`badge ${estaReservada ? 'disponible' : 'no-disponible'}`}>
-            {estaReservada===null ? 'Cargando..': estaReservada ? 'Disponible' : 'No Disponible'}
-  
-          </div>
+  {estaReservada === null ? (
+    'Cargando...'
+  ) : estaReservada ? (
+    'Disponible'
+  ) : (
+    <>
+      No Disponible
+      <div className="fecha-no-disponible">
+        hasta: {fechaBadge(estadoReserva[0]?.HabitacionesConReserva?.[estadoReserva[0].HabitacionesConReserva.length - 1]?.checkOut)}
+      </div>
+    </>
+  )}
+</div>
          
         </Card.Body>
       </Card>
