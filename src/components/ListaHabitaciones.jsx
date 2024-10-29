@@ -279,7 +279,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
               </Button>
             </Modal.Footer>
           </Modal>
-
+                  {/*SEGUNDO MODAL(DATOS USUARIO)*/}
           <Modal
             show={showSegundoModal}
             onHide={handleCloseSegundoModal}
@@ -292,7 +292,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
               <Form>
                 <Form.Group className="mb-3" controlId="secondFormNombre">
                   <Form.Label>Nombre</Form.Label>
-                  <Form.Control
+                  <Form.Control disabled
                     type="text"
                     placeholder="Nombre"
                     {...register("nombre", {
@@ -303,7 +303,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormApellido">
                   <Form.Label>Apellido</Form.Label>
-                  <Form.Control
+                  <Form.Control disabled
                     type="text"
                     placeholder="Apellido"
                     {...register("apellido", {
@@ -314,7 +314,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormDNI">
                   <Form.Label>DNI</Form.Label>
-                  <Form.Control
+                  <Form.Control disabled
                     type="text"
                     placeholder="DNI"
                     {...register("dni", {
@@ -325,7 +325,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control
+                  <Form.Control disabled
                     type="text"
                     placeholder="Email"
                     {...register("email", {
@@ -336,7 +336,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormDomicilio">
                   <Form.Label>Domicilio</Form.Label>
-                  <Form.Control
+                  <Form.Control disabled
                     type="text"
                     placeholder="Domicilio"
                     {...register("domicilio", {
