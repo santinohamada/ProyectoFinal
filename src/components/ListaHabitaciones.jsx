@@ -34,7 +34,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     return `${dia}/${mes}/${año}`;
   }
   const fechaFormateada = formatearFecha(fecha);
-  //console.log(reserva)
+ 
 
   const [estaDisponible, setEstaDisponible] = useState(null);
   const [estadoReserva, setEstadoReserva] = useState([]);
@@ -48,8 +48,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     (reserva) =>
       reserva.HabitacionesConReserva.filter(
         (hab) => hab.roomId === habitacion._id
-      ) // Filtra las habitaciones por roomId
-        .map((hab) => hab.userId) // Mapea para obtener solo el userId
+      ) 
+        .map((hab) => hab.userId) 
   );
 
   const datosReserva = async () => {
@@ -104,7 +104,6 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     e.preventDefault();
 
     setShowSegundoModal(true);
-    console.log(usuario.nobre);
     setValue("nombre", usuario.nombre);
     setValue("apellido", usuario.apellido);
     setValue("dni", usuario.dni);
