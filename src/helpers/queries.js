@@ -3,37 +3,44 @@ const URLIniciarSesion = import.meta.env.VITE_API_INICIARSESION;
 const URLVerificarAdmin = import.meta.env.VITE_API_VERIFICARADMIN;
 const URLReservas = import.meta.env.VITE_API_RESERVAS;
 const URLHabitaciones = import.meta.env.VITE_API_HABITACIONES;
-const URLHabitacionesDisponibles = import.meta.env.VITE_API_HABITACIONESDISPONIBLES;
+const URLHabitacionesDisponibles = import.meta.env
+  .VITE_API_HABITACIONESDISPONIBLES;
 
-export const reservarHabitacion = async(reserva) =>{
+export const reservarHabitacion = async (reserva) => {
   try {
-    console.log(reserva)
-    await fetch(URLReservas,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
+    await fetch(URLReservas, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify(reserva)
-    })
-  } 
-  catch (error) {
-    
-  }
-}
+      body: JSON.stringify(reserva),
+    });
+  } catch (error) {}
+};
 export const verificarAdministrador = async (usuario) => {
-  //se recibe ya sea, el mail o dni del usuario
+  if (!usuario) return false;
   try {
     const respuesta = await fetch(URLVerificarAdmin, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token, // Asegúrate de que userKey contenga el token
+      },
       body: JSON.stringify(usuario),
     });
-    const data =await respuesta.json()
+    const data = await respuesta.json();
+
+    // Asegúrate de manejar la respuesta correctamente
+    if (!respuesta.ok) {
+      throw new Error(data.mensaje);
+    }
+
     return data.rol;
   } catch (error) {
     console.error(error);
   }
 };
+
 export const registrarUsuario = async (usuarios) => {
   try {
     const respuesta = await fetch(URLUsuarios, {
@@ -52,59 +59,59 @@ export const iniciarSesion = async (usuario) => {
     const respuesta = await fetch(URLIniciarSesion, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(usuario),
     });
+
     return respuesta;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const listarHabitaciones = async()=>{
+export const listarHabitaciones = async () => {
   try {
-    const habitaciones = await fetch(URLHabitaciones)
-    const datos = await habitaciones.json()
-    
-    return datos
-  } catch (error) {
-    console.error(error)
-  }
-}
+    const habitaciones = await fetch(URLHabitaciones);
+    const datos = await habitaciones.json();
 
-export const obtenerReservas = async()=>{
-  try {
-    const respuesta = await fetch(URLReservas)
-    return respuesta
+    return datos;
   } catch (error) {
-    console.error(error)
-    return false
-}
-}
-    
-export const listarHabitacionesDisponibles = async()=>{
+    console.error(error);
+  }
+};
+
+export const obtenerReservas = async () => {
   try {
-    const habitaciones = await fetch(URLHabitacionesDisponibles,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
+    const respuesta = await fetch(URLReservas);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const listarHabitacionesDisponibles = async () => {
+  try {
+    const habitaciones = await fetch(URLHabitacionesDisponibles, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify()
-    })
-    
-    
-    return habitaciones
-  } catch (error) {
-    console.error(error)
-  }
-}
+      body: JSON.stringify(),
+    });
 
-export const obtenerUsuario = async(usuario)=>{
-  try {
-    const respuesta = await fetch(URLUsuarios+'/'+usuario)
-    return respuesta
+    return habitaciones;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
+
+export const obtenerUsuario = async (usuario) => {
+  try {
+    const respuesta = await fetch(URLUsuarios + "/" + usuario);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+};

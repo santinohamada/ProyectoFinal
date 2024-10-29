@@ -4,6 +4,7 @@ import { UserContext } from "../components/Context/UserContext";
 
 const RutaProtegida = ({ children }) => {
   const { isAdmin } = useContext(UserContext);
+
   if (isAdmin) return children;
 
   return <Navigate to={"/iniciarSesion"}></Navigate>;
