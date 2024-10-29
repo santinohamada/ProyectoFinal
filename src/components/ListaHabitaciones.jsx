@@ -39,6 +39,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   const [estaDisponible, setEstaDisponible] = useState(null);
   const [estadoReserva, setEstadoReserva] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [editable, setEditable] = useState(false)
   const datosReserva = async () => {
     const res = reserva.filter((reserva) =>
       reserva.HabitacionesConReserva.some(
@@ -68,6 +69,11 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
       setValue('descripcion', habitacion.description)
     }
   };
+
+  const habilitarForm = (e) =>{
+    e.preventDefault()
+    setEditable(true)
+  }
 
   const handleCloseModal = () => setShowModal(false);
 
@@ -105,7 +111,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                   <Form.Control
                     {...register("numero",{required: "El numero es requerido", minLength: {value: 3, message: "Como minimo debe ingresar 3 caracteres"}, maxLength: {value: 3, message: "Como maximo debe ingresar 3 caracteres"}})}
                     type="text"
-                    placeholder={habitacion.roomNumber}
+                    placeholder={habitacion.roomNumber} disabled={!editable}
                   />
                   <Form.Text>{errors.numero?.message}</Form.Text>
                 </Form.Group>
@@ -125,23 +131,23 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                       },
                     })}
                     type="text"
-                    placeholder={habitacion.type}
+                    placeholder={habitacion.type} disabled={!editable}
                   />
                    <Form.Text>{errors.tipo?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPrecio">
                   <Form.Label>Precio</Form.Label>
-                  <Form.Control {...register("precio",{required: "El precio es requerido",min: {value: 100, message:"Valor minimo 100"}, max: {value: 2000, message: "Valor maximo 2000"}})} type="text" placeholder={habitacion.price} />
+                  <Form.Control {...register("precio",{required: "El precio es requerido",min: {value: 100, message:"Valor minimo 100"}, max: {value: 2000, message: "Valor maximo 2000"}})} type="text" placeholder={habitacion.price} disabled={!editable} />
                   <Form.Text>{errors.precio?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCapacidad">
                   <Form.Label>Capacidad PAX</Form.Label>
-                  <Form.Control {...register("capacidad",{required: "La cantidad de pasajeros es requerida", min: {value: 1, message: "Minimo 1 pasajero"}, max: {value: 5, message: "Maximo 5 pasajeros"}})} type="text" placeholder={habitacion.capacity} />
+                  <Form.Control {...register("capacidad",{required: "La cantidad de pasajeros es requerida", min: {value: 1, message: "Minimo 1 pasajero"}, max: {value: 5, message: "Maximo 5 pasajeros"}})} type="text" placeholder={habitacion.capacity} disabled={!editable} />
                   <Form.Text>{errors.capacidad?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicImagen">
                   <Form.Label>Imagen</Form.Label>
-                  <Form.Control {...register("imagen", {required: "La imagen es requerida", minLength: {value: 10, message: "Minimo 10 caracteres"}, maxLength: {value: 300, message: "Maximo 300 caracteres"}})} type="text" placeholder={habitacion.image} />
+                  <Form.Control {...register("imagen", {required: "La imagen es requerida", minLength: {value: 10, message: "Minimo 10 caracteres"}, maxLength: {value: 300, message: "Maximo 300 caracteres"}})} type="text" placeholder={habitacion.image} disabled={!editable} />
                   <Form.Text>{errors.imagen?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicDescripcion">
@@ -149,19 +155,19 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                   <Form.Control {...register("descripcion", {required: "La descripcion es requerida", minLength: {value: 10, message: "Minimo 10 caracteres"}, maxLength: {value: 500, message: "Maximo 500 caracteres"}})}
                    
                     type="text"
-                    placeholder={habitacion.description}
+                    placeholder={habitacion.description} disabled={!editable}
                   />
                   <Form.Text>{errors.descripcion?.message}</Form.Text>
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
-                  Submit
+                <Button variant="primary" type="submit" onClick={habilitarForm}>
+                  Editar
                 </Button>
               </Form>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleCloseModal}>
-                Cerrar
+                {!editable ? "Cerrar" : "Guardar"}
               </Button>
             </Modal.Footer>
           </Modal>
