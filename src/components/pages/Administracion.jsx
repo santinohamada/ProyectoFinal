@@ -33,7 +33,7 @@ useEffect(() => {
       await Promise.all([reserva(), habitaciones()]); // Ejecuta ambas funciones en paralelo
     };
     
-    cargarDatos(); // Llama a la función para cargar datos
+     cargarDatos(); // Llama a la función para cargar datos
   }, []);
     return (
         <>
