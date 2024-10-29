@@ -34,7 +34,6 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     return `${dia}/${mes}/${año}`;
   }
   const fechaFormateada = formatearFecha(fecha);
- 
 
   const [estaDisponible, setEstaDisponible] = useState(null);
   const [estadoReserva, setEstadoReserva] = useState([]);
@@ -44,12 +43,10 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   const [editableSegundoModal, setEditableSegundoModal] = useState(false);
   const [usuario, setUsuario] = useState([]);
 
-  const idUsuario = reserva.flatMap(
-    (reserva) =>
-      reserva.HabitacionesConReserva.filter(
-        (hab) => hab.roomId === habitacion._id
-      ) 
-        .map((hab) => hab.userId) 
+  const idUsuario = reserva.flatMap((reserva) =>
+    reserva.HabitacionesConReserva.filter(
+      (hab) => hab.roomId === habitacion._id
+    ).map((hab) => hab.userId)
   );
 
   const datosReserva = async () => {
@@ -68,6 +65,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   const user = async () => {
     try {
       const respuesta = await obtenerUsuario(idUsuario[idUsuario.length - 1]);
+
       const datos = await respuesta.json();
       setUsuario(datos);
       return datos;
@@ -77,7 +75,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   };
   useEffect(() => {
     const cargarDatos = async () => {
-      await Promise.all([datosReserva(), user()]);
+      await Promise.all([datosReserva(), () => user()]);
     };
     cargarDatos();
   }, [reserva]);
@@ -279,7 +277,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
               </Button>
             </Modal.Footer>
           </Modal>
-                  {/*SEGUNDO MODAL(DATOS USUARIO)*/}
+          {/*SEGUNDO MODAL(DATOS USUARIO)*/}
           <Modal
             show={showSegundoModal}
             onHide={handleCloseSegundoModal}
@@ -292,7 +290,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
               <Form>
                 <Form.Group className="mb-3" controlId="secondFormNombre">
                   <Form.Label>Nombre</Form.Label>
-                  <Form.Control disabled
+                  <Form.Control
+                    disabled
                     type="text"
                     placeholder="Nombre"
                     {...register("nombre", {
@@ -303,7 +302,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormApellido">
                   <Form.Label>Apellido</Form.Label>
-                  <Form.Control disabled
+                  <Form.Control
+                    disabled
                     type="text"
                     placeholder="Apellido"
                     {...register("apellido", {
@@ -314,7 +314,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormDNI">
                   <Form.Label>DNI</Form.Label>
-                  <Form.Control disabled
+                  <Form.Control
+                    disabled
                     type="text"
                     placeholder="DNI"
                     {...register("dni", {
@@ -325,7 +326,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control disabled
+                  <Form.Control
+                    disabled
                     type="text"
                     placeholder="Email"
                     {...register("email", {
@@ -336,7 +338,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormDomicilio">
                   <Form.Label>Domicilio</Form.Label>
-                  <Form.Control disabled
+                  <Form.Control
+                    disabled
                     type="text"
                     placeholder="Domicilio"
                     {...register("domicilio", {
