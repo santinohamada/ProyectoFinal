@@ -12,7 +12,7 @@ const RutaProtegida = ({ children }) => {
     }
   }, [isAdmin, loading, navigate]);
 
-  if (loading) return <div>Cargando...</div>; 
+  if (loading) return <div>Cargando...</div>;
 
   return children;
 };

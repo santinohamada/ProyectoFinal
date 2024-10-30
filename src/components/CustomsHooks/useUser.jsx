@@ -9,7 +9,9 @@ import {
 
 const useUser = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("userKey")) || null);
+  const [user, setUser] = useState(
+    JSON.parse(sessionStorage.getItem("userKey")) || null
+  );
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const token = sessionStorage.getItem("token");
@@ -32,17 +34,21 @@ const useUser = () => {
     verificarAdmin();
   }, [user]);
 
-  // Nuevo efecto para observar cambios en isAdmin
-  useEffect(() => {
-    console.log(isAdmin);
-  }, [isAdmin]);
-
   const registrarUsuarioAPI = async (usuario) => {
     try {
       const respuesta = await registrarUsuario(usuario);
-      const mensaje = respuesta.status === 201
-        ? { title: "Registro", text: `Usuario ${usuario.email} registrado con éxito.`, icon: "success" }
-        : { title: "Error", text: `No se pudo registrar el usuario ${usuario.email}. Intente más tarde.`, icon: "error" };
+      const mensaje =
+        respuesta.status === 201
+          ? {
+              title: "Registro",
+              text: `Usuario ${usuario.email} registrado con éxito.`,
+              icon: "success",
+            }
+          : {
+              title: "Error",
+              text: `No se pudo registrar el usuario ${usuario.email}. Intente más tarde.`,
+              icon: "error",
+            };
 
       Swal.fire(mensaje);
     } catch (error) {
@@ -71,24 +77,43 @@ const useUser = () => {
         }).then(async () => {
           const datos = await respuesta.json();
           const userInfo = datos.dni
-            ? { dni: datos.usuario.dni, id: datos.usuario._id, token: datos.token }
-            : { email: datos.usuario.email, id: datos.usuario._id, token: datos.token };
-          
+            ? {
+                dni: datos.usuario.dni,
+                id: datos.usuario._id,
+                token: datos.token,
+              }
+            : {
+                email: datos.usuario.email,
+                id: datos.usuario._id,
+                token: datos.token,
+              };
+
           setUser(userInfo);
           sessionStorage.setItem("userKey", JSON.stringify(userInfo));
-          // Aquí debes verificar si el usuario es admin antes de establecer isAdmin
-          setIsAdmin(true);  // Esto debería depender de la verificación real del admin
+
+          setIsAdmin(true);
           navigate(-1);
         });
       } else {
-        Swal.fire({ title: "ERROR", text: "Email y/o contraseña incorrectos", icon: "error" });
+        Swal.fire({
+          title: "ERROR",
+          text: "Email y/o contraseña incorrectos",
+          icon: "error",
+        });
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  return { iniciarSesionApi, cerrarSesion, user, isAdmin, loading, registrarUsuarioAPI };
+  return {
+    iniciarSesionApi,
+    cerrarSesion,
+    user,
+    isAdmin,
+    loading,
+    registrarUsuarioAPI,
+  };
 };
 
 export default useUser;

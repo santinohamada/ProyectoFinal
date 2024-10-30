@@ -24,12 +24,12 @@ export const verificarAdministrador = async (usuario) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token, 
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
       },
       body: JSON.stringify(usuario),
     });
     const data = await respuesta.json();
-    
+
     if (!respuesta.ok) {
       throw new Error(data.mensaje);
     }
@@ -99,8 +99,8 @@ export const listarHabitacionesDisponibles = async (datos) => {
       },
       body: JSON.stringify(datos),
     });
-   
-    const habitacionesJson = await habitaciones.json(datos)
+
+    const habitacionesJson = await habitaciones.json(datos);
     return habitacionesJson;
   } catch (error) {
     console.error(error);
@@ -115,18 +115,18 @@ export const obtenerUsuario = async (usuario) => {
     console.error(error);
   }
 };
- 
-export const buscarHabitacion = async (habitacionEditada,idHabitacion) => {
+
+export const buscarHabitacion = async (habitacionEditada, idHabitacion) => {
   try {
-    const respuesta = await fetch(URLHabitaciones + "/" +idHabitacion,{
+    const respuesta = await fetch(URLHabitaciones + "/" + idHabitacion, {
       method: "PUT",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(habitacionEditada)
-    })
-   
-    return respuesta
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(habitacionEditada),
+    });
+
+    return respuesta;
   } catch (error) {
-    console.error(error)
-    return false
+    console.error(error);
+    return false;
   }
-}
+};

@@ -12,14 +12,14 @@ import { DateContext } from "../Context/DateContext.jsx";
 
 const Reservar = () => {
   const [rooms, setRooms] = useState([]);
-  const { ISOFormat,fechas } = useContext(DateContext);
-  const fechasISO = ISOFormat()
+  const { ISOFormat, fechas } = useContext(DateContext);
+  const fechasISO = ISOFormat();
   const { handleOrderByPrice, orderByPrice } = useContext(FiltersContext);
 
   useEffect(() => {
     const roomList = async () => {
       const habitaciones = await listarHabitacionesDisponibles(fechasISO);
-      
+
       setRooms(habitaciones);
     };
     roomList();

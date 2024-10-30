@@ -4,8 +4,14 @@ import useUser from "../CustomsHooks/useUser.jsx";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const { iniciarSesionApi,loading, cerrarSesion, user, registrarUsuarioAPI, isAdmin } =
-    useUser();
+  const {
+    iniciarSesionApi,
+    loading,
+    cerrarSesion,
+    user,
+    registrarUsuarioAPI,
+    isAdmin,
+  } = useUser();
   const data = {
     iniciarSesionApi,
     loading,
