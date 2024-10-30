@@ -35,13 +35,13 @@ useEffect(() => {
     };
     
      cargarDatos(); // Llama a la función para cargar datos
-  }, []);
+  }, [listaHabitaciones]);
     return (
         <>
         
-        <div className='d-flex justify-content-end mx-5'>
+        <span className='d-flex justify-content-end mx-5'>
           <Button className='mt-3 mb-3'>Nueva habitacion</Button>
-        </div>
+        </span>
         
         <section className='componentePagina d-flex flex-row gap-2'>
         {

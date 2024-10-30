@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Form, Modal } from "react-bootstrap";
-import { obtenerUsuario } from "../helpers/queries.js";
+import { buscarHabitacion, obtenerUsuario } from "../helpers/queries.js";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const ListaHabitaciones = ({ habitacion, reserva }) => {
+
   const {
-    register,
-    reset,
-    setValue,
-    handleSubmit,
-    formState: { errors },
+    register: registerHabitacion,
+    handleSubmit: handleSubmitHabitacion,
+    setValue: setValueHabitacion,
+    formState: { errors: errorsHabitacion }
   } = useForm();
+  
+  const {
+    register: registerUsuario,
+    handleSubmit: handleSubmitUsuario,
+    setValue: setValueUsuario,
+    formState: { errors: errorsUsuario }
+  } = useForm();
+
+
+ 
   const fecha = new Date();
   const formatearFecha = (fecha) => {
     const anio = fecha.getUTCFullYear();
@@ -48,6 +58,22 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
       (hab) => hab.roomId === habitacion._id
     ).map((hab) => hab.userId)
   );
+ 
+  const editarHabitacion = async (habitacionEditada)=>{
+    console.log(habitacionEditada)
+    
+    try {
+      const respuesta = await buscarHabitacion(habitacionEditada,habitacion._id)
+      if(respuesta.status===200){
+
+        handleCloseModal()
+        setEditable(false);
+      
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const datosReserva = async () => {
     const res = reserva.filter((reserva) =>
@@ -65,7 +91,6 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   const user = async () => {
     try {
       const respuesta = await obtenerUsuario(idUsuario[idUsuario.length - 1]);
-
       const datos = await respuesta.json();
       setUsuario(datos);
       return datos;
@@ -75,7 +100,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   };
   useEffect(() => {
     const cargarDatos = async () => {
-      await Promise.all([datosReserva(), () => user()]);
+      await Promise.all([datosReserva()]);
     };
     cargarDatos();
   }, [reserva]);
@@ -83,12 +108,12 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   const handleLinkClick = (e) => {
     e.preventDefault(); // Previene el redireccionamiento
     setShowModal(true); // Muestra el modal si estadoReserva es false
-    setValue("numero", habitacion.roomNumber);
-    setValue("tipo", habitacion.type);
-    setValue("precio", habitacion.price);
-    setValue("capacidad", habitacion.capacity);
-    setValue("imagen", habitacion.image);
-    setValue("descripcion", habitacion.description);
+    setValueHabitacion("roomNumber", habitacion.roomNumber);
+    setValueHabitacion("type", habitacion.type);
+    setValueHabitacion("price", habitacion.price);
+    setValueHabitacion("capacity", habitacion.capacity);
+    setValueHabitacion("image", habitacion.image);
+    setValueHabitacion("description", habitacion.description);
     if (estaDisponible) {
       setEditableSegundoModal(true);
     }
@@ -99,8 +124,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     setEditable(true);
   };
   const mostrarSegundoForm = (e) => {
+    user()
     e.preventDefault();
-
     setShowSegundoModal(true);
     setValue("nombre", usuario.nombre);
     setValue("apellido", usuario.apellido);
@@ -155,11 +180,11 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 height: "auto",
               }}
             >
-              <Form>
+              <Form onSubmit={handleSubmitHabitacion(editarHabitacion)}>
                 <Form.Group className="mb-3" controlId="formBasicNro">
                   <Form.Label>Habitacion Numero</Form.Label>
                   <Form.Control
-                    {...register("numero", {
+                    {...registerHabitacion("roomNumber", {
                       required: "El numero es requerido",
                       minLength: {
                         value: 3,
@@ -174,13 +199,13 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     placeholder={habitacion.roomNumber}
                     disabled={!editable}
                   />
-                  <Form.Text>{errors.numero?.message}</Form.Text>
+                  <Form.Text>{errorsHabitacion.numero?.message}</Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicTipo">
                   <Form.Label>Tipo</Form.Label>
                   <Form.Control
-                    {...register("tipo", {
+                    {...registerHabitacion("type", {
                       required: "El tipo es requerido",
                       minLength: {
                         value: 5,
@@ -195,12 +220,12 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     placeholder={habitacion.type}
                     disabled={!editable}
                   />
-                  <Form.Text>{errors.tipo?.message}</Form.Text>
+                  <Form.Text>{errorsHabitacion.tipo?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPrecio">
                   <Form.Label>Precio</Form.Label>
                   <Form.Control
-                    {...register("precio", {
+                    {...registerHabitacion("price", {
                       required: "El precio es requerido",
                       min: { value: 100, message: "Valor minimo 100" },
                       max: { value: 2000, message: "Valor maximo 2000" },
@@ -209,12 +234,12 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     placeholder={habitacion.price}
                     disabled={!editable}
                   />
-                  <Form.Text>{errors.precio?.message}</Form.Text>
+                  <Form.Text>{errorsHabitacion.precio?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCapacidad">
                   <Form.Label>Capacidad PAX</Form.Label>
                   <Form.Control
-                    {...register("capacidad", {
+                    {...registerHabitacion("capacity", {
                       required: "La cantidad de pasajeros es requerida",
                       min: { value: 1, message: "Minimo 1 pasajero" },
                       max: { value: 5, message: "Maximo 5 pasajeros" },
@@ -223,12 +248,12 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     placeholder={habitacion.capacity}
                     disabled={!editable}
                   />
-                  <Form.Text>{errors.capacidad?.message}</Form.Text>
+                  <Form.Text>{errorsHabitacion.capacidad?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicImagen">
                   <Form.Label>Imagen</Form.Label>
                   <Form.Control
-                    {...register("imagen", {
+                    {...registerHabitacion("image", {
                       required: "La imagen es requerida",
                       minLength: { value: 10, message: "Minimo 10 caracteres" },
                       maxLength: {
@@ -240,12 +265,12 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     placeholder={habitacion.image}
                     disabled={!editable}
                   />
-                  <Form.Text>{errors.imagen?.message}</Form.Text>
+                  <Form.Text>{errorsHabitacion.imagen?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicDescripcion">
                   <Form.Label>Descripcion</Form.Label>
                   <Form.Control
-                    {...register("descripcion", {
+                    {...registerHabitacion("description", {
                       required: "La descripcion es requerida",
                       minLength: { value: 10, message: "Minimo 10 caracteres" },
                       maxLength: {
@@ -257,24 +282,28 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     placeholder={habitacion.description}
                     disabled={!editable}
                   />
-                  <Form.Text>{errors.descripcion?.message}</Form.Text>
+                  <Form.Text>{errorsHabitacion.descripcion?.message}</Form.Text>
                 </Form.Group>
-
+               
                 <Button
                   variant="primary"
-                  type="submit"
+                  type="button"
                   onClick={
                     !editableSegundoModal ? mostrarSegundoForm : habilitarForm
                   }
                 >
                   {!editableSegundoModal ? "Info Pasajeros" : "Editar"}
                 </Button>
+                
+               
+              <Button  variant="secondary" type="submit" hidden={!editable} >
+                Guardar
+              </Button>
+
+               
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseModal}>
-                {!editable ? "Cerrar" : "Guardar"}
-              </Button>
             </Modal.Footer>
           </Modal>
           {/*SEGUNDO MODAL(DATOS USUARIO)*/}
@@ -287,18 +316,18 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
               <Modal.Title>Formulario Adicional</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form>
+              <Form onSubmit={handleSubmitUsuario}>
                 <Form.Group className="mb-3" controlId="secondFormNombre">
                   <Form.Label>Nombre</Form.Label>
                   <Form.Control
                     disabled
                     type="text"
                     placeholder="Nombre"
-                    {...register("nombre", {
+                    {...registerUsuario("nombre", {
                       required: "Nombre es un dato requerido",
                     })}
                   />
-                  <Form.Text>{errors.nombre?.message}</Form.Text>
+                  <Form.Text>{errorsUsuario.nombre?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormApellido">
                   <Form.Label>Apellido</Form.Label>
@@ -306,11 +335,11 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     disabled
                     type="text"
                     placeholder="Apellido"
-                    {...register("apellido", {
+                    {...registerUsuario("apellido", {
                       required: "Apellido es un dato requerido",
                     })}
                   />
-                  <Form.Text>{errors.apellido?.message}</Form.Text>
+                  <Form.Text>{errorsUsuario.apellido?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormDNI">
                   <Form.Label>DNI</Form.Label>
@@ -318,11 +347,11 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     disabled
                     type="text"
                     placeholder="DNI"
-                    {...register("dni", {
+                    {...registerUsuario("dni", {
                       required: "DNI es un dato requerido",
                     })}
                   />
-                  <Form.Text>{errors.dni?.message}</Form.Text>
+                  <Form.Text>{errorsUsuario.dni?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormEmail">
                   <Form.Label>Email</Form.Label>
@@ -330,11 +359,11 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     disabled
                     type="text"
                     placeholder="Email"
-                    {...register("email", {
+                    {...registerUsuario("email", {
                       required: "Email es dato requerido",
                     })}
                   />
-                  <Form.Text>{errors.email?.message}</Form.Text>
+                  <Form.Text>{errorsUsuario.email?.message}</Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="secondFormDomicilio">
                   <Form.Label>Domicilio</Form.Label>
@@ -342,11 +371,11 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                     disabled
                     type="text"
                     placeholder="Domicilio"
-                    {...register("domicilio", {
+                    {...registerUsuario("domicilio", {
                       required: "Domicilio es dato requerido",
                     })}
                   />
-                  <Form.Text>{errors.domicilio?.message}</Form.Text>
+                  <Form.Text>{errorsUsuario.domicilio?.message}</Form.Text>
                 </Form.Group>
               </Form>
             </Modal.Body>
