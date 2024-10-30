@@ -13,9 +13,7 @@ const Administracion = () => {
     try {
       const respuesta = await listarHabitacionesDisponibles()
     
-      const datos = await respuesta.json()
-    
-      setReservaAPI(datos)
+      setReservaAPI(respuesta)
      
     } catch (error) {
       

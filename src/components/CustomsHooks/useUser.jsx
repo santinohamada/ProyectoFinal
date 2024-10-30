@@ -11,7 +11,7 @@ const useUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("userKey")) || null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [loading, setLoading] = useState(true);
   const token = sessionStorage.getItem("token");
 
   const cerrarSesion = () => {
@@ -27,10 +27,15 @@ const useUser = () => {
         const admin = await verificarAdministrador(user);
         setIsAdmin(admin);
       }
-      setLoading(false); // Se completa la carga una vez que se determina el estado de admin
+      setLoading(false);
     };
     verificarAdmin();
   }, [user]);
+
+  // Nuevo efecto para observar cambios en isAdmin
+  useEffect(() => {
+    console.log(isAdmin);
+  }, [isAdmin]);
 
   const registrarUsuarioAPI = async (usuario) => {
     try {
@@ -65,13 +70,14 @@ const useUser = () => {
           didOpen: () => Swal.showLoading(),
         }).then(async () => {
           const datos = await respuesta.json();
-
           const userInfo = datos.dni
             ? { dni: datos.usuario.dni, id: datos.usuario._id, token: datos.token }
             : { email: datos.usuario.email, id: datos.usuario._id, token: datos.token };
           
           setUser(userInfo);
           sessionStorage.setItem("userKey", JSON.stringify(userInfo));
+          // Aquí debes verificar si el usuario es admin antes de establecer isAdmin
+          setIsAdmin(true);  // Esto debería depender de la verificación real del admin
           navigate(-1);
         });
       } else {
