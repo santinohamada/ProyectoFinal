@@ -19,7 +19,6 @@ const Menu = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-console.log(isAdmin)
   return (
     <Navbar
       bg="light"

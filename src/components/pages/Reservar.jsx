@@ -19,7 +19,7 @@ const Reservar = () => {
   useEffect(() => {
     const roomList = async () => {
       const habitaciones = await listarHabitacionesDisponibles(fechasISO);
-      console.log(habitaciones)
+      
       setRooms(habitaciones);
     };
     roomList();

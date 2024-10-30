@@ -24,13 +24,12 @@ export const verificarAdministrador = async (usuario) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token, // Asegúrate de que userKey contenga el token
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token, 
       },
       body: JSON.stringify(usuario),
     });
     const data = await respuesta.json();
-
-    // Asegúrate de manejar la respuesta correctamente
+    
     if (!respuesta.ok) {
       throw new Error(data.mensaje);
     }
@@ -91,17 +90,18 @@ export const obtenerReservas = async () => {
   }
 };
 
-export const listarHabitacionesDisponibles = async () => {
+export const listarHabitacionesDisponibles = async (datos) => {
   try {
     const habitaciones = await fetch(URLHabitacionesDisponibles, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(),
+      body: JSON.stringify(datos),
     });
-
-    return habitaciones;
+   
+    const habitacionesJson = await habitaciones.json(datos)
+    return habitacionesJson;
   } catch (error) {
     console.error(error);
   }
