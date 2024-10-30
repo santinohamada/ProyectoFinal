@@ -67,6 +67,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
       if(respuesta.status===200){
 
         handleCloseModal()
+        setEditable(false);
       
       }
     } catch (error) {
@@ -283,7 +284,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                   />
                   <Form.Text>{errorsHabitacion.descripcion?.message}</Form.Text>
                 </Form.Group>
-
+               
                 <Button
                   variant="primary"
                   type="button"
@@ -293,9 +294,13 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 >
                   {!editableSegundoModal ? "Info Pasajeros" : "Editar"}
                 </Button>
-              <Button variant="secondary" type="submit" >
+                
+               
+              <Button  variant="secondary" type="submit" hidden={!editable} >
                 Guardar
               </Button>
+
+               
               </Form>
             </Modal.Body>
             <Modal.Footer>
