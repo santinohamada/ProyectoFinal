@@ -115,3 +115,18 @@ export const obtenerUsuario = async (usuario) => {
     console.error(error);
   }
 };
+ 
+export const buscarHabitacion = async (habitacionEditada,idHabitacion) => {
+  try {
+    const respuesta = await fetch(URLHabitaciones + "/" +idHabitacion,{
+      method: "PUT",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(habitacionEditada)
+    })
+   
+    return respuesta
+  } catch (error) {
+    console.error(error)
+    return false
+  }
+}
