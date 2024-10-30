@@ -10,11 +10,14 @@ import {
 const useUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("userKey")) || null);
-  const [isAdmin, setIsAdmin] = useState(()=>verificarAdministrador(user));
-  const token = sessionStorage.getItem('token');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true); // Estado de carga
+  const token = sessionStorage.getItem("token");
+
   const cerrarSesion = () => {
     setUser(null);
     setIsAdmin(false);
+    setLoading(true);
     sessionStorage.removeItem("userKey");
   };
 
@@ -22,13 +25,12 @@ const useUser = () => {
     const verificarAdmin = async () => {
       if (user) {
         const admin = await verificarAdministrador(user);
-        console.log(admin)
         setIsAdmin(admin);
       }
+      setLoading(false); // Se completa la carga una vez que se determina el estado de admin
     };
     verificarAdmin();
-  }, [user]); // Escucha cambios en `user` y también se ejecuta en el montaje inicial
-  
+  }, [user]);
 
   const registrarUsuarioAPI = async (usuario) => {
     try {
@@ -65,8 +67,8 @@ const useUser = () => {
           const datos = await respuesta.json();
 
           const userInfo = datos.dni
-            ? { dni: datos.usuario.dni, id: datos.usuario._id,token:datos.token }
-            : { email: datos.usuario.email, id: datos.usuario._id,token:datos.token};
+            ? { dni: datos.usuario.dni, id: datos.usuario._id, token: datos.token }
+            : { email: datos.usuario.email, id: datos.usuario._id, token: datos.token };
           
           setUser(userInfo);
           sessionStorage.setItem("userKey", JSON.stringify(userInfo));
@@ -80,7 +82,7 @@ const useUser = () => {
     }
   };
 
-  return { iniciarSesionApi, cerrarSesion, user, isAdmin, registrarUsuarioAPI };
+  return { iniciarSesionApi, cerrarSesion, user, isAdmin, loading, registrarUsuarioAPI };
 };
 
 export default useUser;
