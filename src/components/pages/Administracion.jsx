@@ -35,7 +35,7 @@ useEffect(() => {
     };
     
      cargarDatos(); // Llama a la función para cargar datos
-  }, []);
+  }, [listaHabitaciones]);
     return (
         <>
         
