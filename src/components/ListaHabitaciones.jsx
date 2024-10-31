@@ -105,6 +105,17 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     cargarDatos();
   }, [reserva]);
 
+  useEffect(()=>{
+    if(usuario.nombre){
+
+      setValueUsuario("nombre", usuario.nombre);
+      setValueUsuario("apellido", usuario.apellido);
+      setValueUsuario("dni", usuario.dni);
+      setValueUsuario("email", usuario.email);
+      setValueUsuario("domicilio", usuario.domicilio);
+    }
+  },[usuario])
+
   const handleLinkClick = (e) => {
     e.preventDefault(); // Previene el redireccionamiento
     setShowModal(true); // Muestra el modal si estadoReserva es false
@@ -127,11 +138,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     user()
     e.preventDefault();
     setShowSegundoModal(true);
-    setValue("nombre", usuario.nombre);
-    setValue("apellido", usuario.apellido);
-    setValue("dni", usuario.dni);
-    setValue("email", usuario.email);
-    setValue("domicilio", usuario.domicilio);
+    
   };
 
   const handleCloseModal = () => setShowModal(false);
