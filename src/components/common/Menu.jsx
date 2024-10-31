@@ -19,7 +19,6 @@ const Menu = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <Navbar
       bg="light"

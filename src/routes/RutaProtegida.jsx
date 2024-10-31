@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../components/Context/UserContext";
 
 const RutaProtegida = ({ children }) => {
-  const { isAdmin } = useContext(UserContext);
+  const { isAdmin, loading } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  if (isAdmin) return children;
+  useEffect(() => {
+    if (!loading && !isAdmin) {
+      navigate("/iniciarSesion");
+    }
+  }, [isAdmin, loading, navigate]);
 
-  return <Navigate to={"/iniciarSesion"}></Navigate>;
+  if (loading) return <div>Cargando...</div>;
+
+  return children;
 };
 
 export default RutaProtegida;
