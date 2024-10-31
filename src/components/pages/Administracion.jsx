@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import {
   listarHabitaciones,
   listarHabitacionesDisponibles,
+  listarUsuarios,
 } from "../../helpers/queries.js";
 import ListaHabitaciones from "../listaHabitaciones.jsx";
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
+import TablaUsuarios from "../Usuarios/TablaUsuarios.jsx";
+
 
 const Administracion = () => {
   const [listaHabitaciones, setListaHabitaciones] = useState([]);
   const [reservaAPI, setReservaAPI] = useState([]);
+  const [usuario, setUsuario] = useState([])
+  const [estadoUsuario, setEstadoUsuario] = useState(false)
 
   const reserva = async () => {
     try {
@@ -24,15 +29,32 @@ const Administracion = () => {
     setListaHabitaciones(habitaciones);
   };
 
+  const listaUsuarios = async ()=>{
+    try {
+      const respuesta = await listarUsuarios()
+      const usuarios = await respuesta.json()
+      setUsuario(usuarios)
+    } catch (error) {
+      console.error(error)
+    }
+    
+  }
+
   useEffect(() => {
     const cargarDatos = async () => {
       await Promise.all([reserva(), habitaciones()]); // Ejecuta ambas funciones en paralelo
     };
 
-    cargarDatos(); // Llama a la función para cargar datos
+    cargarDatos(); 
   }, [listaHabitaciones]);
+
+  useEffect(()=>{
+    listaUsuarios()
+  },[estadoUsuario])
+
   return (
     <>
+        <h3>HABITACIONES</h3>
       <span className="d-flex justify-content-end mx-5">
         <Button className="mt-3 mb-3">Nueva habitacion</Button>
       </span>
@@ -45,6 +67,29 @@ const Administracion = () => {
             reserva={reservaAPI}
           ></ListaHabitaciones>
         ))}
+      </section>
+      <h3>USUARIOS</h3>
+      <section>
+      <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>DNI</th>
+          <th>Domicilio</th>
+          <th>Email</th>
+          <th>Acciones</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        
+          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion} setEstadoUsuario={setEstadoUsuario}></TablaUsuarios>))}
+        
+       
+      </tbody>
+    </Table>
       </section>
     </>
   );
