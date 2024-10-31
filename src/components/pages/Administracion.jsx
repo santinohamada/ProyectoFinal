@@ -13,6 +13,7 @@ const Administracion = () => {
   const [listaHabitaciones, setListaHabitaciones] = useState([]);
   const [reservaAPI, setReservaAPI] = useState([]);
   const [usuario, setUsuario] = useState([])
+  const [estadoUsuario, setEstadoUsuario] = useState(false)
 
   const reserva = async () => {
     try {
@@ -49,7 +50,7 @@ const Administracion = () => {
 
   useEffect(()=>{
     listaUsuarios()
-  },[])
+  },[estadoUsuario])
 
   return (
     <>
@@ -84,7 +85,7 @@ const Administracion = () => {
       </thead>
       <tbody>
         
-          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion}></TablaUsuarios>))}
+          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion} setEstadoUsuario={setEstadoUsuario}></TablaUsuarios>))}
         
        
       </tbody>

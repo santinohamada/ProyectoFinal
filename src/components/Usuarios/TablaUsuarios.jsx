@@ -1,7 +1,17 @@
 import { Button } from "react-bootstrap";
+import { borrarUsuarios } from "../../helpers/queries";
 
-const TablaUsuarios = ({ usuario, posicion }) => {
+const TablaUsuarios = ({ usuario, posicion, setEstadoUsuario }) => {
+
+    const borrarUsuario = async ()=>{
+        const respuesta = await borrarUsuarios(usuario._id)
+        if(respuesta.status===200){
+            console.log("USUARIO BORRADO")
+            setEstadoUsuario(true)
+        }
+    }
   return (
+
     <>
       <tr>
         <td>{posicion}</td>
@@ -10,18 +20,20 @@ const TablaUsuarios = ({ usuario, posicion }) => {
         <td>{usuario.dni}</td>
         <td>{usuario.domicilio}</td>
         <td>{usuario.email}</td>
+            <td>
+            
         <div className="d-flex justify-content-evenly">
           <Button>
-            <td>
-              <i class="bi bi-pen gap-1"></i>
-            </td>
+              <i className="bi bi-pen gap-1"></i>
+           
           </Button>
-          <Button>
-            <td>
-              <i class="bi bi-trash3 gap-1"></i>
-            </td>
+          <Button onClick={borrarUsuario}>
+            
+              <i className="bi bi-trash3 gap-1"></i>
           </Button>
         </div>
+           
+            </td>
       </tr>
     </>
   );

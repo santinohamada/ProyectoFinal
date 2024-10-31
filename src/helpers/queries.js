@@ -143,3 +143,14 @@ export const listarUsuarios = async ()=>{
  
 
 }
+
+export const borrarUsuarios = async (idUsuario)=>{
+  try {
+    const respuesta = await fetch(URLUsuarios+"/"+idUsuario,{
+      method: "DELETE",
+    })
+    return respuesta
+  } catch (error) {
+    console.error(error)
+  }
+}
