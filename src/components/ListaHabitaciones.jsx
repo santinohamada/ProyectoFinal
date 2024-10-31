@@ -4,7 +4,7 @@ import { buscarHabitacion, obtenerUsuario } from "../helpers/queries.js";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-const ListaHabitaciones = ({ habitacion, reserva }) => {
+const ListaHabitaciones = ({ habitacion, reserva, estado }) => {
 
   const {
     register: registerHabitacion,
@@ -52,6 +52,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   const [editable, setEditable] = useState(false);
   const [editableSegundoModal, setEditableSegundoModal] = useState(false);
   const [usuario, setUsuario] = useState([]);
+  
+  
 
   const idUsuario = reserva.flatMap((reserva) =>
     reserva.HabitacionesConReserva.filter(
@@ -66,7 +68,9 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
       const respuesta = await buscarHabitacion(habitacionEditada,habitacion._id)
       if(respuesta.status===200){
 
+        estado(true)
         handleCloseModal()
+       
         setEditable(false);
       
       }
@@ -103,7 +107,18 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
       await Promise.all([datosReserva()]);
     };
     cargarDatos();
+    estado(false)
   }, [reserva]);
+
+  useEffect(() => {
+    if (usuario.nombre) {
+        setValueUsuario("nombre", usuario.nombre);
+        setValueUsuario("apellido", usuario.apellido);
+        setValueUsuario("dni", usuario.dni);
+        setValueUsuario("email", usuario.email);
+        setValueUsuario("domicilio", usuario.domicilio);
+    }
+}, [usuario]);
 
   const handleLinkClick = (e) => {
     e.preventDefault(); // Previene el redireccionamiento
@@ -123,15 +138,11 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     e.preventDefault();
     setEditable(true);
   };
-  const mostrarSegundoForm = (e) => {
-    user()
+  const mostrarSegundoForm = async (e) => {
     e.preventDefault();
+    await user()
+   
     setShowSegundoModal(true);
-    setValue("nombre", usuario.nombre);
-    setValue("apellido", usuario.apellido);
-    setValue("dni", usuario.dni);
-    setValue("email", usuario.email);
-    setValue("domicilio", usuario.domicilio);
   };
 
   const handleCloseModal = () => setShowModal(false);

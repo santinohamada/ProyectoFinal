@@ -8,6 +8,7 @@ import { Button } from 'react-bootstrap';
 const Administracion = () => {
   const [listaHabitaciones,setListaHabitaciones]=useState([])
   const [reservaAPI, setReservaAPI]=useState([])
+  const [estadoHabitaciones, setEstadoHabitaciones] = useState(false)
 
   const reserva = async()=>{
     try {
@@ -35,7 +36,7 @@ useEffect(() => {
     };
     
      cargarDatos(); // Llama a la función para cargar datos
-  }, [listaHabitaciones]);
+  }, [estadoHabitaciones]);
     return (
         <>
         
@@ -45,7 +46,7 @@ useEffect(() => {
         
         <section className='componentePagina d-flex flex-row gap-2'>
         {
- listaHabitaciones.map((habitacion,posicion)=>(<ListaHabitaciones habitacion={habitacion} key={habitacion._id} reserva={reservaAPI}></ListaHabitaciones>))}
+ listaHabitaciones.map((habitacion,posicion)=>(<ListaHabitaciones estado= {setEstadoHabitaciones} habitacion={habitacion} key={habitacion._id} reserva={reservaAPI}></ListaHabitaciones>))}
 
         </section>
         </>
