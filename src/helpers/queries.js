@@ -130,3 +130,16 @@ export const buscarHabitacion = async (habitacionEditada, idHabitacion) => {
     return false;
   }
 };
+
+export const listarUsuarios = async ()=>{
+
+  try {
+    const respuesta = await fetch(URLUsuarios)
+    return respuesta
+  } catch (error) {
+    console.error(error)
+    return false
+  }
+ 
+
+}
