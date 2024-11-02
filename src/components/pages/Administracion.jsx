@@ -13,6 +13,7 @@ const Administracion = () => {
   const [listaHabitaciones, setListaHabitaciones] = useState([]);
   const [reservaAPI, setReservaAPI] = useState([]);
   const [usuario, setUsuario] = useState([])
+  const [estadoHabitacion, setEstadoHabitacion] = useState(false)
   const [estadoUsuario, setEstadoUsuario] = useState(false)
 
   const reserva = async () => {
@@ -45,12 +46,11 @@ const Administracion = () => {
       await Promise.all([reserva(), habitaciones()]); // Ejecuta ambas funciones en paralelo
     };
 
-    cargarDatos(); 
-  }, [listaHabitaciones]);
-
-  useEffect(()=>{
+    cargarDatos()
     listaUsuarios()
-  },[estadoUsuario])
+  }, [estadoHabitacion, estadoUsuario]);
+
+ 
 
   return (
     <>
@@ -65,6 +65,7 @@ const Administracion = () => {
             habitacion={habitacion}
             key={habitacion._id}
             reserva={reservaAPI}
+            estadoHabitacion={setEstadoHabitacion}
           ></ListaHabitaciones>
         ))}
       </section>
