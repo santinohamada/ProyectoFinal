@@ -12,28 +12,23 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(200, 200, 200, 0.8); 
+  background-color: rgba(200, 200, 200, 0.8);
   transition: background-color 0.3s ease;
 }
 
 .custom-navbar.scrolled {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.6
-  ); 
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .navbar-brand.hotel-title {
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   font-weight: bold;
   color: #333;
   text-decoration: none;
 }
 
 .navbar-brand.hotel-title:hover {
-  color: #555; 
+  color: #555;
 }
 
 /*Footer*/
@@ -231,6 +226,45 @@ h2 {
 .stars {
   font-size: 36px;
   color: #ffcc00;
+}
+
+/* Sección carrousel con las reseñas */
+.carousel-image-overlay {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: #fff;
+  text-align: center;
+}
+
+#imagen1 {
+  background-image: url("https://images.pexels.com/photos/28054888/pexels-photo-28054888/free-photo-of-paisaje-vacaciones-hotel-relajante.jpeg");
+}
+
+#imagen2 {
+  background-image: url("https://images.pexels.com/photos/460537/pexels-photo-460537.jpeg");
+}
+
+#imagen3 {
+  background-image: url("https://images.pexels.com/photos/5865693/pexels-photo-5865693.jpeg");
+}
+
+.carousel-comment h1 {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-comment p {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
+.carousel-comment h5 {
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 /*pagina nosotros */

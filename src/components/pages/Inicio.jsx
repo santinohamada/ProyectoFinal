@@ -194,13 +194,7 @@ const Inicio = () => {
             controls={true}
           >
             <Carousel.Item>
-              {/* Fondo de imagen */}
-              <div
-                className="carousel-image-overlay"
-                style={{
-                  backgroundImage: `url('https://images.pexels.com/photos/28054888/pexels-photo-28054888/free-photo-of-paisaje-vacaciones-hotel-relajante.jpeg')`,
-                }}
-              >
+              <div className="carousel-image-overlay" id="imagen1">
                 <div className="carousel-comment">
                   <h1>10</h1>
                   <p>
@@ -213,13 +207,7 @@ const Inicio = () => {
             </Carousel.Item>
 
             <Carousel.Item>
-              {/* Fondo de imagen */}
-              <div
-                className="carousel-image-overlay"
-                style={{
-                  backgroundImage: `url('https://images.pexels.com/photos/460537/pexels-photo-460537.jpeg')`,
-                }}
-              >
+              <div className="carousel-image-overlay" id="imagen2">
                 <div className="carousel-comment">
                   <h1>9.7</h1>
                   <p>
@@ -232,13 +220,7 @@ const Inicio = () => {
             </Carousel.Item>
 
             <Carousel.Item>
-              {/* Fondo de imagen */}
-              <div
-                className="carousel-image-overlay"
-                style={{
-                  backgroundImage: `url('https://images.pexels.com/photos/5865693/pexels-photo-5865693.jpeg')`,
-                }}
-              >
+              <div className="carousel-image-overlay" id="imagen3">
                 <div className="carousel-comment">
                   <h1>9.9</h1>
                   <p>
