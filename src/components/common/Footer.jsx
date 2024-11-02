@@ -11,19 +11,19 @@ const Footer = () => {
             md={8}
             className="d-flex justify-content-center align-items-center"
           >
-            <a href="#" className="social-icon mx-2">
+            <a href="/error404" className="social-icon mx-2">
               <i className="bi bi-facebook"></i>
             </a>
-            <a href="#" className="social-icon mx-2">
+            <a href="/error404" className="social-icon mx-2">
               <i className="bi bi-instagram"></i>
             </a>
-            <a href="#" className="social-icon mx-2">
+            <a href="/error404" className="social-icon mx-2">
               <i className="bi bi-youtube"></i>
             </a>
-            <a href="#" className="social-icon mx-2">
+            <a href="/error404" className="social-icon mx-2">
               <i className="bi bi-twitter"></i>
             </a>
-            <a href="#" className="social-icon mx-2">
+            <a href="/error404" className="social-icon mx-2">
               <i className="bi bi-linkedin"></i>
             </a>
           </Col>
@@ -38,10 +38,10 @@ const Footer = () => {
         </Row>
         <Row className="justify-content-center mt-3">
           <Col className="text-center">
-            <a href="#" className="footer-link mx-3">
+            <a href="/error404" className="footer-link mx-3">
               Información legal
             </a>
-            <a href="#" className="footer-link mx-3">
+            <a href="/error404" className="footer-link mx-3">
               Política de privacidad
             </a>
           </Col>
