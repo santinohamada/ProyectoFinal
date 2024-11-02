@@ -208,7 +208,7 @@ h2 {
 
 /* Fondo y contenedor principal de los servicios */
 .servicios-section {
-  background-image: url("https://images.pexels.com/photos/1843658/pexels-photo-1843658.jpeg"); /* Cambia la URL a la de tu imagen */
+  background-image: url("https://images.pexels.com/photos/1843658/pexels-photo-1843658.jpeg");
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -224,7 +224,7 @@ h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad y color */
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
@@ -248,12 +248,12 @@ h2 {
 /* Estilos para los iconos y el texto */
 .servicio-icon {
   font-size: 2.5rem;
-  color: #ffd700; /* Color dorado */
+  color: #ffd700; 
   transition: color 0.3s ease;
 }
 
 .servicio-icon:hover {
-  color: #ffffff; /* Cambia el color al pasar el cursor */
+  color: #ffffff; 
 }
 
 .servicios-section p {
