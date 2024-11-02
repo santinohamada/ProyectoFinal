@@ -177,38 +177,16 @@ h2 {
   color: #000;
 }
 
-/* Sección de servicios */
-.services-section {
-  background-color: #c49a4b;
-  padding: 40px;
-  text-align: center;
-}
-
-.services-section h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
-
-.services-section ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.services-section li {
-  flex: 0 1 30%;
-  margin: 10px;
-}
-
-.services-section i {
-  font-size: 30px;
-  color: #1b1b1b;
-  margin-right: 10px;
-}
-
 /* Sección de categoría del hotel */
 .hotel-category {
-  background-color: #c49a4b;
+  background-color: #67491f;
+  background-image: linear-gradient(
+    62deg,
+    #67491f 0%,
+    #f7ce68 50%,
+    #ffffff 100%
+  );
+
   padding: 40px;
   text-align: center;
 }
@@ -219,13 +197,78 @@ h2 {
 }
 
 .hotel-category p {
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 20px;
 }
 
 .stars {
   font-size: 36px;
-  color: #ffcc00;
+  color: #EABE3F;
+}
+
+/* Fondo y contenedor principal de los servicios */
+.servicios-section {
+  background-image: url("https://images.pexels.com/photos/1843658/pexels-photo-1843658.jpeg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 60px 0;
+  position: relative;
+}
+
+/* Capa de superposición para mejorar la legibilidad */
+.servicios-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Estilos para el contenido de los servicios */
+.servicios-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.servicios-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.servicios-section p.lead {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+/* Estilos para los iconos y el texto */
+.servicio-icon {
+  font-size: 2.5rem;
+  color: #ffd700; 
+  transition: color 0.3s ease;
+}
+
+.servicio-icon:hover {
+  color: #ffffff; 
+}
+
+.servicios-section p {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Ajuste de columnas */
+.servicios-section .col {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
 }
 
 /* Sección carrousel con las reseñas */
@@ -387,5 +430,3 @@ h2 {
 .no-disponible {
   color: red;
 }
-
-

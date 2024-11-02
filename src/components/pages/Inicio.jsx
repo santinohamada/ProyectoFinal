@@ -3,6 +3,23 @@ import { Button, Container, Card, Row, Col, Carousel } from "react-bootstrap";
 import MyModal from "../Modal/MyModal";
 
 const Inicio = () => {
+  // Datos para los servicios
+  const servicios = [
+    { icon: "safe", text: "Cajas de seguridad" },
+    { icon: "check-circle", text: "Menú apto para celíacos" },
+    { icon: "building", text: "Ascensor" },
+    { icon: "wifi", text: "WIFI gratis" },
+    { icon: "box-seam", text: "Lavandería y tintorería" },
+    { icon: "cup-straw", text: "Desayuno Buffet" },
+    { icon: "reception-4", text: "Recepción 24hs" },
+    { icon: "snow", text: "Aire Acondicionado" },
+    { icon: "laptop", text: "Computadora para huéspedes" },
+    { icon: "bag", text: "Guardaequipajes gratis" },
+    { icon: "fire", text: "Calefacción" },
+    { icon: "door-open", text: "Room Service" },
+    { icon: "hospital", text: "Asistencia Médica 24hs" },
+  ];
+
   return (
     <>
       {/* Sección principal con texto y botón */}
@@ -143,34 +160,22 @@ const Inicio = () => {
             </Col>
           </Row>
         </Container>
-        <div className="services-section">
-          <h2>Servicios Incluidos</h2>
-          <ul className="list-unstyled">
-            <li className="d-flex align-items-center">
-              <i className="bi bi-wifi me-2"></i> Wi-Fi gratis: Conéctate a
-              internet de alta velocidad de forma gratuita en todas las áreas
-              del hotel.
-            </li>
-            <li className="d-flex align-items-center">
-              <i className="bi bi-cup-fill me-2"></i> Desayuno buffet: Disfruta
-              de un delicioso desayuno buffet con una amplia variedad de
-              opciones.
-            </li>
-            <li className="d-flex align-items-center">
-              <i className="bi-car-front me-2"></i> Alquiler de autos: Explora
-              la Patagonia a tu propio ritmo.
-            </li>
-            <li className="d-flex align-items-center">
-              <i className="bi-suitcase me-2"></i> Servicio de lavandería y
-              tintorería.
-            </li>
-            <li className="d-flex align-items-center">
-              <i className="bi-gift me-2"></i> Organización de eventos
-              especiales.
-            </li>
-          </ul>
-        </div>
 
+        {/* Sección de servicios con íconos */}
+        <div className="servicios-section">
+          <Container className="text-center text-light py-5">
+            <h2 className="display-4">Comodidades & Servicios</h2>
+            <p className="lead">Lo necesario para que disfrutes de tu viaje</p>
+            <Row>
+              {servicios.map((servicio, index) => (
+                <Col xs={6} md={4} lg={3} key={index} className="mb-4">
+                  <i className={`bi bi-${servicio.icon} servicio-icon`}></i>
+                  <p className="mt-2">{servicio.text}</p>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+        </div>
         <div className="hotel-category">
           <h2>Nuestro Compromiso con la Calidad</h2>
           <p>
@@ -181,6 +186,7 @@ const Inicio = () => {
           <div className="stars">⭐⭐⭐⭐</div>
         </div>
       </div>
+
       {/* Carrusel de comentarios de usuarios con nuevo diseño */}
       <div className="comments-carousel-section">
         <Container className="py-5">
