@@ -14,6 +14,7 @@ const Administracion = () => {
   const [reservaAPI, setReservaAPI] = useState([]);
   const [usuario, setUsuario] = useState([])
   const [estadoHabitacion, setEstadoHabitacion] = useState(false)
+  const [estadoUsuario, setEstadoUsuario] = useState(false)
 
   const reserva = async () => {
     try {
@@ -47,7 +48,7 @@ const Administracion = () => {
 
     cargarDatos()
     listaUsuarios()
-  }, [estadoHabitacion]);
+  }, [estadoHabitacion, estadoUsuario]);
 
  
 
@@ -85,7 +86,7 @@ const Administracion = () => {
       </thead>
       <tbody>
         
-          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion}></TablaUsuarios>))}
+          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion} setEstadoUsuario={setEstadoUsuario}></TablaUsuarios>))}
         
        
       </tbody>
