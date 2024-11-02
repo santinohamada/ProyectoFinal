@@ -4,7 +4,7 @@ import { buscarHabitacion, obtenerUsuario } from "../helpers/queries.js";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-const ListaHabitaciones = ({ habitacion, reserva }) => {
+const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
 
   const {
     register: registerHabitacion,
@@ -63,11 +63,14 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     console.log(habitacionEditada)
     
     try {
+     
       const respuesta = await buscarHabitacion(habitacionEditada,habitacion._id)
       if(respuesta.status===200){
 
         handleCloseModal()
         setEditable(false);
+        estadoHabitacion(true)
+        
       
       }
     } catch (error) {
@@ -93,6 +96,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
       const respuesta = await obtenerUsuario(idUsuario[idUsuario.length - 1]);
       const datos = await respuesta.json();
       setUsuario(datos);
+      
       return datos;
     } catch (error) {
       console.error(error);
@@ -138,6 +142,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     user()
     e.preventDefault();
     setShowSegundoModal(true);
+
     
   };
 

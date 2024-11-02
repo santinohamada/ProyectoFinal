@@ -13,7 +13,7 @@ const Administracion = () => {
   const [listaHabitaciones, setListaHabitaciones] = useState([]);
   const [reservaAPI, setReservaAPI] = useState([]);
   const [usuario, setUsuario] = useState([])
-  const [estadoUsuario, setEstadoUsuario] = useState(false)
+  const [estadoHabitacion, setEstadoHabitacion] = useState(false)
 
   const reserva = async () => {
     try {
@@ -45,12 +45,11 @@ const Administracion = () => {
       await Promise.all([reserva(), habitaciones()]); // Ejecuta ambas funciones en paralelo
     };
 
-    cargarDatos(); 
-  }, [listaHabitaciones]);
-
-  useEffect(()=>{
+    cargarDatos()
     listaUsuarios()
-  },[estadoUsuario])
+  }, [estadoHabitacion]);
+
+ 
 
   return (
     <>
@@ -65,6 +64,7 @@ const Administracion = () => {
             habitacion={habitacion}
             key={habitacion._id}
             reserva={reservaAPI}
+            estadoHabitacion={setEstadoHabitacion}
           ></ListaHabitaciones>
         ))}
       </section>
@@ -85,7 +85,7 @@ const Administracion = () => {
       </thead>
       <tbody>
         
-          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion} setEstadoUsuario={setEstadoUsuario}></TablaUsuarios>))}
+          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion}></TablaUsuarios>))}
         
        
       </tbody>
