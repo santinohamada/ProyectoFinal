@@ -12,6 +12,7 @@ export const reservarHabitacion = async (reserva) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
       },
       body: JSON.stringify(reserva),
     });
@@ -29,7 +30,7 @@ export const verificarAdministrador = async (usuario) => {
       body: JSON.stringify(usuario),
     });
     const data = await respuesta.json();
-
+    console.log(respuesta.ok)
     if (!respuesta.ok) {
       throw new Error(data.mensaje);
     }
@@ -82,7 +83,12 @@ export const listarHabitaciones = async () => {
 
 export const obtenerReservas = async () => {
   try {
-    const respuesta = await fetch(URLReservas);
+    const respuesta = await fetch(URLReservas,
+    {
+      headers:{
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
+      }
+    });
     return respuesta;
   } catch (error) {
     console.error(error);
@@ -96,6 +102,7 @@ export const listarHabitacionesDisponibles = async (datos) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        
       },
       body: JSON.stringify(datos),
     });
@@ -109,18 +116,23 @@ export const listarHabitacionesDisponibles = async (datos) => {
 
 export const obtenerUsuario = async (usuario) => {
   try {
-    const respuesta = await fetch(URLUsuarios + "/" + usuario);
+    const respuesta = await fetch(URLUsuarios + "/" + usuario,{
+      headers:{
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
+      }
+    });
     return respuesta;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const buscarHabitacion = async (habitacionEditada, idHabitacion) => {
+export const editarHabitacion = async (habitacionEditada, idHabitacion) => {
   try {
     const respuesta = await fetch(URLHabitaciones + "/" + idHabitacion, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+      "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token },
       body: JSON.stringify(habitacionEditada),
     });
 
@@ -134,7 +146,13 @@ export const buscarHabitacion = async (habitacionEditada, idHabitacion) => {
 export const listarUsuarios = async ()=>{
 
   try {
-    const respuesta = await fetch(URLUsuarios)
+    const respuesta = await fetch(URLUsuarios,{
+      method:"GET",
+      headers:{
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
+      }
+    })
+    console.log(JSON.parse(sessionStorage.getItem("userKey")).token)
     return respuesta
   } catch (error) {
     console.error(error)
@@ -148,6 +166,9 @@ export const borrarUsuarios = async (idUsuario)=>{
   try {
     const respuesta = await fetch(URLUsuarios+"/"+idUsuario,{
       method: "DELETE",
+      headers:{
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
+      }
     })
     return respuesta
   } catch (error) {

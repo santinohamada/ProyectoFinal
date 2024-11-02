@@ -50,7 +50,7 @@ const Administracion = () => {
     listaUsuarios()
   }, [estadoHabitacion, estadoUsuario]);
 
- 
+ console.log(usuario)
 
   return (
     <>
