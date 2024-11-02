@@ -36,6 +36,7 @@ const IniciarSesion = () => {
             <input
               className="form-input"
               type="text"
+              autoComplete="email"
               placeholder="Ingrese su correo o DNI"
               {...register("entrada", {
                 required: "El campo es obligatorio",
@@ -49,12 +50,13 @@ const IniciarSesion = () => {
             />
             <i className="bi form-icon bi-envelope"></i>
           </div>
-          <Form.Text className="text-danger">{errors.dni?.message}</Form.Text>
+          <Form.Text className="text-danger">{errors.entrada?.message}</Form.Text>
 
           <div className="form-input-container">
             <input
               className="form-input"
               type="password"
+              autoComplete="current-password"
               placeholder="Ingrese su contraseña"
               {...register("password", {
                 required: "La contraseña es un campo requerido",

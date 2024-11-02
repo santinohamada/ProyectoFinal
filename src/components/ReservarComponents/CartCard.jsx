@@ -28,18 +28,18 @@ const CartCard = () => {
               <hr />
               <Card.Text className="fw-bold">{cart[0].type}</Card.Text>
               <Card.Text>
-                €{cart[0].price}.00 <br />
+                ${cart[0].price}.00 <br />
                 {cart[0].breakfast ? "desayuno en la cama" : ""} <br />
-                {cart[0].nights} NOCHES DE ESTANCIA
+                
               </Card.Text>
               <Card.Text className="text-muted">
-                Tasas e impuestos: €{cart[0].taxes}.00
+                Tasas e impuestos: ${cart[0].taxes}.00
               </Card.Text>
               <Card.Text className="text-muted">
                 {`${fechasFormateadas[0].day}/${fechasFormateadas[0].month}/${fechasFormateadas[0].year}`}{" "}
                 -{" "}
                 {`${fechasFormateadas[1].day}/${fechasFormateadas[1].month}/${fechasFormateadas[1].year}`}
-                , {personas} Personas
+                , {personas===1?`${personas} persona`:`${personas} personas`} 
               </Card.Text>
               <Button
                 variant="link"
@@ -72,23 +72,20 @@ const CartCard = () => {
             </>
           ) : (
             <>
-              <Card.Text>Total: €0</Card.Text>
+              <Card.Text>Total: $0</Card.Text>
               <Card.Text className="text-muted">
                 Incluyendo tasas e impuestos
               </Card.Text>
               <hr />
               <Card.Text className="fw-bold">-</Card.Text>
-              <Card.Text>
-                €0.00 <br /> - <br /> - NOCHES DE ESTANCIA
-              </Card.Text>
               <Card.Text className="text-muted">
-                Tasas e impuestos: €0.00
+                Tasas e impuestos: $0.00
               </Card.Text>
               <Card.Text className="text-muted">
                 {`${fechasFormateadas[0].day}/${fechasFormateadas[0].month}/${fechasFormateadas[0].year}`}{" "}
                 -{" "}
                 {`${fechasFormateadas[1].day}/${fechasFormateadas[1].month}/${fechasFormateadas[1].year}`}
-                , {personas} Personas
+                , {personas===1?`${personas} persona`:`${personas} personas`} 
               </Card.Text>
             </>
           )}
