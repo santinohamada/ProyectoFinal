@@ -12,28 +12,23 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(200, 200, 200, 0.8); 
+  background-color: rgba(200, 200, 200, 0.8);
   transition: background-color 0.3s ease;
 }
 
 .custom-navbar.scrolled {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.6
-  ); 
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .navbar-brand.hotel-title {
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   font-weight: bold;
   color: #333;
   text-decoration: none;
 }
 
 .navbar-brand.hotel-title:hover {
-  color: #555; 
+  color: #555;
 }
 
 /*Footer*/
@@ -150,12 +145,12 @@ h2 {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  z-index: 0;
 }
 
 .inicio-content {
   position: relative;
-  z-index: 2;
+  z-index: 0;
   color: #fff;
   text-align: center;
   margin-top: 45vh;
@@ -182,39 +177,15 @@ h2 {
   color: #000;
 }
 
-/* Sección de servicios */
-.services-section {
-  background-color: #c49a4b;
-  padding: 40px;
-  text-align: center;
-}
-
-.services-section h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
-
-.services-section ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.services-section li {
-  flex: 0 1 30%;
-  margin: 10px;
-}
-
-.services-section i {
-  font-size: 30px;
-  color: #1b1b1b;
-  margin-right: 10px;
-}
-
 /* Sección de categoría del hotel */
 .hotel-category {
-  background-color: #c49a4b;
-  padding: 40px;
+  background-image: linear-gradient(
+    62deg,
+
+    #ffffff 100%
+  );
+
+  padding: 10px;
   text-align: center;
 }
 
@@ -224,13 +195,121 @@ h2 {
 }
 
 .hotel-category p {
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 20px;
 }
 
 .stars {
-  font-size: 36px;
-  color: #ffcc00;
+  font-size: 50px;
+  color: #ffbf00;
+}
+
+/* Fondo y contenedor principal de los servicios */
+.servicios-section {
+  margin: 1rem 0px;
+  
+  color: #492020;
+  padding: 60px 0;
+  position: relative;
+}
+.rs-picker-popup.rs-picker-popup-daterange {
+  padding: 0;
+  z-index: 1060; 
+}
+/* Capa de superposición para mejorar la legibilidad */
+.servicios-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(204, 199, 198, 0.5);
+  z-index: 0;
+}
+
+/* Estilos para el contenido de los servicios */
+.servicios-section .container {
+  position: relative;
+  z-index: 0;
+}
+
+.servicios-section h2 {
+  color: #000;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.servicios-section p.lead {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+/* Estilos para los iconos y el texto */
+.servicio-icon {
+  font-size: 2.5rem;
+  color: #29aaca; 
+  transition: color 0.3s ease;
+}
+
+.servicio-icon:hover {
+  color: #ffffff; 
+}
+
+.servicios-section p {
+  color: #000;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Ajuste de columnas */
+.servicios-section .col {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+}
+
+/* Sección carrousel con las reseñas */
+.carousel-image-overlay {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: #fff;
+  text-align: center;
+}
+
+#imagen1 {
+  background-image: url("https://images.pexels.com/photos/28054888/pexels-photo-28054888/free-photo-of-paisaje-vacaciones-hotel-relajante.jpeg");
+}
+
+#imagen2 {
+  background-image: url("https://images.pexels.com/photos/460537/pexels-photo-460537.jpeg");
+}
+
+#imagen3 {
+  background-image: url("https://images.pexels.com/photos/5865693/pexels-photo-5865693.jpeg");
+}
+
+.carousel-comment h1 {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-comment p {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
+.carousel-comment h5 {
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 /*pagina nosotros */
@@ -249,25 +328,23 @@ h2 {
 }
 
 .hotel-card {
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-decoration: none; 
+  color: inherit; 
   transition: transform 0.3s ease;
 }
 
 .hotel-card:hover {
+  text-decoration: none;
+  color: inherit; 
   transform: scale(1.05);
 }
 
-.hotel-card img {
-  height: 250px;
-  object-fit: cover;
+.hotel-card:active {
+  transform: scale(1.05);
 }
 
-.hotel-card .card-body {
-  padding: 20px;
-}
+
+
 
 .hotel-description {
   font-size: 1.2rem;
@@ -286,7 +363,9 @@ h2 {
 .comments-carousel-section {
   position: relative;
 }
-
+.cardImage{
+height:190px
+}
 .carousel-style .carousel-item {
   position: relative;
   height: 400px;
@@ -352,4 +431,50 @@ h2 {
 
 .no-disponible {
   color: red;
+}
+
+/*pagina contacto */
+.form-container{
+  width: 100%;
+  max-width: 1220px;
+  background-color: #ffffff;
+  padding: 6px;
+  margin: 28px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.motionli{
+  list-style: none;
+}
+.form-label{
+  color: #8c6e4a;
+  font-weight: bold;
+}
+
+.form-control{
+  border: 2px solid #e2cba7;
+}
+
+.btn-submit{
+  background-color: #e2cba7;
+  color: #573c09;
+  font-size: 18px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+.btn-submit:hover{
+  background-color: #573c09;
+  color: #e2cba7;
+}
+
+.text-danger{
+  color: #322203;
+}
+
+.tituloContactos{
+  color: #a27304;
+  
 }

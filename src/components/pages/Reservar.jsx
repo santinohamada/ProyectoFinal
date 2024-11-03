@@ -9,17 +9,20 @@ import SelectPersonas from "../ReservationForm/SelectPersonas.jsx";
 import { FiltersContext } from "../Context/FiltersContext.jsx";
 import { listarHabitacionesDisponibles } from "../../helpers/queries.js";
 import { DateContext } from "../Context/DateContext.jsx";
+import { CartContext } from "../Context/CartContext.jsx";
+import { AnimatePresence } from "framer-motion";
 
 const Reservar = () => {
   const [rooms, setRooms] = useState([]);
   const { ISOFormat, fechas } = useContext(DateContext);
+  const { clearCart } = useContext(CartContext);
   const fechasISO = ISOFormat();
   const { handleOrderByPrice, orderByPrice } = useContext(FiltersContext);
 
   useEffect(() => {
+    clearCart();
     const roomList = async () => {
       const habitaciones = await listarHabitacionesDisponibles(fechasISO);
-
       setRooms(habitaciones);
     };
     roomList();
@@ -54,11 +57,17 @@ const Reservar = () => {
       <Row className="g-4">
         <Col md={8}>
           <Row className="g-4">
-            {Array.isArray(rooms) && rooms.length > 0
-              ? rooms.map((room) => (
-                  <RoomCard key={room._id} room={room}></RoomCard>
-                ))
-              : ""}
+            <AnimatePresence>
+              {Array.isArray(rooms) && rooms.length > 0
+                ? rooms.map((room, index) => (
+                    <RoomCard
+                      key={room._id}
+                      index={index}
+                      room={room}
+                    ></RoomCard>
+                  ))
+                : ""}
+            </AnimatePresence>
           </Row>
         </Col>
 

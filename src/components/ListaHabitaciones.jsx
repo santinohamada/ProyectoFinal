@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Form, Modal } from "react-bootstrap";
-import { buscarHabitacion, obtenerUsuario } from "../helpers/queries.js";
+import { editarHabitacion, obtenerUsuario } from "../helpers/queries.js";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -65,7 +65,8 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     console.log(habitacionEditada)
     
     try {
-      const respuesta = await buscarHabitacion(habitacionEditada,habitacion._id)
+     
+      const respuesta = await editarHabitacion(habitacionEditada,habitacion._id)
       if(respuesta.status===200){
 
         handleCloseModal()

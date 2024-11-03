@@ -7,7 +7,7 @@ const CartContext = createContext()
 const CartProvider=({children})=>{
     const {cart,removeFromCart,addToCart,checkElementCart,clearCart} = useCart()
     return(
-        <CartContext.Provider value={{cart,removeFromCart,addToCart,checkElementCart}}>
+        <CartContext.Provider value={{cart,clearCart,removeFromCart,addToCart,checkElementCart}}>
             {children}
         </CartContext.Provider>
     )

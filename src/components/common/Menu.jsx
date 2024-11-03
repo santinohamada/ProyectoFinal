@@ -19,6 +19,7 @@ const Menu = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <Navbar
       bg="light"
@@ -29,9 +30,6 @@ const Menu = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/" end className="nav-link">
-              Inicio
-            </NavLink>
             <Nav.Link className="nav-link">
               <MyModal>Reservar</MyModal>
             </Nav.Link>
@@ -47,14 +45,12 @@ const Menu = () => {
               HOTEL PATAGONIA
             </NavLink>
           </Nav>
-          {isAdmin ? (
-            <NavLink to="/administrador" className="nav-link">
-              Administrador
-            </NavLink>
-          ) : (
-            ""
-          )}
           <Nav className="ms-auto">
+            {isAdmin && (
+              <NavLink to="/administrador" className="nav-link">
+                Administrador
+              </NavLink>
+            )}
             {!user ? (
               <NavLink to="/iniciarSesion" className="nav-link">
                 Iniciar sesión
