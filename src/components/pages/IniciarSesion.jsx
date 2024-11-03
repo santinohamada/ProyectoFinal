@@ -30,7 +30,7 @@ const IniciarSesion = () => {
     >
       <h2>¡Qué alegría tenerte acá!</h2>
 
-      <div className="form-container">
+      <div >
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-input-container">
             <input

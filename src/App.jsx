@@ -48,6 +48,7 @@ function App() {
                 </RutaProtegida>
               }
             />
+              <Route path="*" element={<Error404 />} />
           </Routes>
           <Footer />
         </UserProvider>
