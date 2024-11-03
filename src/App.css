@@ -434,3 +434,47 @@ height:190px
 .no-disponible {
   color: red;
 }
+
+/*pagina contacto */
+.form-container{
+  width: 100%;
+  max-width: 1220px;
+  background-color: #ffffff;
+  padding: 6px;
+  margin: 28px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-label{
+  color: #8c6e4a;
+  font-weight: bold;
+}
+
+.form-control{
+  border: 2px solid #e2cba7;
+}
+
+.btn-submit{
+  background-color: #e2cba7;
+  color: #573c09;
+  font-size: 18px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+.btn-submit:hover{
+  background-color: #573c09;
+  color: #e2cba7;
+}
+
+.text-danger{
+  color: #322203;
+}
+
+.tituloContactos{
+  color: #a27304;
+  
+}

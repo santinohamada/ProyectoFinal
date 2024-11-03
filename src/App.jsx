@@ -14,6 +14,7 @@ import RutaProtegida from "./routes/RutaProtegida";
 import RutasAdministrador from "./routes/RutasAdministrador";
 import VerHabitaciones from "./components/pages/VerHabitaciones";
 import Error404 from "./components/pages/Error404";
+import Contacto from "./components/pages/Contacto"
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               element={<VerHabitaciones />}
             />
             <Route exact path="/error404" element={<Error404 />} />
+            <Route exact path="/contactos" element={<Contacto />} />
             <Route
               exact
               path="/administrador/*"
