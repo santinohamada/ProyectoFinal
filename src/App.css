@@ -145,12 +145,12 @@ h2 {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  z-index: 0;
 }
 
 .inicio-content {
   position: relative;
-  z-index: 2;
+  z-index: 0;
   color: #fff;
   text-align: center;
   margin-top: 45vh;
@@ -179,15 +179,13 @@ h2 {
 
 /* Sección de categoría del hotel */
 .hotel-category {
-  background-color: #67491f;
   background-image: linear-gradient(
     62deg,
-    #67491f 0%,
-    #f7ce68 50%,
+
     #ffffff 100%
   );
 
-  padding: 40px;
+  padding: 10px;
   text-align: center;
 }
 
@@ -202,20 +200,22 @@ h2 {
 }
 
 .stars {
-  font-size: 36px;
-  color: #EABE3F;
+  font-size: 50px;
+  color: #ffbf00;
 }
 
 /* Fondo y contenedor principal de los servicios */
 .servicios-section {
-  background-image: url("https://images.pexels.com/photos/1843658/pexels-photo-1843658.jpeg");
-  background-size: cover;
-  background-position: center;
-  color: #fff;
+  margin: 1rem 0px;
+  
+  color: #492020;
   padding: 60px 0;
   position: relative;
 }
-
+.rs-picker-popup.rs-picker-popup-daterange {
+  padding: 0;
+  z-index: 1060; 
+}
 /* Capa de superposición para mejorar la legibilidad */
 .servicios-section::before {
   content: "";
@@ -224,17 +224,18 @@ h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  background-color: rgba(204, 199, 198, 0.5);
+  z-index: 0;
 }
 
 /* Estilos para el contenido de los servicios */
 .servicios-section .container {
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 .servicios-section h2 {
+  color: #000;
   font-size: 2.5rem;
   margin-bottom: 20px;
   font-weight: 700;
@@ -248,7 +249,7 @@ h2 {
 /* Estilos para los iconos y el texto */
 .servicio-icon {
   font-size: 2.5rem;
-  color: #ffd700; 
+  color: #29aaca; 
   transition: color 0.3s ease;
 }
 
@@ -257,6 +258,7 @@ h2 {
 }
 
 .servicios-section p {
+  color: #000;
   font-size: 1rem;
   margin-top: 10px;
 }
@@ -363,7 +365,9 @@ h2 {
 .comments-carousel-section {
   position: relative;
 }
-
+.cardImage{
+height:190px
+}
 .carousel-style .carousel-item {
   position: relative;
   height: 400px;

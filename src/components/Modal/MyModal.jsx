@@ -1,7 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import useModal from "../CustomsHooks/useModal.jsx";
 import ReservationForm from "../ReservationForm/ReservationForm.jsx";
-ReservationForm; // Importamos el componente del formulario
+ReservationForm;
 
 const MyModal = ({ children }) => {
   const { show, fullscreen, handleShow, handleClose } = useModal();

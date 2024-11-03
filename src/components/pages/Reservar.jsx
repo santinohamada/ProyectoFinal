@@ -9,17 +9,19 @@ import SelectPersonas from "../ReservationForm/SelectPersonas.jsx";
 import { FiltersContext } from "../Context/FiltersContext.jsx";
 import { listarHabitacionesDisponibles } from "../../helpers/queries.js";
 import { DateContext } from "../Context/DateContext.jsx";
+import { CartContext } from "../Context/CartContext.jsx";
 
 const Reservar = () => {
   const [rooms, setRooms] = useState([]);
   const { ISOFormat, fechas } = useContext(DateContext);
+  const { clearCart } = useContext(CartContext);
   const fechasISO = ISOFormat();
   const { handleOrderByPrice, orderByPrice } = useContext(FiltersContext);
 
   useEffect(() => {
+    clearCart()
     const roomList = async () => {
       const habitaciones = await listarHabitacionesDisponibles(fechasISO);
-
       setRooms(habitaciones);
     };
     roomList();

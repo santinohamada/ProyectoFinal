@@ -30,7 +30,7 @@ export const verificarAdministrador = async (usuario) => {
       body: JSON.stringify(usuario),
     });
     const data = await respuesta.json();
-    console.log(respuesta.ok)
+    
     if (!respuesta.ok) {
       throw new Error(data.mensaje);
     }
@@ -152,7 +152,7 @@ export const listarUsuarios = async ()=>{
         "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
       }
     })
-    console.log(JSON.parse(sessionStorage.getItem("userKey")).token)
+
     return respuesta
   } catch (error) {
     console.error(error)
