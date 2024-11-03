@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Form, Modal } from "react-bootstrap";
-import { editarHabitacion, obtenerUsuario } from "../helpers/queries.js";
+import { borrarHabitacion, editarHabitacion, obtenerUsuario } from "../helpers/queries.js";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-const ListaHabitaciones = ({ habitacion, reserva }) => {
+const ListaHabitaciones = ({ habitacion, reserva,estadoHabitacion }) => {
 
   const {
     register: registerHabitacion,
@@ -104,9 +104,14 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
   useEffect(() => {
     const cargarDatos = async () => {
       await Promise.all([datosReserva()]);
+      
     };
     cargarDatos();
   }, [reserva]);
+
+  useEffect(()=>{
+    estadoHabitacion(false)
+  },[estadoHabitacion])
 
   useEffect(()=>{
     if(usuario.nombre){
@@ -143,6 +148,14 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
     setShowSegundoModal(true);
     
   };
+
+  const borrarHabitacionAPI = async ()=>{
+    const respuesta = await borrarHabitacion(habitacion._id)
+    if(respuesta.status===200){
+      console.log("Habitacion borrada")
+      estadoHabitacion(true)
+    }
+  }
 
   const handleCloseModal = () => setShowModal(false);
   const handleCloseSegundoModal = () => setShowSegundoModal(false);
@@ -315,7 +328,9 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 >
                   {!editableSegundoModal ? "Info Pasajeros" : "Editar"}
                 </Button>
-                
+                {editableSegundoModal && (
+              <Button onClick={borrarHabitacionAPI}>Borrar</Button>
+              )}
                
               <Button  variant="secondary" type="submit" hidden={!editable} >
                 Guardar
@@ -401,7 +416,7 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
                 </Form.Group>
               </Form>
             </Modal.Body>
-          
+            
       </Modal>
 
       
