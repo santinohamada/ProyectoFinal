@@ -120,7 +120,7 @@ const Administracion = () => {
                 <Form.Group className="mb-3" controlId="TercerFormNro">
                   <Form.Label>Habitacion Nº</Form.Label>
                   <Form.Control
-                    disabled
+                    
                     type="text"
                     placeholder="Nº de habitacion"
                     {...registerNuevaHabitacion("roomNumber", {
@@ -132,7 +132,7 @@ const Administracion = () => {
                 <Form.Group className="mb-3" controlId="TercerFormTipoHab">
                   <Form.Label>Tipo de habitacion</Form.Label>
                   <Form.Control
-                    disabled
+                    
                     type="text"
                     placeholder="Tipo de habitacion"
                     {...registerNuevaHabitacion("type", {
@@ -144,7 +144,7 @@ const Administracion = () => {
                 <Form.Group className="mb-3" controlId="tercerFormPrice">
                   <Form.Label>Precio</Form.Label>
                   <Form.Control
-                    disabled
+                    
                     type="text"
                     placeholder="Precio"
                     {...registerNuevaHabitacion("price", {
@@ -156,7 +156,7 @@ const Administracion = () => {
                 <Form.Group className="mb-3" controlId="tercerFormCapacidad">
                   <Form.Label>Capacidad</Form.Label>
                   <Form.Control
-                    disabled
+                    
                     type="text"
                     placeholder="Capacidad de la habitacion (PAX)"
                     {...registerNuevaHabitacion("capacity", {
@@ -168,7 +168,7 @@ const Administracion = () => {
                 <Form.Group className="mb-3" controlId="secondFormImage">
                   <Form.Label>Imagen</Form.Label>
                   <Form.Control
-                    disabled
+                    
                     type="text"
                     placeholder="http://.........."
                     {...registerNuevaHabitacion("image", {
@@ -180,7 +180,7 @@ const Administracion = () => {
                 <Form.Group className="mb-3" controlId="tercerFormDescription">
                   <Form.Label>Descripcion</Form.Label>
                   <Form.Control
-                    disabled
+                    
                     type="text"
                     placeholder="Habitacion triple..."
                     {...registerNuevaHabitacion("description", {
@@ -192,7 +192,7 @@ const Administracion = () => {
                 <Form.Group className="mb-3" controlId="tercerFormCamas">
                   <Form.Label>Camas</Form.Label>
                   <Form.Control
-                    disabled
+                   
                     type="text"
                     placeholder="Cantidad de camas"
                     {...registerNuevaHabitacion("bed", {
@@ -226,7 +226,7 @@ const Administracion = () => {
                 <Form.Group className="mb-3" controlId="tercerFormServicios">
                   <Form.Label>Servicios</Form.Label>
                   <Form.Control
-                    disabled
+                   
                     type="text"
                     placeholder="Tv led, Wi Fi..."
                     {...registerNuevaHabitacion("include", {
