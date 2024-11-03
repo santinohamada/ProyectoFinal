@@ -38,7 +38,7 @@ function App() {
               element={<VerHabitaciones />}
             />
             <Route exact path="/error404" element={<Error404 />} />
-            <Route exact path="/contacto" element={<Contacto />} />
+            <Route exact path="/contactos" element={<Contacto />} />
             <Route
               exact
               path="/administrador/*"

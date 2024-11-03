@@ -11,13 +11,13 @@ const Contacto = () => {
   
     const onSubmit = (data) => {
       console.log(data);
-      navigate("/error404"); // Redirige a la página de error 404
+      navigate("/error404"); // lleva a la página de error 404
     };
   
     return (
-      <div className="container mt-5">
-        <h2 className="text-center mb-4">Contáctenos</h2>
-        <div className="form-container">
+      <section className="container mt-5">
+        <h2 className="text-center mb-4 tituloContactos">Deja tu consultas</h2>
+        <article className="form-container">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
               <label htmlFor="nombre" className="form-label">Nombre</label>
@@ -90,8 +90,8 @@ const Contacto = () => {
               Enviar
             </button>
           </form>
-        </div>
-      </div>
+        </article>
+      </section>
     );
   };
   
