@@ -5,7 +5,7 @@ import { UserContext } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { registrarUsuarioAPI } = useContext(UserContext);
   const {
     register,
@@ -17,12 +17,12 @@ const RegistrationForm = () => {
     data.rol = false;
     registrarUsuarioAPI(data);
     reset();
-    navigate(-1)
+    navigate(-1);
   };
 
   return (
     <div className="componentePagina container d-flex flex-row align-items-center justify-content-center my-5">
-      <Form onSubmit={handleSubmit(onSubmit)} className="form-container">
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="formNombre">
           <Form.Label>Nombre</Form.Label>
           <div className="form-input-container">
@@ -42,7 +42,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
-            {errors.nombre && <span>{errors.nombre.message}</span>}
+          {errors.nombre && <span>{errors.nombre.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formApellido">
@@ -77,13 +77,13 @@ const RegistrationForm = () => {
                 required: "El email es requerido",
                 pattern: {
                   value:
-                  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+                    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
                   message: "Direccion de correo invalida",
                 },
               })}
             />
           </div>
-            {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && <span>{errors.email.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formDni">
@@ -109,7 +109,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
-            {errors.dni && <span>{errors.dni.message}</span>}
+          {errors.dni && <span>{errors.dni.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formPassword">
@@ -129,14 +129,15 @@ const RegistrationForm = () => {
                   message: "Contraseña inválida",
                 },
                 pattern: {
-                  value: /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$/,
+                  value:
+                    /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$/,
                   message:
                     "La contraseña debe tener minimo 8 caracteres, debe contener numeros, letras, mayusculas y un caracter especial",
                 },
               })}
             />
           </div>
-            {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && <span>{errors.password.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formDomicilio">
@@ -157,8 +158,8 @@ const RegistrationForm = () => {
                 },
               })}
             />
-            {errors.domicilio && <span>{errors.domicilio.message}</span>}
           </div>
+          {errors.domicilio && <span>{errors.domicilio.message}</span>}
         </Form.Group>
 
         <Button

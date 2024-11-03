@@ -334,7 +334,7 @@ h2 {
   height: 400px;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   border-radius: 10px;
 }
 
@@ -475,7 +475,7 @@ h2 {
   list-style: none;
 }
 .form-label {
-  color: #8c6e4a;
+  color: #452601;
   font-weight: bold;
 }
 
@@ -503,5 +503,5 @@ h2 {
 }
 
 .tituloContactos {
-  color: #a27304;
+  color: #452604;
 }

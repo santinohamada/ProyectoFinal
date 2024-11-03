@@ -12,7 +12,7 @@ export const reservarHabitacion = async (reserva) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
       },
       body: JSON.stringify(reserva),
     });
@@ -30,7 +30,7 @@ export const verificarAdministrador = async (usuario) => {
       body: JSON.stringify(usuario),
     });
     const data = await respuesta.json();
-    
+
     if (!respuesta.ok) {
       throw new Error(data.mensaje);
     }
@@ -83,11 +83,10 @@ export const listarHabitaciones = async () => {
 
 export const obtenerReservas = async () => {
   try {
-    const respuesta = await fetch(URLReservas,
-    {
-      headers:{
-        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
-      }
+    const respuesta = await fetch(URLReservas, {
+      headers: {
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
+      },
     });
     return respuesta;
   } catch (error) {
@@ -102,7 +101,6 @@ export const listarHabitacionesDisponibles = async (datos) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        
       },
       body: JSON.stringify(datos),
     });
@@ -116,10 +114,10 @@ export const listarHabitacionesDisponibles = async (datos) => {
 
 export const obtenerUsuario = async (usuario) => {
   try {
-    const respuesta = await fetch(URLUsuarios + "/" + usuario,{
-      headers:{
-        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
-      }
+    const respuesta = await fetch(URLUsuarios + "/" + usuario, {
+      headers: {
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
+      },
     });
     return respuesta;
   } catch (error) {
@@ -131,8 +129,10 @@ export const editarHabitacion = async (habitacionEditada, idHabitacion) => {
   try {
     const respuesta = await fetch(URLHabitaciones + "/" + idHabitacion, {
       method: "PUT",
-      headers: { "Content-Type": "application/json",
-      "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
+      },
       body: JSON.stringify(habitacionEditada),
     });
 
@@ -143,60 +143,60 @@ export const editarHabitacion = async (habitacionEditada, idHabitacion) => {
   }
 };
 
-export const listarUsuarios = async ()=>{
-
+export const listarUsuarios = async () => {
   try {
-    const respuesta = await fetch(URLUsuarios,{
-      method:"GET",
-      headers:{
-        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token
-      }
-    })
-
-    return respuesta
-  } catch (error) {
-    console.error(error)
-    return false
-  }
- 
-
-}
-
-export const borrarUsuarios = async (idUsuario)=>{
-  try {
-    const respuesta = await fetch(URLUsuarios+"/"+idUsuario,{
-      method: "DELETE",
-      headers:{
+    const respuesta = await fetch(URLUsuarios, {
+      method: "GET",
+      headers: {
         "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
-      }
-    })
-    return respuesta
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-export const nuevaHabitacion = async (habitacion)=>{
-  try {
-    const respuesta = await fetch(URLHabitaciones,{
-      method: "POST",
-      headers:{
-        "Content-Type":"application/json",        
       },
-      body: JSON.stringify(habitacion)
-    })
-    return respuesta
+    });
+
+    return respuesta;
   } catch (error) {
-    console.error(error)
+    console.error(error);
+    return false;
   }
-}
+};
+
+export const borrarUsuarios = async (idUsuario) => {
+  try {
+    const respuesta = await fetch(URLUsuarios + "/" + idUsuario, {
+      method: "DELETE",
+      headers: {
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
+      },
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const nuevaHabitacion = async (habitacion) => {
+  try {
+    const respuesta = await fetch(URLHabitaciones, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(habitacion),
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const editarUsuario = async (usuarioEditado, idUsuario) => {
   try {
     const respuesta = await fetch(URLUsuarios + "/" + idUsuario, {
       method: "PUT",
-      headers: { "Content-Type": "application/json",
-      "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
+      },
       body: JSON.stringify(usuarioEditado),
     });
 
@@ -207,16 +207,16 @@ export const editarUsuario = async (usuarioEditado, idUsuario) => {
   }
 };
 
-export const borrarHabitacion = async (idHabitacion)=>{
+export const borrarHabitacion = async (idHabitacion) => {
   try {
-    const respuesta = await fetch(URLHabitaciones+"/"+idHabitacion,{
+    const respuesta = await fetch(URLHabitaciones + "/" + idHabitacion, {
       method: "DELETE",
-      headers:{
+      headers: {
         "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
-      }
-    })
-    return respuesta
+      },
+    });
+    return respuesta;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};

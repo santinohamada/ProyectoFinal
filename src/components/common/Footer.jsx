@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Footer = () => {
   return (
-    <footer className="custom-footer bg-dark text-light py-4">
+    <footer className="custom-footer bg-dark text-light py-1">
       <Container>
         <Row className="justify-content-center">
           <Col
@@ -28,9 +28,9 @@ const Footer = () => {
             </a>
           </Col>
         </Row>
-        <Row className="justify-content-center mt-3">
+        <Row className="justify-content-center mt-2">
           <Col className="text-center">
-            <h5 className="footer-brand my-4">HOTEL PATAGONIA</h5>
+            <h5 className="footer-brand my-1">HOTEL PATAGONIA</h5>
             <p className="mb-0">
               &copy; 2024 HOTEL PATAGONIA. Todos los derechos reservados.
             </p>
