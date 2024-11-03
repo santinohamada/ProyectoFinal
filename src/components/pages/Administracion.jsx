@@ -3,6 +3,7 @@ import {
   listarHabitaciones,
   listarHabitacionesDisponibles,
   listarUsuarios,
+  nuevaHabitacion
 } from "../../helpers/queries.js";
 import ListaHabitaciones from "../listaHabitaciones.jsx";
 import { Button, Form, Modal, Table } from "react-bootstrap";
@@ -60,6 +61,19 @@ const Administracion = () => {
     listaUsuarios()
   }, [estadoHabitacion, estadoUsuario]);
 
+  const nuevaHabitacionAPI = async (habitacion)=>{
+    
+    try {
+      const respuesta = await nuevaHabitacion(habitacion)
+      if(respuesta.status===201){
+       handleCloseTercerModal()
+       setEstadoHabitacion(true)
+      }
+    } catch (error) {
+      
+    }
+  }
+
 
 
  
@@ -116,7 +130,7 @@ const Administracion = () => {
               <Modal.Title>NUEVA HABITACION</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form onSubmit={handleSubmitNuevaHabitacion}>
+              <Form onSubmit={handleSubmitNuevaHabitacion(nuevaHabitacionAPI)}>
                 <Form.Group className="mb-3" controlId="TercerFormNro">
                   <Form.Label>Habitacion Nº</Form.Label>
                   <Form.Control
@@ -165,7 +179,7 @@ const Administracion = () => {
                   />
                   <Form.Text>{errorsNuevaHabitacion.capacity?.message}</Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="secondFormImage">
+                <Form.Group className="mb-3" controlId="tercerFormImage">
                   <Form.Label>Imagen</Form.Label>
                   <Form.Control
                     
@@ -235,15 +249,16 @@ const Administracion = () => {
                   />
                   <Form.Text>{errorsNuevaHabitacion.include?.message}</Form.Text>
                 </Form.Group>
+                <Button variant="primary" type="submit">
+                Guardar
+              </Button>
               </Form>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={handleCloseTercerModal}>
                 Cerrar
               </Button>
-              <Button variant="primary" type="submit">
-                Guardar
-              </Button>
+              
             </Modal.Footer>
           </Modal>
           
