@@ -112,7 +112,7 @@ const Administracion = () => {
       </thead>
       <tbody>
         
-          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion} setEstadoUsuario={setEstadoUsuario}></TablaUsuarios>))}
+          {usuario.map((usuario,posicion)=>(<TablaUsuarios usuario={usuario} key={usuario._id} posicion={posicion} setEstadoUsuario={setEstadoUsuario} estadoUsuario={estadoUsuario}></TablaUsuarios>))}
         
        
       </tbody>

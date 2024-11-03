@@ -190,3 +190,19 @@ export const nuevaHabitacion = async (habitacion)=>{
     console.error(error)
   }
 }
+
+export const editarUsuario = async (usuarioEditado, idUsuario) => {
+  try {
+    const respuesta = await fetch(URLUsuarios + "/" + idUsuario, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json",
+      "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token },
+      body: JSON.stringify(usuarioEditado),
+    });
+
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

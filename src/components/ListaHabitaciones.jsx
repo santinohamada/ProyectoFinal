@@ -329,24 +329,79 @@ const ListaHabitaciones = ({ habitacion, reserva }) => {
           </Modal>
 
       {/* Segundo Modal */}
-      <Modal show={showSegundoModal} onHide={handleCloseSegundoModal} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Formulario Adicional</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmitUsuario}>
-            <Form.Group className="mb-3" controlId="secondFormNombre">
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control
-                disabled
-                type="text"
-                placeholder="Nombre"
-                {...registerUsuario("nombre")}
-              />
-            </Form.Group>
-            {/* Otros campos de usuario */}
-          </Form>
-        </Modal.Body>
+      <Modal
+            show={showSegundoModal}
+            onHide={handleCloseSegundoModal}
+            style={{ position: "fixed", left: "55%", top: "0%", width: "30%" }}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Formulario Adicional</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form onSubmit={handleSubmitUsuario}>
+                <Form.Group className="mb-3" controlId="secondFormNombre">
+                  <Form.Label>Nombre</Form.Label>
+                  <Form.Control
+                    disabled
+                    type="text"
+                    placeholder="Nombre"
+                    {...registerUsuario("nombre", {
+                      required: "Nombre es un dato requerido",
+                    })}
+                  />
+                  <Form.Text>{errorsUsuario.nombre?.message}</Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="secondFormApellido">
+                  <Form.Label>Apellido</Form.Label>
+                  <Form.Control
+                    disabled
+                    type="text"
+                    placeholder="Apellido"
+                    {...registerUsuario("apellido", {
+                      required: "Apellido es un dato requerido",
+                    })}
+                  />
+                  <Form.Text>{errorsUsuario.apellido?.message}</Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="secondFormDNI">
+                  <Form.Label>DNI</Form.Label>
+                  <Form.Control
+                    disabled
+                    type="text"
+                    placeholder="DNI"
+                    {...registerUsuario("dni", {
+                      required: "DNI es un dato requerido",
+                    })}
+                  />
+                  <Form.Text>{errorsUsuario.dni?.message}</Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="secondFormEmail">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    disabled
+                    type="text"
+                    placeholder="Email"
+                    {...registerUsuario("email", {
+                      required: "Email es dato requerido",
+                    })}
+                  />
+                  <Form.Text>{errorsUsuario.email?.message}</Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="secondFormDomicilio">
+                  <Form.Label>Domicilio</Form.Label>
+                  <Form.Control
+                    disabled
+                    type="text"
+                    placeholder="Domicilio"
+                    {...registerUsuario("domicilio", {
+                      required: "Domicilio es dato requerido",
+                    })}
+                  />
+                  <Form.Text>{errorsUsuario.domicilio?.message}</Form.Text>
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+          
       </Modal>
 
       
