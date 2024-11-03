@@ -4,7 +4,7 @@ import { buscarHabitacion, obtenerUsuario } from "../helpers/queries.js";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
+const ListaHabitaciones = ({ habitacion, reserva }) => {
 
   const {
     register: registerHabitacion,
@@ -12,6 +12,8 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
     setValue: setValueHabitacion,
     formState: { errors: errorsHabitacion }
   } = useForm();
+
+
   
   const {
     register: registerUsuario,
@@ -32,7 +34,7 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
     const segundos = String(fecha.getUTCSeconds()).padStart(2, "0");
     const milisegundos = String(fecha.getUTCMilliseconds()).padStart(3, "0");
 
-    return `${anio}-${mes}-${dia}T${horas}:${minutos}:${segundos}Z.${milisegundos}`;
+    return `${anio}-${mes}-${dia}T${horas}:${minutos}:${segundos}.${milisegundos}Z`;
   };
 
   function fechaBadge(fecha) {
@@ -63,14 +65,11 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
     console.log(habitacionEditada)
     
     try {
-     
       const respuesta = await buscarHabitacion(habitacionEditada,habitacion._id)
       if(respuesta.status===200){
 
         handleCloseModal()
         setEditable(false);
-        estadoHabitacion(true)
-        
       
       }
     } catch (error) {
@@ -96,7 +95,6 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
       const respuesta = await obtenerUsuario(idUsuario[idUsuario.length - 1]);
       const datos = await respuesta.json();
       setUsuario(datos);
-      
       return datos;
     } catch (error) {
       console.error(error);
@@ -142,37 +140,47 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
     user()
     e.preventDefault();
     setShowSegundoModal(true);
-
     
   };
 
   const handleCloseModal = () => setShowModal(false);
   const handleCloseSegundoModal = () => setShowSegundoModal(false);
+  
 
   return (
-    <div className=" d-flex flex-column">
-      <Card className=" card-administracion" style={{ width: "10rem" }}>
-        <Card.Img
-          variant="top"
-          className="card-img-fixed"
-          src={habitacion.image}
-        />
+    
+    <div className="d-flex flex-column">
+      <Card className="card-administracion" style={{ width: "10rem" }}>
+        <Card.Img variant="top" className="card-img-fixed" src={habitacion.image} />
         <Card.Body className="d-flex flex-column h-100">
           <Card.Title>{habitacion.roomNumber}</Card.Title>
-
           <Card.Text>{habitacion.description}</Card.Text>
 
           <Link
             className="mt-auto"
             variant="primary"
-            // to={estaDisponible ? "#" : "/verhabitaciones"}
             state={{ estadoReserva }}
             onClick={handleLinkClick}
           >
             Ver Info
           </Link>
 
-          <Modal
+          <div
+            className={`badge ${estaDisponible ? "disponible" : "no-disponible"}`}
+          >
+            {estaDisponible === null ? (
+              "Cargando..."
+            ) : estaDisponible ? (
+              "Disponible"
+            ) : (
+              "No Disponible"
+            )}
+          </div>
+        </Card.Body>
+      </Card>
+
+      {/* Primer Modal */}
+      <Modal
             show={showModal}
             onHide={handleCloseModal}
             style={
@@ -318,111 +326,29 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
             <Modal.Footer>
             </Modal.Footer>
           </Modal>
-          {/*SEGUNDO MODAL(DATOS USUARIO)*/}
-          <Modal
-            show={showSegundoModal}
-            onHide={handleCloseSegundoModal}
-            style={{ position: "fixed", left: "55%", top: "0%", width: "30%" }}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Formulario Adicional</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form onSubmit={handleSubmitUsuario}>
-                <Form.Group className="mb-3" controlId="secondFormNombre">
-                  <Form.Label>Nombre</Form.Label>
-                  <Form.Control
-                    disabled
-                    type="text"
-                    placeholder="Nombre"
-                    {...registerUsuario("nombre", {
-                      required: "Nombre es un dato requerido",
-                    })}
-                  />
-                  <Form.Text>{errorsUsuario.nombre?.message}</Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="secondFormApellido">
-                  <Form.Label>Apellido</Form.Label>
-                  <Form.Control
-                    disabled
-                    type="text"
-                    placeholder="Apellido"
-                    {...registerUsuario("apellido", {
-                      required: "Apellido es un dato requerido",
-                    })}
-                  />
-                  <Form.Text>{errorsUsuario.apellido?.message}</Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="secondFormDNI">
-                  <Form.Label>DNI</Form.Label>
-                  <Form.Control
-                    disabled
-                    type="text"
-                    placeholder="DNI"
-                    {...registerUsuario("dni", {
-                      required: "DNI es un dato requerido",
-                    })}
-                  />
-                  <Form.Text>{errorsUsuario.dni?.message}</Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="secondFormEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    disabled
-                    type="text"
-                    placeholder="Email"
-                    {...registerUsuario("email", {
-                      required: "Email es dato requerido",
-                    })}
-                  />
-                  <Form.Text>{errorsUsuario.email?.message}</Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="secondFormDomicilio">
-                  <Form.Label>Domicilio</Form.Label>
-                  <Form.Control
-                    disabled
-                    type="text"
-                    placeholder="Domicilio"
-                    {...registerUsuario("domicilio", {
-                      required: "Domicilio es dato requerido",
-                    })}
-                  />
-                  <Form.Text>{errorsUsuario.domicilio?.message}</Form.Text>
-                </Form.Group>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseSegundoModal}>
-                Cerrar
-              </Button>
-            </Modal.Footer>
-          </Modal>
 
-          <div
-            className={`badge ${
-              estaDisponible ? "disponible" : "no-disponible"
-            }`}
-          >
-            {estaDisponible === null ? (
-              "Cargando..."
-            ) : estaDisponible ? (
-              "Disponible"
-            ) : (
-              <>
-                No Disponible
-                <div className="fecha-no-disponible">
-                  hasta:{" "}
-                  {fechaBadge(
-                    estadoReserva[0]?.HabitacionesConReserva?.[
-                      estadoReserva[0].HabitacionesConReserva.length - 1
-                    ]?.checkOut
-                  )}
-                </div>
-              </>
-            )}
-          </div>
-        </Card.Body>
-      </Card>
+      {/* Segundo Modal */}
+      <Modal show={showSegundoModal} onHide={handleCloseSegundoModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Formulario Adicional</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmitUsuario}>
+            <Form.Group className="mb-3" controlId="secondFormNombre">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                disabled
+                type="text"
+                placeholder="Nombre"
+                {...registerUsuario("nombre")}
+              />
+            </Form.Group>
+            {/* Otros campos de usuario */}
+          </Form>
+        </Modal.Body>
+      </Modal>
+
+      
     </div>
   );
 };
