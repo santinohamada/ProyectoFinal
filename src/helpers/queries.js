@@ -175,3 +175,18 @@ export const borrarUsuarios = async (idUsuario)=>{
     console.error(error)
   }
 }
+
+export const nuevaHabitacion = async (habitacion)=>{
+  try {
+    const respuesta = await fetch(URLHabitaciones,{
+      method: "POST",
+      headers:{
+        "Content-Type":"application/json",        
+      },
+      body: JSON.stringify(habitacion)
+    })
+    return respuesta
+  } catch (error) {
+    console.error(error)
+  }
+}
