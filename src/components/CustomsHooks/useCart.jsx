@@ -12,9 +12,16 @@ const useCart = () => {
     if (cart.find((item) => item._id === room._id) !== undefined) return true;
     return false;
   };
-  const clearCart = (room) => {
+  const clearCart = () => {
     setCart([]);
   };
-  return { cart, addToCart, removeFromCart, checkElementCart, clearCart };
+  return {
+    cart,
+    addToCart,
+    clearCart,
+    removeFromCart,
+    checkElementCart,
+    clearCart,
+  };
 };
 export default useCart;

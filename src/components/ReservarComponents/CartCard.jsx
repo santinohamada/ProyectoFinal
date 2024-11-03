@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Col, Card, Button } from "react-bootstrap";
 import { CartContext } from "../Context/CartContext";
 import { DateContext } from "../Context/DateContext";
@@ -14,6 +14,7 @@ const CartCard = () => {
   const { cart, removeFromCart } = useContext(CartContext);
   const { user } = useContext(UserContext);
   const fechasEnISO = ISOFormat();
+ 
   return (
     <Col md={4}>
       <Card className="border-2">
