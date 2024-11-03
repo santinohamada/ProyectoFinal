@@ -206,3 +206,17 @@ export const editarUsuario = async (usuarioEditado, idUsuario) => {
     return false;
   }
 };
+
+export const borrarHabitacion = async (idHabitacion)=>{
+  try {
+    const respuesta = await fetch(URLHabitaciones+"/"+idHabitacion,{
+      method: "DELETE",
+      headers:{
+        "X-Token": JSON.parse(sessionStorage.getItem("userKey")).token,
+      }
+    })
+    return respuesta
+  } catch (error) {
+    console.error(error)
+  }
+}
