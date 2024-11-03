@@ -169,7 +169,7 @@ const Inicio = () => {
                   transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
                 }}
               >
-                <Card className="shadow-lg border-0 h-100">
+                <Link to="/error404" className="card hotel-card shadow-lg border-0 h-100">
                   <img variant="top" className="cardImage" src={spot.imgSrc} />
                   <Card.Body className="d-flex flex-column">
                     <Card.Title className="flex-grow-0">
@@ -179,7 +179,7 @@ const Inicio = () => {
                       {spot.description}
                     </Card.Text>
                   </Card.Body>
-                </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -248,7 +248,7 @@ const Inicio = () => {
                       "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
                   }}
                 >
-                  <Card className="shadow-lg border-0 h-100">
+                  <Link  to="/error404" className=" card hotel-card shadow-lg border-0 h-100">
                     <img
                       className="cardImage"
                       variant="top"
@@ -262,7 +262,7 @@ const Inicio = () => {
                         {suite.description}
                       </Card.Text>
                     </Card.Body>
-                  </Card>
+                  </Link>
                 </motion.div>
               ))}
             </Row>

@@ -6,6 +6,7 @@ import { FiltersContext } from "../Context/FiltersContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContext.jsx";
 import { reservarHabitacion } from "../../helpers/queries.js";
+import { motion } from "framer-motion";
 const CartCard = () => {
   const navigation = useNavigate();
   const { formatDate, ISOFormat } = useContext(DateContext);
@@ -14,9 +15,10 @@ const CartCard = () => {
   const { cart, removeFromCart } = useContext(CartContext);
   const { user } = useContext(UserContext);
   const fechasEnISO = ISOFormat();
- 
+
   return (
     <Col md={4}>
+    <motion.div initial={{x:"100vh"}} animate={{x:"0"}} transition={{duration:1}}>
       <Card className="border-2">
         <Card.Body>
           <Card.Title className="fw-bold">Tu carrito: {cart.length}</Card.Title>
@@ -48,7 +50,7 @@ const CartCard = () => {
                   removeFromCart(cart[0]);
                 }}
                 className="text-danger"
-              >
+                >
                 Remover
               </Button>
               <Button
@@ -67,7 +69,7 @@ const CartCard = () => {
                   }
                 }}
                 className="text-success"
-              >
+                >
                 Pagar
               </Button>
             </>
@@ -92,6 +94,7 @@ const CartCard = () => {
           )}
         </Card.Body>
       </Card>
+          </motion.div>
     </Col>
   );
 };

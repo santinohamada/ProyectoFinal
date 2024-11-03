@@ -7,16 +7,17 @@ import fondo from "../../assets/Error404.jpg";
 const Error404 = () => {
   return (
     <section 
-      className="contenedorError d-flex align-items-center justify-content-center vh-100"
+      className=" d-flex align-items-center justify-content-center componentePagina"
       style={{
         backgroundImage: `url(${fondo})`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center'
+        backgroundSize: "cover", 
+        backgroundPosition: 'center',
+        backgroundRepeat:"no-repeat"
       }}
     >
       <article className="text-center text-white">
         <button 
-          className="btn btn-light mt-3 px-5 py-3" 
+          className="btn btn-light " 
           onClick={() => window.location.href = '/'}
           style={{ transform: 'translateX(50%)' }}
         >
