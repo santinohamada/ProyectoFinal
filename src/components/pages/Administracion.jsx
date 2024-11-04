@@ -10,7 +10,6 @@ import { Button, Form, Modal, Table } from "react-bootstrap";
 import TablaUsuarios from "../Usuarios/TablaUsuarios.jsx";
 import { useForm } from "react-hook-form";
 
-
 const Administracion = () => {
   const [listaHabitaciones, setListaHabitaciones] = useState([]);
   const [reservaAPI, setReservaAPI] = useState([]);
@@ -76,16 +75,15 @@ const Administracion = () => {
   return (
     <div className="container componentePagina">
       <div className="d-flex justify-content-between align-items-baseline">
+        <div className="container d-flex flex-column flex-md-row my-2 my-md-1 align-items-center justify-content-center align-md-items-baseline justify-content-md-between">
+
         <h3>HABITACIONES</h3>
         <span className="d-flex justify-content-end mx-5">
-          <Button
-            variant="success"
-            onClick={() => setShowTercerModal(true)}
-            className="mt-3 mb-3"
-          >
+          <Button variant="success" onClick={() => setShowTercerModal(true)}>
             Nueva habitacion
           </Button>
         </span>
+        </div>
       </div>
 
       <section className="row mb-5">

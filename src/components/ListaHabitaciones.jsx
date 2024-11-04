@@ -208,8 +208,8 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
   const handleCloseSegundoModal = () => setShowSegundoModal(false);
 
   return (
-    <div className=" d-flex col-6 justify-content-center my-1 col-lg-2 col-md-4">
-      <Card className="card-administracion" style={{ width: "10rem" }}>
+    <div className=" d-flex col-6 justify-content-center p-1 my-1 col-lg-2 col-md-4">
+      <Card className="card-administracion">
         <Card.Img
           variant="top"
           className="card-img-fixed"
@@ -229,15 +229,27 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
           </Link>
 
           <div
-            className={`badge ${
+            className={`badge p-0 ${
               estaDisponible ? "disponible" : "no-disponible"
             }`}
           >
-            {estaDisponible === null
-              ? "Cargando..."
-              : estaDisponible
-              ? "Disponible"
-              : "No Disponible"}
+            {estaDisponible === null ? (
+              "Cargando..."
+            ) : estaDisponible ? (
+              "Disponible"
+            ) : (
+              <>
+                No Disponible
+                <div className="fecha-no-disponible">
+                  hasta:{" "}
+                  {fechaBadge(
+                    estadoReserva[0]?.HabitacionesConReserva?.[
+                      estadoReserva[0].HabitacionesConReserva.length - 1
+                    ]?.checkOut
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </Card.Body>
       </Card>

@@ -20,7 +20,7 @@ const Contacto = () => {
   return (
     <section className="container mt-5 componentePagina">
       <h2 className="text-center mb-4 tituloContactos">Deja tu consultas</h2>
-      <article className="form-container">
+      <article>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label htmlFor="nombre" className="form-label">
