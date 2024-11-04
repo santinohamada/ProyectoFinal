@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
@@ -7,24 +6,30 @@ import {
   registrarUsuario,
   verificarAdministrador,
 } from "../../helpers/queries";
+
 const useUser = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(
+    JSON.parse(sessionStorage.getItem("userKey")) || null
+  );
   const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const token = sessionStorage.getItem("token");
+
   const cerrarSesion = () => {
     setUser(null);
     setIsAdmin(false);
+    setLoading(true);
     sessionStorage.removeItem("userKey");
   };
+
   useEffect(() => {
     const verificarAdmin = async () => {
-      if (!user) return;
-      const admin = await verificarAdministrador(user);
-      if (admin) {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
+      if (user) {
+        const admin = await verificarAdministrador(user);
+        setIsAdmin(admin);
       }
+      setLoading(false);
     };
     verificarAdmin();
   }, [user]);
@@ -32,20 +37,20 @@ const useUser = () => {
   const registrarUsuarioAPI = async (usuario) => {
     try {
       const respuesta = await registrarUsuario(usuario);
+      const mensaje =
+        respuesta.status === 201
+          ? {
+              title: "Registro",
+              text: `Usuario ${usuario.email} registrado con éxito.`,
+              icon: "success",
+            }
+          : {
+              title: "Error",
+              text: `No se pudo registrar el usuario ${usuario.email}. Intente más tarde.`,
+              icon: "error",
+            };
 
-      if (respuesta.status === 201) {
-        Swal.fire({
-          title: "Registro",
-          text: `El usuario ${usuario.email}, fue registrado con exito.`,
-          icon: "success",
-        });
-      } else {
-        Swal.fire({
-          title: "Ocurrio un error",
-          text: `No se pudo registrar el usuario ${usuario.email}, intente esta operación mas tarde `,
-          icon: "error",
-        });
-      }
+      Swal.fire(mensaje);
     } catch (error) {
       console.error(error);
     }
@@ -58,64 +63,41 @@ const useUser = () => {
     return { email: usuario.entrada, password: usuario.password };
   };
 
-
-  useEffect(() => {
-    const savedUser = sessionStorage.getItem("userKey");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, []);
-
-  
   const iniciarSesionApi = async (usuario) => {
     const datosAEnviar = comprobarEntrada(usuario);
     try {
       const respuesta = await iniciarSesion(datosAEnviar);
       if (respuesta.status === 200) {
-        let timerInterval;
         Swal.fire({
-          title: "Sesion iniciada!",
-          html: "Seras redirigido en <b></b> milisegundos.",
+          title: "Sesión iniciada!",
+          html: "Serás redirigido en <b></b> milisegundos.",
           timer: 1000,
           timerProgressBar: true,
-          didOpen: () => {
-            Swal.showLoading();
-            const timer = Swal.getPopup().querySelector("b");
-            timerInterval = setInterval(() => {
-              timer.textContent = `${Swal.getTimerLeft()}`;
-            }, 100);
-          },
-          willClose: () => {
-            clearInterval(timerInterval);
-          },
-        }).then(async (result) => {
-          /* Read more about handling dismissals below */
+          didOpen: () => Swal.showLoading(),
+        }).then(async () => {
           const datos = await respuesta.json();
-
-          if (datos.dni) {
-            setUser({ dni: datos.usuario.dni, id: datos.usuario._id }); //completar con token
-            sessionStorage.setItem(
-              "userKey",
-              JSON.stringify({ dni: datos.usuario.dni, id: datos.usuario._id }) //completar con token
-            );
-          } else {
-            setUser({ email: datos.usuario.email, id: datos.usuario._id }); //completar con token
-            sessionStorage.setItem(
-              "userKey",
-              JSON.stringify({
+          const userInfo = datos.dni
+            ? {
+                dni: datos.usuario.dni,
+                id: datos.usuario._id,
+                token: datos.token,
+              }
+            : {
                 email: datos.usuario.email,
                 id: datos.usuario._id,
-              }) //completar con token
-            );
-          }
+                token: datos.token,
+              };
+
+          setUser(userInfo);
+          sessionStorage.setItem("userKey", JSON.stringify(userInfo));
+
+          setIsAdmin(true);
           navigate(-1);
-          if (result.dismiss === Swal.DismissReason.timer) {
-          }
         });
       } else {
         Swal.fire({
           title: "ERROR",
-          text: `email y/o contraseña incorrectos `,
+          text: "Email y/o contraseña incorrectos",
           icon: "error",
         });
       }
@@ -123,7 +105,15 @@ const useUser = () => {
       console.error(error);
     }
   };
-  return { iniciarSesionApi, cerrarSesion, user, isAdmin, registrarUsuarioAPI };
+
+  return {
+    iniciarSesionApi,
+    cerrarSesion,
+    user,
+    isAdmin,
+    loading,
+    registrarUsuarioAPI,
+  };
 };
 
 export default useUser;

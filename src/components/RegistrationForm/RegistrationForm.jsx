@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
   const { registrarUsuarioAPI } = useContext(UserContext);
   const {
     register,
@@ -15,11 +17,12 @@ const RegistrationForm = () => {
     data.rol = false;
     registrarUsuarioAPI(data);
     reset();
+    navigate(-1);
   };
 
   return (
     <div className="componentePagina container d-flex flex-row align-items-center justify-content-center my-5">
-      <Form onSubmit={handleSubmit(onSubmit)} className="form-container">
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="formNombre">
           <Form.Label>Nombre</Form.Label>
           <div className="form-input-container">
@@ -38,8 +41,8 @@ const RegistrationForm = () => {
                 },
               })}
             />
-            {errors.nombre && <span>{errors.nombre.message}</span>}
           </div>
+          {errors.nombre && <span>{errors.nombre.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formApellido">
@@ -61,6 +64,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
+          {errors.apellido && <span>{errors.apellido.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formEmail">
@@ -78,8 +82,8 @@ const RegistrationForm = () => {
                 },
               })}
             />
-            {errors.email && <span>{errors.email.message}</span>}
           </div>
+          {errors.email && <span>{errors.email.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formDni">
@@ -104,8 +108,8 @@ const RegistrationForm = () => {
                 },
               })}
             />
-            {errors.dni && <span>{errors.dni.message}</span>}
           </div>
+          {errors.dni && <span>{errors.dni.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formPassword">
@@ -117,22 +121,23 @@ const RegistrationForm = () => {
               {...register("password", {
                 required: "La contraseña es requerida",
                 minLength: {
-                  value: 5,
-                  message: "Como minimo debe ingresar 5 caracteres",
+                  value: 8,
+                  message: "Como minimo debe ingresar 8 caracteres",
                 },
                 maxLength: {
-                  value: 8,
-                  message: "Como maximo debe ingresar 8 caracteres",
+                  value: 100,
+                  message: "Contraseña inválida",
                 },
                 pattern: {
-                  value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{5,8}$/,
+                  value:
+                    /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$/,
                   message:
-                    "La contraseña debe tener minimo 5 caracteres y maximo 8, debe contener numeros, letras, mayusculas y un caracter especial",
+                    "La contraseña debe tener minimo 8 caracteres, debe contener numeros, letras, mayusculas y un caracter especial",
                 },
               })}
             />
-            {errors.dni && <span>{errors.dni.message}</span>}
           </div>
+          {errors.password && <span>{errors.password.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formDomicilio">
@@ -153,8 +158,8 @@ const RegistrationForm = () => {
                 },
               })}
             />
-            {errors.domicilio && <span>{errors.domicilio.message}</span>}
           </div>
+          {errors.domicilio && <span>{errors.domicilio.message}</span>}
         </Form.Group>
 
         <Button

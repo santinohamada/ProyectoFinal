@@ -7,20 +7,20 @@ import SelectPersonas from "./SelectPersonas.jsx";
 const ReservationForm = React.memo(({handleClose}) => {
   return (
     <div className="row">
-      <div className="col-6">
-        <label htmlFor="Habitaciones">Cantidad de Habitaciones</label>
-        <Form.Select defaultValue={"2"} name="Habitaciones" id="habitaciones">
-          <option value="1">1 Habitación</option>
-          <option value="2">2 Habitaciones</option>
-          <option value="3">3 Habitaciones</option>
-          <option value="4">4 Habitaciones</option>
-        </Form.Select>
+      <div className="col-5">
+        
+        <div className="mt-2">CheckIn - CheckOut
+        </div>
+        <div> 
+        <DateRange />
 
+        </div>
         <label htmlFor="Personas" className="mt-3">Cantidad de Personas</label>
+        <div className="w-100">
         <SelectPersonas />
 
-        <div className="mt-4">CheckIn - CheckOut</div>
-        <DateRange />
+        </div>
+
 
         <Link to={"/reservar"} onClick={handleClose} className="my-5 w-100 py-2 btn btn-outline-info">
           Comprobar disponibilidad
@@ -28,10 +28,10 @@ const ReservationForm = React.memo(({handleClose}) => {
       </div>
 
       <div className="col-6">
-        <h3 className="my-5" style={{ fontFamily: "canela-light" }}>
+        <h3 className="my-2" style={{ fontFamily: "canela-light" }}>
           ¿Quieres realizar una reserva más detallada? Escríbenos a:
           <ul className="my-3">
-            <li>HOTEL@email.com</li>
+            <li>HP@mail.com</li>
             <li>+54 9 381 123 4567</li>
           </ul>
         </h3>
