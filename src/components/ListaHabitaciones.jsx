@@ -7,6 +7,8 @@ import {
 } from "../helpers/queries.js";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+
 
 const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
   const {
@@ -60,19 +62,43 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
     ).map((hab) => hab.userId)
   );
 
-  const editarHabitacion = async (habitacionEditada) => {
-    try {
-      const respuesta = await editarHabitacion(
-        habitacionEditada,
-        habitacion._id
-      );
-      if (respuesta.status === 200) {
-        handleCloseModal();
-        setEditable(false);
+  const editarHabitacionAPI = async (habitacionEditada) => {
+    Swal.fire({
+      title: "Deseas aplicar estos cambios?",
+      text: "Esta acción no se puede revertir!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aplicar cambios.",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const respuesta = await editarHabitacion(
+            habitacionEditada,
+            habitacion._id
+          );
+
+          if (respuesta.status === 200) {
+            handleCloseModal();
+            setEditable(false);
+            Swal.fire({
+              title: `La habitacion ${habitacion.roomNumber} fue editada con exito!`,
+              icon: "success",
+            });
+            return;
+          }
+
+          Swal.fire({
+            title: "Ocurrió un error al guardar!",
+            icon: "error",
+          });
+        } catch (error) {
+          console.error(error);
+        }
       }
-    } catch (error) {
-      console.error(error);
-    }
+    });
+   
   };
 
   const datosReserva = async () => {
@@ -144,10 +170,38 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
   };
 
   const borrarHabitacionAPI = async () => {
-    const respuesta = await borrarHabitacion(habitacion._id);
-    if (respuesta.status === 200) {
-      estadoHabitacion(true);
-    }
+    Swal.fire({
+      title: `¿Deseas eliminar la habitacion: ${habitacion.roomNumber}? `,
+      text: "Esta acción no se puede revertir!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aplicar cambios.",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const respuesta = await borrarHabitacion(habitacion._id);
+
+          if (respuesta.status === 200) {
+            estadoHabitacion(true);
+            Swal.fire({
+              title: "La habitacion fue eliminada con exito!",
+              icon: "success",
+            });
+            return;
+          }
+
+          Swal.fire({
+            title: "Ocurrió un error al guardar!",
+            icon: "error",
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    });
+    
   };
 
   const handleCloseModal = () => setShowModal(false);
@@ -209,7 +263,7 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
             height: "auto",
           }}
         >
-          <Form onSubmit={handleSubmitHabitacion(editarHabitacion)}>
+          <Form onSubmit={handleSubmitHabitacion(editarHabitacionAPI)}>
             <Form.Group className="mb-3" controlId="formBasicNro">
               <Form.Label>Habitacion Numero</Form.Label>
               <Form.Control

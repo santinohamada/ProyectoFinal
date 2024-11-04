@@ -52,7 +52,7 @@ const Administracion = () => {
   useEffect(() => {
     const cargarDatos = async () => {
       await Promise.all([reserva(), habitaciones()]); // Ejecuta ambas funciones en paralelo
-      setListaHabitaciones(false)
+      setEstadoHabitacion(false);
     };
 
     cargarDatos();
@@ -68,6 +68,10 @@ const Administracion = () => {
       }
     } catch (error) {}
   };
+
+  const habitacionesOrdenadas = [...listaHabitaciones].sort(
+    (a, b) => a.roomNumber - b.roomNumber
+  );
 
   return (
     <div className="container componentePagina">
@@ -85,7 +89,7 @@ const Administracion = () => {
       </div>
 
       <section className="row mb-5">
-        {listaHabitaciones.map((habitacion, posicion) => (
+        {habitacionesOrdenadas.map((habitacion) => (
           <ListaHabitaciones
             habitacion={habitacion}
             key={habitacion._id}
