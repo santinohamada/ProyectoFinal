@@ -52,7 +52,7 @@ const Administracion = () => {
   useEffect(() => {
     const cargarDatos = async () => {
       await Promise.all([reserva(), habitaciones()]); // Ejecuta ambas funciones en paralelo
-      setListaHabitaciones(false)
+      setEstadoHabitacion(false)
     };
 
     cargarDatos();
