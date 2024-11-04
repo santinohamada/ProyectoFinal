@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import fondo from "../../assets/Error404.jpg";
+import fondo from "../../assets/error404.jpg";
 
 const Error404 = () => {
   return (

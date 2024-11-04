@@ -21,7 +21,6 @@ const useCart = () => {
     clearCart,
     removeFromCart,
     checkElementCart,
-    clearCart,
   };
 };
 export default useCart;
