@@ -74,7 +74,16 @@ const useUser = () => {
           html: "Serás redirigido en <b></b> milisegundos.",
           timer: 1000,
           timerProgressBar: true,
-          didOpen: () => Swal.showLoading(),
+          didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+              timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 100);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
         }).then(async () => {
           const datos = await respuesta.json();
           const userInfo = datos.dni
