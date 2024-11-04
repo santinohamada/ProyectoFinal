@@ -59,11 +59,11 @@ const RoomCard = ({ room, index }) => {
                 </Card.Text>
                 <Card.Text className="text-muted">
                   {room.breakfast ? (
-                    "No viene con desayuno"
-                  ) : (
                     <>
                       <i className="bi bi-egg-fried"></i> Desayuno incluido
                     </>
+                  ) : (
+                    "No viene con desayuno"
                   )}
                 </Card.Text>
                 <p>{room.include}</p>

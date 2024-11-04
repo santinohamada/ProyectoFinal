@@ -8,7 +8,7 @@ const URLHabitacionesDisponibles = import.meta.env
 
 export const reservarHabitacion = async (reserva) => {
   try {
-    await fetch(URLReservas, {
+    const reservar =await fetch(URLReservas, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,7 +16,11 @@ export const reservarHabitacion = async (reserva) => {
       },
       body: JSON.stringify(reserva),
     });
-  } catch (error) {}
+    return reservar
+  } catch (error) {
+    console.error(error)
+    return false
+  }
 };
 export const verificarAdministrador = async (usuario) => {
   if (!usuario) return false;

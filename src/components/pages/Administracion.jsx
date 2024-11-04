@@ -9,7 +9,7 @@ import ListaHabitaciones from "../ListaHabitaciones.jsx";
 import { Button, Form, Modal, Table } from "react-bootstrap";
 import TablaUsuarios from "../Usuarios/TablaUsuarios.jsx";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
+
 
 const Administracion = () => {
   const [listaHabitaciones, setListaHabitaciones] = useState([]);
@@ -165,6 +165,17 @@ const Administracion = () => {
                 })}
               />
               <Form.Text>{errorsNuevaHabitacion.price?.message}</Form.Text>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="tercerFormTaxes">
+              <Form.Label>Impuestos</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Impuestos"
+                {...registerNuevaHabitacion("taxes", {
+                  required: "El precio es un dato requerido",
+                })}
+              />
+              <Form.Text>{errorsNuevaHabitacion.taxes?.message}</Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="tercerFormCapacidad">
               <Form.Label>Capacidad</Form.Label>
