@@ -5,7 +5,7 @@ import {
   listarUsuarios,
   nuevaHabitacion,
 } from "../../helpers/queries.js";
-import ListaHabitaciones from "../listaHabitaciones.jsx";
+import ListaHabitaciones from "../ListaHabitaciones.jsx";
 import { Button, Form, Modal, Table } from "react-bootstrap";
 import TablaUsuarios from "../Usuarios/TablaUsuarios.jsx";
 import { useForm } from "react-hook-form";
@@ -52,6 +52,7 @@ const Administracion = () => {
   useEffect(() => {
     const cargarDatos = async () => {
       await Promise.all([reserva(), habitaciones()]); // Ejecuta ambas funciones en paralelo
+      setListaHabitaciones(false)
     };
 
     cargarDatos();
