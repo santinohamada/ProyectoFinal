@@ -68,6 +68,7 @@ const useUser = () => {
     try {
       const respuesta = await iniciarSesion(datosAEnviar);
       if (respuesta.status === 200) {
+        let timerInterval;
         Swal.fire({
           title: "Sesión iniciada!",
           html: "Serás redirigido en <b></b> milisegundos.",
