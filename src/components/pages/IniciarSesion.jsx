@@ -28,12 +28,12 @@ const IniciarSesion = () => {
         alignContent: "center",
       }}
     >
-      <h2>¡Qué alegría tenerte acá!</h2>
+      <h2 className="tituloContactos">¡Qué alegría tenerte acá!</h2>
 
       <div >
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-input-container">
-            <input
+            <Form.Control
               className="form-input"
               type="text"
               autoComplete="email"
@@ -48,12 +48,11 @@ const IniciarSesion = () => {
                 },
               })}
             />
-            <i className="bi form-icon bi-envelope"></i>
           </div>
           <Form.Text className="text-danger">{errors.entrada?.message}</Form.Text>
 
           <div className="form-input-container">
-            <input
+            <Form.Control
               className="form-input"
               type="password"
               autoComplete="current-password"
@@ -67,20 +66,19 @@ const IniciarSesion = () => {
                 },
               })}
             />
-            <i className="bi form-icon bi-eye"></i>
           </div>
           <Form.Text className="text-danger">
             {errors.password?.message}
           </Form.Text>
-          <div className="form-forgot-password">
-            <Link to={"/Error404"} className="text-dark">
+          <div className="form-forgot-password ">
+            <Link to={"/Error404"} className="tituloContactos">
               Olvidaste tu contraseña?
             </Link>
           </div>
 
           <div className="w-100">
             <Button
-              className="btn w-100 bg-white text-dark border"
+              className="tituloContactos btn w-100 bg-white  border"
               type="submit"
             >
               Ingresar
@@ -88,11 +86,11 @@ const IniciarSesion = () => {
           </div>
         </Form>
 
-        <p className="text-center fs-4">
+        <p className="text-center tituloContactos fs-4">
           <b>o</b>
         </p>
         <div>
-          <Link to={"/Error404"} className="btn border w-100">
+          <Link to={"/Error404"} className="btn tituloContactos border w-100">
             <img
               src="https://img.icons8.com/color/48/000000/google-logo.png"
               alt=""
@@ -103,7 +101,7 @@ const IniciarSesion = () => {
         </div>
       </div>
       <div>
-        <Link to={"/registro"} className="mt-1 text-dark">
+        <Link to={"/registro"} className="mt-1 tituloContactos">
           ¿No tenés cuenta? Registrate acá
         </Link>
       </div>
