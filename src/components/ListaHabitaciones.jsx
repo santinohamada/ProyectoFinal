@@ -81,6 +81,7 @@ const ListaHabitaciones = ({ habitacion, reserva, estadoHabitacion }) => {
 
           if (respuesta.status === 200) {
             handleCloseModal();
+            estadoHabitacion(true)
             setEditable(false);
             Swal.fire({
               title: `La habitacion ${habitacion.roomNumber} fue editada con exito!`,
