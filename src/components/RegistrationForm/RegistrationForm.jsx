@@ -42,7 +42,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
-          {errors.nombre && <span>{errors.nombre.message}</span>}
+          {errors.nombre && <span className="text-danger">{errors.nombre.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formApellido">
@@ -64,7 +64,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
-          {errors.apellido && <span>{errors.apellido.message}</span>}
+          {errors.apellido && <span className="text-danger" >{errors.apellido.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formEmail">
@@ -83,7 +83,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && <span className="text-danger">{errors.email.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formDni">
@@ -109,7 +109,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
-          {errors.dni && <span>{errors.dni.message}</span>}
+          {errors.dni && <span className="text-danger">{errors.dni.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formPassword">
@@ -137,7 +137,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
-          {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && <span className="text-danger">{errors.password.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formDomicilio">
@@ -159,7 +159,7 @@ const RegistrationForm = () => {
               })}
             />
           </div>
-          {errors.domicilio && <span>{errors.domicilio.message}</span>}
+          {errors.domicilio && <span className="text-danger">{errors.domicilio.message}</span>}
         </Form.Group>
 
         <Button
